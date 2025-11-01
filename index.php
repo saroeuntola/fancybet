@@ -16,13 +16,13 @@ $seo = [
         'title' => 'FancyBet Guide - Cricket News & Betting Tips Bangladesh',
         'description' => 'FancyBet Bangladesh - Your premium guide for cricket news, live cricket betting, and FancyBetting tips. Stay updated with match predictions, IPL, BPL, PSL, and ICC tournaments.',
         'keywords' => 'FancyBet, cricket news Bangladesh, cricket betting tips, FancyBetting guide, live cricket betting, IPL, BPL, PSL, ICC, sports betting Bangladesh, FancyBet Guide',
-        'canonical' => 'http://fancybet:8080/?lang=en'
+        'canonical' => 'https://fancybet.info/?lang=en'
     ],
     'bn' => [
         'title' => 'FancyBet Guide - ক্রিকেট নিউজ ও বেটিং গাইড বাংলাদেশ',
         'description' => 'FancyBet বাংলাদেশ - ক্রিকেট নিউজ, লাইভ ক্রিকেট বেটিং এবং FancyBetting টিপসের প্রিমিয়াম গাইড। IPL, BPL, PSL, ICC টুর্নামেন্ট আপডেট পান।',
         'keywords' => 'FancyBet, ক্রিকেট নিউজ বাংলাদেশ, ক্রিকেট বেটিং টিপস, FancyBetting গাইড, লাইভ ক্রিকেট বেটিং, IPL, BPL, PSL, ICC, স্পোর্টস বেটিং বাংলাদেশ, FancyBet গাইড',
-        'canonical' => 'http://fancybet:8080'
+        'canonical' => 'https://fancybet.info'
     ]
 ];
 $currentSeo = $seo[$lang];
@@ -45,22 +45,22 @@ $currentSeo = $seo[$lang];
     <link rel="canonical" href="<?= htmlspecialchars($currentSeo['canonical']) ?>">
 
     <!-- Language Alternates -->
-    <link rel="alternate" hreflang="en" href="http://fancybet:8080/?lang=en">
-    <link rel="alternate" hreflang="bn" href="http://fancybet:8080/?lang=bn">
-    <link rel="alternate" hreflang="x-default" href="http://fancybet:8080">
+    <link rel="alternate" hreflang="en" href="https://fancybet.info/?lang=en">
+    <link rel="alternate" hreflang="bn" href="https://fancybet.info/?lang=bn">
+    <link rel="alternate" hreflang="x-default" href="https://fancybet.info">
 
     <!-- Open Graph -->
     <meta property="og:title" content="<?= htmlspecialchars($currentSeo['title']) ?>">
     <meta property="og:description" content="<?= htmlspecialchars($currentSeo['description']) ?>">
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?= htmlspecialchars($currentSeo['canonical']) ?>">
-    <meta property="og:image" content="http://fancybet:8080/image/Fancybet-192px.png">
+    <meta property="og:image" content="https://fancybet.info/image/Fancybet-192px.png">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?= htmlspecialchars($currentSeo['title']) ?>">
     <meta name="twitter:description" content="<?= htmlspecialchars($currentSeo['description']) ?>">
-    <meta name="twitter:image" content="http://fancybet:8080/image/Fancybet-192px.png">
+    <meta name="twitter:image" content="https://fancybet.info/image/Fancybet-192px.png">
 
     <!-- Favicon -->
     <link rel="icon" href="/image/Fancybet-192px.png" type="image/png">
@@ -75,8 +75,8 @@ $currentSeo = $seo[$lang];
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "FancyBet",
-            "url": "http://fancybet:8080/",
-            "logo": "http://fancybet:8080/image/Fancybet-192px.png",
+            "url": "https://fancybet.info/",
+            "logo": "https://fancybet.info/image/Fancybet-192px.png",
             "sameAs": [
                 "https://www.facebook.com/FancyBet",
                 "https://twitter.com/FancyBet",
@@ -92,7 +92,7 @@ $currentSeo = $seo[$lang];
                 "@type": "ContactPoint",
                 "contactType": "customer support",
                 "email": "support@fancybet.online",
-                "url": "http://fancybet:8080/contact"
+                "url": "https://fancybet.info/contact"
             }
         }
     </script>
