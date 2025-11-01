@@ -1,40 +1,50 @@
 # =========================================
-# 1. Enable Rewrite Engine
+# Enable Rewrite Engine
 # =========================================
-RewriteEngine On
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # -----------------------------------------
+    # Redirect index.php or /index to root (/)
+    # -----------------------------------------
+    RewriteCond %{THE_REQUEST} \s/+(index(\.php)?)([\s?]|$) [NC]
+    RewriteRule ^index(\.php)?$ / [R=301,L]
+
+    # -----------------------------------------
+    # Sitemap clean URL
+    # -----------------------------------------
+    RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
+    # -----------------------------------------
+    # Redirect .php requests to extensionless
+    # -----------------------------------------
+    RewriteCond %{THE_REQUEST} \s/+([^\s?]+)\.php[\s?] [NC]
+    RewriteRule ^ %1 [R=301,L]
+
+    # -----------------------------------------
+    # Internally map extensionless to .php
+    # -----------------------------------------
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^(.*)$ $1.php [L]
+</IfModule>
 
 # =========================================
-# 2. Force extensionless URLs for .php
-# =========================================
-# Redirect /file.php → /file
-RewriteCond %{THE_REQUEST} \s([^\s]+)\.php[\s?] [NC]
-RewriteRule ^ %1 [R=301,L]
-RewriteRule ^sitemap\.xml$ sitemap.php [L]
-
-# Internally map /file → /file.php (if exists)
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^(.*)$ $1.php [L]
-
-# =========================================
-# 3. Deny access to sensitive files
+# Security: Deny access to sensitive files
 # =========================================
 <FilesMatch "\.(env|ini|log|bak|sql|git|htaccess)$">
     Require all denied
 </FilesMatch>
 
-<Files "robots.txt">
-    ForceType text/plain
-</Files>
-
 # =========================================
-# 4. Prevent directory listing
+# Prevent directory listing
 # =========================================
 Options -Indexes
 
 # =========================================
-# 5. Block common exploit patterns 
+# Security: Block exploit patterns
 # =========================================
 <IfModule mod_rewrite.c>
     RewriteCond %{QUERY_STRING} (\.\./|\.\.\\) [NC,OR]
@@ -44,45 +54,27 @@ Options -Indexes
     RewriteRule .* - [F,L]
 </IfModule>
 
-
 # =========================================
-# 6. Strong Security Headers
+# Security Headers
 # =========================================
 <IfModule mod_headers.c>
-    Header unset X-Powered-By React Js
-
-    # Security headers
+    Header unset X-Powered-By
     Header always set X-Content-Type-Options "nosniff"
     Header always set X-Frame-Options "SAMEORIGIN"
     Header always set X-XSS-Protection "1; mode=block"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
     Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains; preload"
-   
-
-    # Permissions policy
     Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
 </IfModule>
 
 # =========================================
-# 7. Enable Gzip Compression (Performance)
+# Gzip Compression
 # =========================================
 <IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
 </IfModule>
 
 # =========================================
-# 8. SEO-Friendly Robots and Sitemap
-# =========================================
-# Ensure robots.txt exists in root
-# Googlebot allowed to crawl all pages by default
-
-# Optional: Force canonical URLs (prevents duplicate content)
-<IfModule mod_rewrite.c>
-    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^\s]+)\.php [NC]
-    RewriteRule ^ %1 [R=301,L]
-</IfModule>
-
-# =========================================
-# 9. Custom 404 Page
+# Custom 404 Page
 # =========================================
 ErrorDocument 404 /404.php
