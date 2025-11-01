@@ -1,0 +1,151 @@
+<?php
+include './admin/page/library/post_lib.php';
+include './admin/page/library/comment_lib.php';
+include './admin/page/library/db.php';
+include './pages/services/bn-date.php';
+$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
+$postLib = new Post();
+$posts = $postLib->getPost($lang);
+$posts = $postLib->getPostByCategory(3, $lang);
+$limitedPosts = array_slice($posts, 0, 8);
+$relatedPosts = $postLib->getRelatedpost($post['id'] ?? 0, $post['category_id'] ?? 0, 6);
+
+// SEO data
+$seo = [
+    'en' => [
+        'title' => 'FancyBet Guide - Cricket News & Betting Tips Bangladesh',
+        'description' => 'FancyBet Bangladesh - Your premium guide for cricket news, live cricket betting, and FancyBetting tips. Stay updated with match predictions, IPL, BPL, PSL, and ICC tournaments.',
+        'keywords' => 'FancyBet, cricket news Bangladesh, cricket betting tips, FancyBetting guide, live cricket betting, IPL, BPL, PSL, ICC, sports betting Bangladesh, FancyBet Guide',
+        'canonical' => 'http://fancybet:8080/?lang=en'
+    ],
+    'bn' => [
+        'title' => 'FancyBet Guide - ক্রিকেট নিউজ ও বেটিং গাইড বাংলাদেশ',
+        'description' => 'FancyBet বাংলাদেশ - ক্রিকেট নিউজ, লাইভ ক্রিকেট বেটিং এবং FancyBetting টিপসের প্রিমিয়াম গাইড। IPL, BPL, PSL, ICC টুর্নামেন্ট আপডেট পান।',
+        'keywords' => 'FancyBet, ক্রিকেট নিউজ বাংলাদেশ, ক্রিকেট বেটিং টিপস, FancyBetting গাইড, লাইভ ক্রিকেট বেটিং, IPL, BPL, PSL, ICC, স্পোর্টস বেটিং বাংলাদেশ, FancyBet গাইড',
+        'canonical' => 'http://fancybet:8080'
+    ]
+];
+$currentSeo = $seo[$lang];
+?>
+<!DOCTYPE html>
+<html lang="<?= $lang === 'en' ? "en-BD" : "bn-BD" ?>">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title><?= htmlspecialchars($currentSeo['title']) ?></title>
+    <meta name="description" content="<?= htmlspecialchars($currentSeo['description']) ?>">
+    <meta name="keywords" content="<?= htmlspecialchars($currentSeo['keywords']) ?>">
+    <meta name="author" content="FancyBet">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="<?= htmlspecialchars($currentSeo['canonical']) ?>">
+
+    <!-- Language Alternates -->
+    <link rel="alternate" hreflang="en" href="http://fancybet:8080/?lang=en">
+    <link rel="alternate" hreflang="bn" href="http://fancybet:8080/?lang=bn">
+    <link rel="alternate" hreflang="x-default" href="http://fancybet:8080">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="<?= htmlspecialchars($currentSeo['title']) ?>">
+    <meta property="og:description" content="<?= htmlspecialchars($currentSeo['description']) ?>">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<?= htmlspecialchars($currentSeo['canonical']) ?>">
+    <meta property="og:image" content="http://fancybet:8080/image/Fancybet-192px.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?= htmlspecialchars($currentSeo['title']) ?>">
+    <meta name="twitter:description" content="<?= htmlspecialchars($currentSeo['description']) ?>">
+    <meta name="twitter:image" content="http://fancybet:8080/image/Fancybet-192px.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/image/Fancybet-192px.png" type="image/png">
+
+    <!-- Styles & Scripts -->
+    <link rel="stylesheet" href="/src/output.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "FancyBet",
+            "url": "http://fancybet:8080/",
+            "logo": "http://fancybet:8080/image/Fancybet-192px.png",
+            "sameAs": [
+                "https://www.facebook.com/FancyBet",
+                "https://twitter.com/FancyBet",
+                "https://www.instagram.com/FancyBet"
+            ],
+            "description": "<?= addslashes($currentSeo['description']) ?>",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Dhaka",
+                "addressCountry": "BD"
+            },
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "customer support",
+                "email": "support@fancybet.online",
+                "url": "http://fancybet:8080/contact"
+            }
+        }
+    </script>
+</head>
+
+<style>
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+    }
+</style>
+
+
+<body class="bg-gray-900">
+
+    <?php
+    include "./pages/loader.php"
+    ?>
+
+
+    <?php
+    include "./pages/navbar.php"
+    ?>
+    <main class="px-4 max-w-screen-lg mx-auto">
+        <section class="pt-20"></section>
+
+        <section class="">
+            <?php
+            include "./pages/cricket-news-section.php"
+            ?>
+        </section>
+        <section class="pt-10">
+            <?php
+            include "./pages/cricket-betting-guides-section.php"
+            ?>
+        </section>
+
+        <section class="">
+            <?php
+            include "./pages/match-preview-section.php"
+            ?>
+        </section>
+    </main>
+    <?php
+    include "./pages/footer.php"
+    ?>
+    <script src="/js/scroll-grid.js"></script>
+</body>
+
+</html>

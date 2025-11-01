@@ -1,0 +1,70 @@
+ .scrollbar-hidden::-webkit-scrollbar {
+        display: none;
+    }
+
+    .scrollbar-hidden {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .desc-editor table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 15px;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+    .desc-editor th,
+    .desc-editor td {
+        padding: 12px 16px;
+        text-align: left;
+        border: 1px solid #e2e8f0;
+
+    }
+
+    .desc-editor thead {
+        background-color: #1e40af;
+        color: #fff;
+    }
+
+    .desc-editor th {
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        text-align: center;
+        background-color: brown;
+    }
+
+    tbody tr:nth-child(even) {}
+
+    #commentsWrapper::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    #commentsWrapper::-webkit-scrollbar-thumb {
+        background-color: #dc2626;
+        /* red-600 */
+        border-radius: 9999px;
+        /* rounded */
+    }
+
+    #commentsWrapper::-webkit-scrollbar-track {
+        background-color: #e5e7eb;
+        /* gray-200 */
+    }
+
+    #commentsWrapper::-webkit-scrollbar-thumb:hover {
+        background-color: #b91c1c;
+        /* red-700 */
+    }
+
+   .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
