@@ -1,46 +1,40 @@
 <?php
-// Disable buffering and errors before output
-if (ob_get_length()) ob_end_clean();
-ob_start();
+// --- clean start, no spaces above this line ---
 
+while (ob_get_level()) ob_end_clean();
+ob_start(); // start fresh buffer
 ini_set('display_errors', 0);
 error_reporting(0);
 
 header("Content-Type: application/xml; charset=utf-8");
 
-// Base URL
 $baseUrl = "https://fancybet.info";
 
-// Include your database and post class
+// Include files
 require_once __DIR__ . '/admin/page/library/db.php';
 require_once __DIR__ . '/admin/page/library/post_lib.php';
 
 $postLib = new Post();
-$posts = [];
-
 try {
     $posts = $postLib->getPost();
 } catch (Exception $e) {
     $posts = [];
 }
 
-// Static pages
 $pages = [
     ['slug' => '', 'priority' => 1.0],
     ['slug' => '/pages/about', 'priority' => 0.8],
     ['slug' => '/pages/services', 'priority' => 0.8],
 ];
 
+// --- Final cleanup before XML output ---
 ob_clean();
 
-// Output XML header safely
-echo '<?xml version="1.0" encoding="UTF-8"?>';
+echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
 ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <?php
     $today = date('Y-m-d');
-
-    // Static pages
     foreach ($pages as $page): ?>
         <url>
             <loc><?= htmlspecialchars(rtrim($baseUrl, '/') . '/' . ltrim($page['slug'], '/')) ?></loc>
@@ -50,9 +44,8 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
         </url>
     <?php endforeach; ?>
 
-    <?php
-    // Dynamic posts
-    foreach ($posts as $post):
+    <?php foreach ($posts as $post):
+        if (empty($post['slug'])) continue;
         $slug = urlencode($post['slug']);
     ?>
         <url>
