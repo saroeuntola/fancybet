@@ -119,7 +119,7 @@ $image = "https://fancybet.info/image/Fancybet-192px.png";
 
 
 <body class="bg-gray-900 text-white">
-    <?php include "navbar.php"; ?>
+    <?php include "navbar.php"; ?>................
 
     <div class="px-4 py-8 mt-15 max-w-5xl m-auto">
 
