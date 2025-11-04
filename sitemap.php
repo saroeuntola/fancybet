@@ -1,22 +1,27 @@
 <?php
-// --- clean start, no spaces above this line ---
+// --- Clean start, no spaces above this line ---
+if (ob_get_level()) while (ob_get_level()) ob_end_clean();
+ob_implicit_flush(1);
 
-while (ob_get_level()) ob_end_clean();
-ob_start(); // start fresh buffer
+// Disable compression and error output
+ini_set('zlib.output_compression', 0);
 ini_set('display_errors', 0);
 error_reporting(0);
 
+// Headers for Google
 header("Content-Type: application/xml; charset=utf-8");
 header("Cache-Control: no-cache, no-store, must-revalidate");
 header("Pragma: no-cache");
 header("Expires: 0");
 
+// Base URL
 $baseUrl = "https://fancybet.info";
 
-// Include files
+// Include database and post library
 require_once __DIR__ . '/admin/page/library/db.php';
 require_once __DIR__ . '/admin/page/library/post_lib.php';
 
+// Get posts safely
 $postLib = new Post();
 try {
     $posts = $postLib->getPost();
@@ -24,21 +29,21 @@ try {
     $posts = [];
 }
 
-
+// Static pages
 $pages = [
     ['slug' => '', 'priority' => 1.0],
     ['slug' => '/pages/about', 'priority' => 0.8],
     ['slug' => '/pages/services', 'priority' => 0.8],
 ];
-// --- Final cleanup before XML output ---
-ob_clean();
 
+// Today's date for lastmod
+$today = date('Y-m-d');
+
+// Start XML output
 echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
 ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <?php
-    $today = date('Y-m-d');
-    foreach ($pages as $page): ?>
+    <?php foreach ($pages as $page): ?>
         <url>
             <loc><?= htmlspecialchars(rtrim($baseUrl, '/') . '/' . ltrim($page['slug'], '/')) ?></loc>
             <lastmod><?= $today ?></lastmod>
@@ -60,5 +65,6 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
     <?php endforeach; ?>
 </urlset>
 <?php
-ob_end_flush();
+flush(); // flush output to avoid HTTP/2 protocol errors
+exit;
 ?>
