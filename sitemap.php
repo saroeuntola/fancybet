@@ -7,6 +7,9 @@ ini_set('display_errors', 0);
 error_reporting(0);
 
 header("Content-Type: application/xml; charset=utf-8");
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
 
 $baseUrl = "https://fancybet.info";
 
@@ -21,12 +24,12 @@ try {
     $posts = [];
 }
 
+
 $pages = [
     ['slug' => '', 'priority' => 1.0],
     ['slug' => '/pages/about', 'priority' => 0.8],
     ['slug' => '/pages/services', 'priority' => 0.8],
 ];
-
 // --- Final cleanup before XML output ---
 ob_clean();
 
