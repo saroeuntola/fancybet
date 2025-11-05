@@ -14,6 +14,7 @@
     # -----------------------------------------
     # Sitemap clean URL
     # -----------------------------------------
+    RewriteRule ^sitemap\.xml$ sitemap.php [L]
 
     # -----------------------------------------
     # Redirect .php requests to extensionless
@@ -29,6 +30,11 @@
     RewriteCond %{REQUEST_FILENAME}.php -f
     RewriteRule ^(.*)$ $1.php [L]
 </IfModule>
+
+<Files "sitemap.xml">
+    SetEnv no-gzip 1
+</Files>
+
 
 # =========================================
 # Security: Deny access to sensitive files
