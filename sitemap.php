@@ -1,6 +1,7 @@
 <?php
-// --- clean start, no spaces above this line ---
+// Disable all output buffering early
 while (ob_get_level()) ob_end_clean();
+ob_implicit_flush(true);
 ob_start();
 ini_set('display_errors', 0);
 error_reporting(0);
@@ -9,7 +10,7 @@ header("Content-Type: application/xml; charset=utf-8");
 header("Cache-Control: no-cache, no-store, must-revalidate");
 header("Pragma: no-cache");
 header("Expires: 0");
-header("Connection: close");
+header("Connection: keep-alive");
 
 $baseUrl = "https://fancybet.info";
 
