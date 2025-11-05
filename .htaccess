@@ -14,7 +14,6 @@
     # -----------------------------------------
     # Sitemap clean URL
     # -----------------------------------------
-    RewriteRule ^sitemap\.xml$ sitemap.php [L]
 
     # -----------------------------------------
     # Redirect .php requests to extensionless
