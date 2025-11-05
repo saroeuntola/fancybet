@@ -113,15 +113,11 @@ $currentSeo = $seo[$lang];
 
 
 <body class="bg-gray-900">
-
+   <?php include './pages/navbar.php'; ?>
     <?php
     include "./pages/loader.php"
     ?>
-
-
-    <?php
-    include "./pages/navbar.php"
-    ?>
+ 
     <main class="px-4 max-w-screen-lg mx-auto">
         <section class="pt-20"></section>
 

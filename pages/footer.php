@@ -2,43 +2,30 @@
     <div class="px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-screen-lg mx-auto">
         <!-- FW Tools / Resources -->
         <div>
-            <h4 class="text-white font-semibold mb-4"><?= $lang === 'en' ? 'FW Tools / Resources' : 'FW টুলস / রিসোর্স' ?></h4>
-            <ul class="space-y-2">
-                <li><a href="#" class="hover:text-red-500 transition"><?= $lang === 'en' ? 'Odds Calculator' : 'অডস ক্যালকুলেটর' ?></a></li>
-                <li><a href="#" class="hover:text-red-500 transition"><?= $lang === 'en' ? 'Betting Guides' : 'বেটিং গাইড' ?></a></li>
-                <li><a href="#" class="hover:text-red-500 transition"><?= $lang === 'en' ? 'Statistics' : 'স্ট্যাটিস্টিক্স' ?></a></li>
-            </ul>
+            <h4 class="text-white font-semibold mb-4"><?= $lang === 'en' ? 'Fancybet' : 'Fancybet' ?></h4>
+            <p>
+                <?= $lang === 'en'
+                    ? 'Fancybet is your go-to platform for the latest cricket news, betting guides, and match previews. Stay informed and make smarter bets with us.'
+                    : 'Fancybet হল আপনার প্রিয় প্ল্যাটফর্ম সর্বশেষ ক্রিকেট সংবাদ, বেটিং গাইড এবং ম্যাচ প্রিভিউয়ের জন্য। আমাদের সাথে থাকুন এবং আরও স্মার্ট বেট করুন।'
+                ?>
+            </p>
         </div>
 
-        <!-- Community -->
+        <!-- Quick Link -->
         <div>
-            <h4 class="text-white font-semibold mb-4"><?= $lang === 'en' ? 'Community' : 'কমিউনিটি' ?></h4>
+            <h4 class="text-white font-semibold mb-4"><?= $lang === 'en' ? 'Quick Links' : 'দ্রুত লিঙ্ক' ?></h4>
             <ul class="space-y-2">
-                <li><a href="#" class="hover:text-red-500 transition"><?= $lang === 'en' ? 'Forums' : 'ফোরাম' ?></a></li>
-                <li><a href="#" class="hover:text-red-500 transition"><?= $lang === 'en' ? 'Chat Groups' : 'চ্যাট গ্রুপ' ?></a></li>
-                <li><a href="#" class="hover:text-red-500 transition"><?= $lang === 'en' ? 'Events' : 'ইভেন্ট' ?></a></li>
+                <li><a href="/pages/about" class="hover:text-red-500 transition"><?= $lang === 'en' ? 'About Us' : 'আমাদের সম্পর্কে' ?></a></li>
+                <li><a href="/pages/contact" class="hover:text-red-500 transition"><?= $lang === 'en' ? 'Contact' : 'যোগাযোগ' ?></a></li>
+                <li><a href="/pages/privacy-policy" class="hover:text-red-500 transition"><?= $lang === 'en' ? 'Privacy Policy' : 'প্রাইভেসি পলিসি' ?></a></li>
+                <li><a href="/pages/terms" class="hover:text-red-500 transition"><?= $lang === 'en' ? 'Terms & Conditions' : 'শর্তাবলী' ?></a></li>
             </ul>
         </div>
 
-        <!-- Legal & Responsible Betting -->
-        <div>
-            <h4 class="text-white font-semibold mb-4"><?= $lang === 'en' ? 'Legal & Responsible Betting' : 'আইনি ও দায়িত্বশীল বেটিং' ?></h4>
-            <ul class="space-y-2">
-                <li><a href="#" class="hover:text-red-500 transition"><?= $lang === 'en' ? 'Terms & Conditions' : 'শর্তাবলী' ?></a></li>
-                <li><a href="#" class="hover:text-red-500 transition"><?= $lang === 'en' ? 'Privacy Policy' : 'প্রাইভেসি পলিসি' ?></a></li>
-                <li><a href="#" class="hover:text-red-500 transition"><?= $lang === 'en' ? 'Responsible Gambling' : 'দায়িত্বশীল জুয়া' ?></a></li>
-            </ul>
-
-        </div>
 
         <!-- About & Social -->
         <div>
-            <h4 class="text-white font-semibold mb-4"><?= $lang === 'en' ? 'About' : 'আমাদের সম্পর্কে' ?></h4>
-            <ul class="space-y-2 mb-4">
-                <li><a href="#" class="hover:text-red-500 transition"><?= $lang === 'en' ? 'Our Story' : 'আমাদের গল্প' ?></a></li>
-                <li><a href="#" class="hover:text-red-500 transition"><?= $lang === 'en' ? 'Contact' : 'যোগাযোগ' ?></a></li>
-            </ul>
-
+            <h4 class="text-white font-semibold mb-4"><?= $lang === 'en' ? 'Follow Us' : 'আমাদের সম্পর্কে' ?></h4>
             <!-- Social Media Icons -->
             <div class="flex space-x-3">
                 <a href="#" class="bg-blue-600 hover:bg-blue-700 p-2 rounded-full transition text-white">
@@ -55,6 +42,25 @@
                 </a>
             </div>
         </div>
+        <!-- Newsletter / Contact -->
+        <div>
+            <h4 class="text-white font-semibold mb-4"><?= $lang === 'en' ? 'Subscribe to Our Newsletter' : 'আমাদের নিউজলেটারে সাবস্ক্রাইব করুন' ?></h4>
+            <p class="text-gray-400 mb-4 text-sm">
+                <?= $lang === 'en'
+                    ? 'Get weekly updates directly to your inbox about news, tutorials, and community events.'
+                    : 'সাপ্তাহিক সংবাদ, টিউটোরিয়াল এবং কমিউনিটি ইভেন্টগুলির আপডেট সরাসরি আপনার ইনবক্সে পান।'
+                ?>
+            </p>
+            <form action="" method="POST" class="flex flex-col gap-2">
+                <input type="email" name="email" required placeholder="<?= $lang === 'en' ? 'Enter your email' : 'আপনার ইমেইল লিখুন' ?>"
+                    class="p-3 rounded-lg border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
+                <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg transition-colors">
+                    <?= $lang === 'en' ? 'Subscribe' : 'সাবস্ক্রাইব করুন' ?>
+                </button>
+            </form>
+        </div>
+
+
     </div>
 
     <!-- Bottom copyright -->
