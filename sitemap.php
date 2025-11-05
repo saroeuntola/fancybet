@@ -1,16 +1,22 @@
 <?php
-// Disable all output buffering early
-while (ob_get_level()) ob_end_clean();
+// ===================================================
+// Safe Sitemap Generator for SiteGround + Googlebot
+// ===================================================
+
+// Disable all buffering & compression early
+if (function_exists('apache_setenv')) {
+    @apache_setenv('no-gzip', '1');
+}
+ini_set('zlib.output_compression', 0);
+ini_set('output_buffering', 'off');
+while (ob_get_level() > 0) ob_end_clean();
 ob_implicit_flush(true);
 ob_start();
-ini_set('display_errors', 0);
-error_reporting(0);
-
 header("Content-Type: application/xml; charset=utf-8");
 header("Cache-Control: no-cache, no-store, must-revalidate");
 header("Pragma: no-cache");
 header("Expires: 0");
-header("Connection: keep-alive");
+header("Connection: close"); // ✅ close properly instead of keep-alive
 
 $baseUrl = "https://fancybet.info";
 
@@ -33,49 +39,41 @@ $pages = [
     ['slug' => '/pages/match-previews', 'priority' => 0.8],
 ];
 
+$languages = ['en', 'bn'];
+$today = date('Y-m-d');
+
 ob_clean();
-
+// --- Output XML ---
 echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
-?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <?php
-    $today = date('Y-m-d');
-    $languages = ['en', 'bn'];
+echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
 
-    // ✅ Add static pages in both languages
-    foreach ($pages as $page) {
-        foreach ($languages as $lang) {
-            $loc = htmlspecialchars(rtrim($baseUrl, '/') . '/' . ltrim($page['slug'], '/'));
-            $loc .= (strpos($loc, '?') === false ? '?lang=' . $lang : '&lang=' . $lang);
-    ?>
-            <url>
-                <loc><?= $loc ?></loc>
-                <lastmod><?= $today ?></lastmod>
-                <changefreq>weekly</changefreq>
-                <priority><?= $page['priority'] ?></priority>
-            </url>
-        <?php
-        }
+// Static pages
+foreach ($pages as $page) {
+    foreach ($languages as $lang) {
+        $loc = rtrim($baseUrl, '/') . '/' . ltrim($page['slug'], '/');
+        $loc .= (strpos($loc, '?') === false ? '?lang=' . $lang : '&lang=' . $lang);
+        echo "  <url>\n";
+        echo "    <loc>" . htmlspecialchars($loc, ENT_XML1) . "</loc>\n";
+        echo "    <lastmod>$today</lastmod>\n";
+        echo "    <changefreq>weekly</changefreq>\n";
+        echo "    <priority>{$page['priority']}</priority>\n";
+        echo "  </url>\n";
     }
+}
 
-    // ✅ Add dynamic posts in both languages
-    foreach ($posts as $post) {
-        if (empty($post['slug'])) continue;
-        $slug = urlencode($post['slug']);
-        foreach ($languages as $lang) {
-            $loc = htmlspecialchars("$baseUrl/pages/detail?slug=$slug&lang=$lang");
-        ?>
-            <url>
-                <loc><?= $loc ?></loc>
-                <lastmod><?= $today ?></lastmod>
-                <changefreq>weekly</changefreq>
-                <priority>0.8</priority>
-            </url>
-    <?php
-        }
+// Dynamic posts
+foreach ($posts as $post) {
+    if (empty($post['slug'])) continue;
+    $slug = urlencode($post['slug']);
+    foreach ($languages as $lang) {
+        $loc = "$baseUrl/pages/detail?slug=$slug&lang=$lang";
+        echo "  <url>\n";
+        echo "    <loc>" . htmlspecialchars($loc, ENT_XML1) . "</loc>\n";
+        echo "    <lastmod>$today</lastmod>\n";
+        echo "    <changefreq>weekly</changefreq>\n";
+        echo "    <priority>0.8</priority>\n";
+        echo "  </url>\n";
     }
-    ?>
-</urlset>
-<?php
-ob_end_flush();
-?>
+}
+
+echo "</urlset>";

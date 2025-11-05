@@ -31,10 +31,10 @@
     RewriteRule ^(.*)$ $1.php [L]
 </IfModule>
 
-<Files "sitemap.xml">
+# Disable compression for sitemap.xml
+<FilesMatch "\.xml$">
     SetEnv no-gzip 1
-</Files>
-
+</FilesMatch>
 
 # =========================================
 # Security: Deny access to sensitive files
