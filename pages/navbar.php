@@ -8,20 +8,16 @@ function buildLangUrl($langTarget, $currentPage, $currentId)
 {
     // normalize filename
     $currentFile = basename($currentPage, '.php');
-
     // build query
     $params = ['lang' => $langTarget];
 
-    // keep slug/title for detail pages
     if ($currentFile === 'detail' && $currentId) {
         $params['slug'] = $currentId;
     }
 
-    // ✅ Home page fix
     if ($currentFile === 'index') {
         return '/?' . http_build_query($params);
     }
-
     return "{$currentFile}?" . http_build_query($params);
 }
 
@@ -46,15 +42,16 @@ $menu = [
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!-- Navbar -->
-<nav class="w-full bg-red-800 text-white shadow-md fixed top-0 left-0 z-30">
-    <div class="container mx-auto flex items-center justify-between px-4 py-3 max-w-screen-lg">
-
+<nav class="w-full bg-black text-white shadow-md fixed top-0 left-0 z-30">
+    <div class="container mx-auto flex items-center justify-between px-4 max-w-screen-lg">
         <!-- Left: Logo + Mobile Toggle -->
         <div class="flex items-center space-x-3">
             <button id="menu-toggle" class="lg:hidden rounded-md hover:bg-red-700 p-1 focus:outline-none">
                 <i class="fa-solid fa-bars text-xl"></i>
             </button>
-            <a href="/?lang=<?= $lang ?>" class="text-lg font-semibold hover:text-gray-300">FancyBet</a>
+            <a href="/?lang=<?= $lang ?>" class="text-lg font-semibold hover:text-gray-300">
+                <img src="/image/FancyBet.png" alt="fancybet logo" class="w-28 hover:opacity-70 transition-all">
+            </a>
         </div>
 
         <!-- Center: Desktop Menu -->
@@ -85,38 +82,6 @@ $menu = [
             <?php endforeach; ?>
         </ul>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", () => {
-                const dropdowns = document.querySelectorAll('.dropdown');
-
-                dropdowns.forEach(dropdown => {
-                    const toggle = dropdown.querySelector('.dropdown-toggle');
-                    const submenu = dropdown.querySelector('.submenu');
-
-                    // Toggle submenu on click
-                    toggle.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        submenu.classList.toggle('hidden');
-                    });
-
-                    // Optional: also open on hover
-                    dropdown.addEventListener('mouseenter', () => {
-                        submenu.classList.remove('hidden');
-                    });
-
-                    // Prevent hiding on mouseleave
-                    // submenu will stay open until click outside
-
-                    // Close submenu when clicking outside
-                    document.addEventListener('click', (e) => {
-                        if (!dropdown.contains(e.target)) {
-                            submenu.classList.add('hidden');
-                        }
-                    });
-                });
-            });
-        </script>
-
         <!-- Add this inside the navbar container, after the menu or before right side -->
         <div class="relative">
             <!-- Desktop Search Box -->
@@ -133,7 +98,6 @@ $menu = [
 
         <!-- Right: Language Dropdown -->
         <div class="relative flex gap-6">
-
             <button id="mobile-search-btn" class="lg:hidden text-gray-200 hover:text-white focus:outline-none">
                 <i class="fa-solid fa-magnifying-glass text-xl"></i>
             </button>
@@ -176,7 +140,7 @@ $menu = [
 <div id="overlay" class="fixed inset-0 bg-black bg-opacity-70 z-20 hidden transition-opacity duration-500"></div>
 
 <!-- Sidebar -->
-<div id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-red-800 z-40 transform -translate-x-full transition-transform duration-500 ease-in-out lg:hidden">
+<div id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-black z-40 transform -translate-x-full transition-transform duration-500 ease-in-out lg:hidden">
     <div class="p-4 border-b border-slate-700 flex justify-between items-center">
         <span class="text-lg font-bold text-white">Menu</span>
         <button id="closeBtn" class="text-gray-300 hover:text-white focus:outline-none text-xl">
@@ -214,7 +178,10 @@ $menu = [
         <?php endforeach; ?>
     </ul>
 
-    <script>
+   
+</div>
+
+<script>
         document.addEventListener("DOMContentLoaded", () => {
             const mobileDropdowns = document.querySelectorAll(".mobile-dropdown");
             mobileDropdowns.forEach(dropdown => {
@@ -228,11 +195,36 @@ $menu = [
                 });
             });
         });
-    </script>
+</script>
 
-</div>
+<script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const dropdowns = document.querySelectorAll('.dropdown');
 
+            dropdowns.forEach(dropdown => {
+                const toggle = dropdown.querySelector('.dropdown-toggle');
+                const submenu = dropdown.querySelector('.submenu');
 
+                // Toggle submenu on click
+                toggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    submenu.classList.toggle('hidden');
+                });
+
+                // Optional: also open on hover
+                dropdown.addEventListener('mouseenter', () => {
+                    submenu.classList.remove('hidden');
+                });
+
+                // Close submenu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!dropdown.contains(e.target)) {
+                        submenu.classList.add('hidden');
+                    }
+                });
+            });
+        });
+</script>
 <?php
 $js = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/js/navbar.js');
 $encoded = base64_encode($js);

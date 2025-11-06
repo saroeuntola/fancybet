@@ -1,7 +1,7 @@
 <?php
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 ?>
-<div class="text-white">
+<div class="text-white pt-4 lg:pt-10">
     <div class="flex justify-between items-center mb-4">
         <h1 class="lg:text-3xl text-lg font-bold text-white">
             <?= $lang === 'en' ? 'Cricket News' : 'ক্রিকেট সংবাদ' ?>

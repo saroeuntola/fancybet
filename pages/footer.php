@@ -1,8 +1,8 @@
 <footer class="bg-black text-gray-200 mt-10">
     <div class="px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-screen-lg mx-auto">
-        <!-- FW Tools / Resources -->
+       <!-- branding -->
         <div>
-            <h4 class="text-white font-semibold mb-4"><?= $lang === 'en' ? 'Fancybet' : 'Fancybet' ?></h4>
+            <img src="/image/FancyBet-footer.png" alt="fancybet logo" class="w-32 mb-4">
             <p>
                 <?= $lang === 'en'
                     ? 'Fancybet is your go-to platform for the latest cricket news, betting guides, and match previews. Stay informed and make smarter bets with us.'
@@ -10,7 +10,6 @@
                 ?>
             </p>
         </div>
-
         <!-- Quick Link -->
         <div>
             <h4 class="text-white font-semibold mb-4"><?= $lang === 'en' ? 'Quick Links' : 'দ্রুত লিঙ্ক' ?></h4>
@@ -21,7 +20,6 @@
                 <li><a href="/pages/terms" class="hover:text-red-500 transition"><?= $lang === 'en' ? 'Terms & Conditions' : 'শর্তাবলী' ?></a></li>
             </ul>
         </div>
-
 
         <!-- About & Social -->
         <div>
@@ -42,6 +40,7 @@
                 </a>
             </div>
         </div>
+
         <!-- Newsletter / Contact -->
         <div>
             <h4 class="text-white font-semibold mb-4"><?= $lang === 'en' ? 'Subscribe to Our Newsletter' : 'আমাদের নিউজলেটারে সাবস্ক্রাইব করুন' ?></h4>
@@ -59,7 +58,6 @@
                 </button>
             </form>
         </div>
-
 
     </div>
 
