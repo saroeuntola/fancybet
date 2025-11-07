@@ -41,7 +41,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
                             echo htmlspecialchars($plainText);
                             ?>
                         </p>
-
+                        
                         <!-- Date with globe icon -->
                         <div class="flex items-center gap-1 text-gray-400 text-xs mt-4 truncate">
                             <i class="fa-solid fa-earth-americas"></i>
@@ -58,6 +58,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 
         <!-- Smaller Posts on the Right -->
         <div class="flex flex-col gap-2">
+            
             <?php foreach (array_slice($limitedPosts, 0, 4) as $post): ?>
                 <a href="/pages/detail?slug=<?= urlencode($post['slug']) ?>&lang=<?= $lang ?>">
                     <div class="bg-gray-800 hover:bg-gray-700 shadow rounded-lg overflow-hidden flex h-[160px] lg:h-[140px]">
@@ -68,6 +69,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
                                 <?= $lang === 'en' ? 'No Image' : 'ছবি নেই' ?>
                             </div>
                         <?php endif; ?>
+
                         <div class="p-3 w-2/3 flex flex-col justify-between">
                             <!-- Post Title -->
                             <h3 class="text-lg font-semibold line-clamp-2 break-words">
@@ -93,6 +95,5 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
                 </a>
             <?php endforeach; ?>
         </div>
-
     </div>
 </div>

@@ -39,6 +39,11 @@ $menu = [
 ];
 
 ?>
+<style>
+   .navlink {
+    min-width: 150px;
+   } 
+</style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!-- Navbar -->
@@ -55,14 +60,14 @@ $menu = [
         </div>
 
         <!-- Center: Desktop Menu -->
-        <ul class="hidden lg:flex space-x-8 text-sm font-medium">
+        <ul class="hidden lg:flex space-x-8 text-sm">
             <?php foreach ($menu as $file => $item): ?>
                 <?php if (is_array($item)): ?>
                     <li class="relative dropdown">
                         <span class="cursor-pointer hover:text-gray-200 transition font-semibold dropdown-toggle">
                             <?= htmlspecialchars($item['title']) ?>
                         </span>
-                        <ul class="submenu absolute left-0 mt-4 w-48 bg-red-800 rounded-md shadow-lg hidden z-50">
+                        <ul class="submenu absolute left-0 mt-4 navlink bg-gray-800 rounded-md shadow-lg hidden z-50">
                             <?php foreach ($item['submenu'] as $subFile => $subLabel): ?>
                                 <li>
                                     <a href="<?= $subFile ?>?lang=<?= $lang ?>" class="block px-4 py-2 text-gray-200 hover:bg-red-700">
@@ -82,7 +87,6 @@ $menu = [
             <?php endforeach; ?>
         </ul>
 
-        <!-- Add this inside the navbar container, after the menu or before right side -->
         <div class="relative">
             <!-- Desktop Search Box -->
             <form action="/pages/search" method="get" class="hidden lg:flex items-center">
@@ -116,8 +120,9 @@ $menu = [
             <button id="lang-btn" class="flex items-center gap-2 py-1.5 rounded-md text-sm text-gray-200 cursor-pointer hover:opacity-70">
                 <img id="lang-flag"
                     src="<?= $lang === 'bn' ? '/image/flag/flag_bn.png' : '/image/flag/flag_en.png' ?>"
-                    alt="flag" class="w-6 rounded-sm">
-
+                    alt="flag" class="w-6 rounded-sm"
+                    loading="lazy"
+                    >
             </button>
 
             <!-- Dropdown -->
@@ -125,11 +130,11 @@ $menu = [
                 class="hidden absolute right-0 mt-12 w-28 bg-red-800 rounded-md shadow-lg border border-slate-700 transition-all duration-300">
                 <a href="<?= buildLangUrl('en', $currentPage, $currentId) ?>"
                     class="flex items-center gap-2 w-full px-3 py-2 text-gray-200 hover:bg-slate-700 text-sm rounded-t-md">
-                    <img src="/image/flag/flag_en.png" alt="EN" class="w-6"> EN
+                    <img src="/image/flag/flag_en.png" alt="EN" class="w-6" loading="lazy"> EN
                 </a>
                 <a href="<?= buildLangUrl('bn', $currentPage, $currentId) ?>"
                     class="flex items-center gap-2 w-full px-3 py-2 text-gray-200 hover:bg-slate-700 text-sm rounded-b-md">
-                    <img src="/image/flag/flag_bn.png" alt="BN" class="w-6"> BN
+                    <img src="/image/flag/flag_bn.png" alt="BN" class="w-6" loading="lazy"> BN
                 </a>
             </div>
         </div>
@@ -177,8 +182,6 @@ $menu = [
             <?php endif; ?>
         <?php endforeach; ?>
     </ul>
-
-   
 </div>
 
 <script>
@@ -200,22 +203,18 @@ $menu = [
 <script>
         document.addEventListener("DOMContentLoaded", () => {
             const dropdowns = document.querySelectorAll('.dropdown');
-
             dropdowns.forEach(dropdown => {
                 const toggle = dropdown.querySelector('.dropdown-toggle');
                 const submenu = dropdown.querySelector('.submenu');
-
                 // Toggle submenu on click
                 toggle.addEventListener('click', (e) => {
                     e.stopPropagation();
                     submenu.classList.toggle('hidden');
                 });
-
-                // Optional: also open on hover
+             
                 dropdown.addEventListener('mouseenter', () => {
                     submenu.classList.remove('hidden');
                 });
-
                 // Close submenu when clicking outside
                 document.addEventListener('click', (e) => {
                     if (!dropdown.contains(e.target)) {
