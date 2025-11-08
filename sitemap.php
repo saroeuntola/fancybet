@@ -12,6 +12,7 @@ ob_start();
 // --------------------
 // Headers
 // --------------------
+http_response_code(200);
 header("Content-Type: application/xml; charset=utf-8");
 header("Cache-Control: no-cache, no-store, must-revalidate");
 header("Pragma: no-cache");
