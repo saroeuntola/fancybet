@@ -35,7 +35,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
     <meta property="og:description" content="<?= $lang === 'bn'
                                                     ? 'ক্রিকেট বাংলাদেশের জাতীয় খেলা নয়, কিন্তু এটি সবচেয়ে জনপ্রিয়। ফ্যান্সি বেট ক্রিকেট খবর ও বিশ্লেষণ নিয়ে আসছে।'
                                                     : 'Cricket may not be Bangladesh’s national sport, but it’s the most loved. FancyBet brings you news and insights.' ?>">
-    <meta property="og:image" content="https://fancybet.info/image/cricket-banner.jpg">
+    <meta property="og:image" content="https://fancybet.info/image/favicon-96x96.png">
     <meta property="og:url" content="https://fancybet.info/pages/about-cricket<?= $lang === 'bn' ? '?lang=bn' : '' ?>">
 
     <!-- Twitter -->
@@ -44,7 +44,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
     <meta name="twitter:description" content="<?= $lang === 'bn'
                                                     ? 'বাংলাদেশে ক্রিকেট খবর, ম্যাচ আপডেট এবং ফ্যান্সি বেট ক্রিকেটের বিশ্লেষণ।'
                                                     : 'Bangladesh Cricket news, match updates, and FancyBet Cricket insights.' ?>">
-    <meta name="twitter:image" content="https://fancybet.info/image/cricket-banner.jpg">
+    <meta name="twitter:image" content="https://fancybet.info/image/favicon-96x96.png">
 
     <!-- Local SEO for Bangladesh -->
     <meta name="geo.region" content="BD">
@@ -52,7 +52,13 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
     <meta name="geo.position" content="23.8103;90.4125">
     <meta name="ICBM" content="23.8103,90.4125">
 
-    <link rel="icon" href="/image/Fancybet-192px.png" type="image/png">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/image/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/image/favicon.svg" />
+    <link rel="shortcut icon" href="/image/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/image/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="FancyBet" />
+    <link rel="manifest" href="/image/site.webmanifest" />
 
     <!-- Structured Data (Article Schema) -->
     <script type="application/ld+json">
@@ -73,7 +79,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
                 "name": "FancyBet",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "https://fancybet.info/image/logo.png"
+                    "url": "https://fancybet.info/image/favicon-96x96.png"
                 }
             },
             "mainEntityOfPage": {

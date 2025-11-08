@@ -26,7 +26,7 @@ $baseURL = "https://fancybet.info";
 $postTitle =  ($post['name'] ?? '');
 $postDescription =  ($post['meta_desc'] ?? '');
 $postKeywords = ($post['meta_keyword'] ?? '');
-$postImage = $post['image'] ?? '/image/Fancybet-192px.png';
+$postImage = $post['image'] ?? '/image/favicon-96x96.png';
 $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lang=" . $lang;
 ?>
 <!DOCTYPE html>
@@ -78,7 +78,7 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
                 "name": "FancyBet",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "<?= $baseURL ?>/image/Fancybet-192px.png"
+                    "url": "<?= $baseURL ?>/image/favicon-96x96.png"
                 }
             },
             "url": "<?= addslashes($postUrl) ?>",
@@ -122,7 +122,6 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
                 echo $description;
                 ?>
             </div>
-
 
             <h3 class="font-semibold text-lg text-gray-100 mt-10">
                 <?= $lang === 'en' ? 'Share this post:' : 'এই পোস্টটি শেয়ার করুন:' ?>

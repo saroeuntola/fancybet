@@ -60,7 +60,7 @@ $keywords = $lang === 'en'
     : "ম্যাচ প্রিভিউ, ক্রিকেট বিশ্লেষণ, IPL, BPL, ICC, PSL, SA20, ফ্যান্সি বেট, অনলাইন ক্রিকেট গাইড বাংলাদেশ";
 
 $url = "https://fancybet.info/pages/match-preview?lang={$lang}";
-$image = "https://fancybet.info/image/Fancybet-192px.png";
+$image = "https://fancybet.info/image/favicon-96x96.png";
 ?>
 
 <head>
@@ -88,8 +88,12 @@ $image = "https://fancybet.info/image/Fancybet-192px.png";
     <meta name="twitter:image" content="<?= htmlspecialchars($image) ?>">
 
     <!-- Favicon -->
-    <link rel="icon" href="<?= htmlspecialchars($image) ?>" type="image/png">
-
+    <link rel="icon" type="image/png" href="/image/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/image/favicon.svg" />
+    <link rel="shortcut icon" href="/image/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/image/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="FancyBet" />
+    <link rel="manifest" href="/image/site.webmanifest" />
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
         {

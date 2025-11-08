@@ -54,17 +54,21 @@ $currentSeo = $seo[$lang];
     <meta property="og:description" content="<?= htmlspecialchars($currentSeo['description']) ?>">
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?= htmlspecialchars($currentSeo['canonical']) ?>">
-    <meta property="og:image" content="https://fancybet.info/image/Fancybet-192px.png">
+    <meta property="og:image" content="https://fancybet.info/image/favicon-96x96.png">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?= htmlspecialchars($currentSeo['title']) ?>">
     <meta name="twitter:description" content="<?= htmlspecialchars($currentSeo['description']) ?>">
-    <meta name="twitter:image" content="https://fancybet.info/image/Fancybet-192px.png">
+    <meta name="twitter:image" content="https://fancybet.info/image/favicon-96x96.png">
 
     <!-- Favicon -->
-    <link rel="icon" href="/image/Fancybet-192px.png" type="image/png">
-
+    <link rel="icon" type="image/png" href="/image/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/image/favicon.svg" />
+    <link rel="shortcut icon" href="/image/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/image/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="FancyBet" />
+    <link rel="manifest" href="/image/site.webmanifest" />
     <!-- Styles & Scripts -->
     <link rel="stylesheet" href="/src/output.css">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
@@ -76,7 +80,7 @@ $currentSeo = $seo[$lang];
             "@type": "Organization",
             "name": "FancyBet",
             "url": "https://fancybet.info/",
-            "logo": "https://fancybet.info/image/Fancybet-192px.png",
+            "logo": "https://fancybet.info/image/favicon-96x96.png",
             "sameAs": [
                 "https://www.facebook.com/FancyBet",
                 "https://twitter.com/FancyBet",
@@ -92,7 +96,7 @@ $currentSeo = $seo[$lang];
                 "@type": "ContactPoint",
                 "contactType": "customer support",
                 "email": "support@fancybet.online",
-                "url": "https://fancybet.info/contact"
+                "url": "https://fancybet.info/pages/contact"
             }
         }
     </script>
@@ -102,7 +106,6 @@ $currentSeo = $seo[$lang];
     .scrollbar-hide::-webkit-scrollbar {
         display: none;
     }
-
     .scrollbar-hide {
         -ms-overflow-style: none;
         /* IE and Edge */
@@ -110,14 +113,12 @@ $currentSeo = $seo[$lang];
         /* Firefox */
     }
 </style>
-
-
 <body class="bg-gray-900">
-   <?php include './pages/navbar.php'; ?>
+    <?php include './pages/navbar.php'; ?>
     <?php
     include "./pages/loader.php"
     ?>
- 
+
     <main class="px-4 max-w-screen-lg mx-auto">
         <section class="pt-20"></section>
 

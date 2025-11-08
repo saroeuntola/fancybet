@@ -8,8 +8,10 @@
     # -----------------------------------------
     # Redirect index.php or /index to root (/)
     # -----------------------------------------
+    
     RewriteCond %{THE_REQUEST} \s/+(index(\.php)?)([\s?]|$) [NC]
     RewriteRule ^index(\.php)?$ / [R=301,L]
+    RewriteRule ^sitemap\.xml$ sitemap.php [L]
 
     # -----------------------------------------
     # Sitemap clean URL
