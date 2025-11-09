@@ -7,14 +7,12 @@ $categoryPosts = $posts->getPostByCategory(2, $lang);
     <div class="h-px bg-red-800 w-full mb-4 mt-5"></div>
 
     <div class="flex justify-between items-center mb-4 mt-10">
-        <h1 class="lg:text-3xl text-lg font-bold text-white">
-        
+        <h1 class="lg:text-2xl text-lg font-bold text-white ">
             <?= $lang === 'en' ? 'Match Previews' : 'ম্যাচ প্রিভিউ' ?>
         </h1>
-        <a href="/pages/match-previews?lang=<?= $lang ?>"
-            class="inline-block bg-red-800 text-white px-2 lg:px-6 py-1 lg:py-2 rounded-lg hover:opacity-70 transition">
-            
-            <?= $lang === 'en' ? 'See More' : 'আরও দেখুন' ?>
+        <a href="/pages/cricket-previews?lang=<?= $lang ?>"
+            class="inline-flex items-center gap-1 underline hover:text-red-700 transition text-sm lg:text-base text-white">
+            <?= $lang === 'en' ? 'View All' : 'সব দেখুন' ?>
         </a>
     </div>
 

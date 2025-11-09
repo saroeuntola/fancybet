@@ -210,7 +210,6 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
             <?php endforeach; ?>
         </div>
 
-
         <!-- Pagination -->
         <?php if ($totalPages > 1): ?>
             <div class="flex justify-center items-center space-x-2 mt-8 text-white">
@@ -234,10 +233,10 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
                 $end = min($totalPages, $page + $range);
                 for ($i = $start; $i <= $end; $i++): ?>
                     <a href="?page=<?= $i ?>"
-                        class="px-3 py-2 rounded <?= $i === $page
-                                                        ? 'bg-blue-600 text-white'
-                                                        : 'bg-gray-700 hover:bg-gray-600' ?>">
+                        class="px-3 py-2 rounded <?= $i === $page ? 'bg-blue-600 text-white' : 'bg-gray-700 hover:bg-gray-600' ?>">
+
                         <?= $i ?>
+                        
                     </a>
                 <?php endfor; ?>
 

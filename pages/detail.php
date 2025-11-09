@@ -30,7 +30,7 @@ $postImage = $post['image'] ?? '/image/favicon-96x96.png';
 $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lang=" . $lang;
 ?>
 <!DOCTYPE html>
-<html lang="<?= $lang === 'en' ? "en-BD" : "bn-BD"?>" class="bg-gray-900">
+<html lang="<?= $lang === 'en' ? "en-BD" : "bn-BD" ?>" class="bg-gray-900">
 
 <head>
     <meta charset="UTF-8">
@@ -130,7 +130,7 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
             <div class="mt-3 flex flex-wrap gap-3 justify-start md:justify-start items-center">
                 <!-- Facebook -->
                 <a
-                    href="https://www.facebook.com/sharer/sharer.php?u=<?= urlencode('https://fancybet.info/pages/detail?slug=' . $slug) ?>&lang=<?= $lang ?>"
+                    href="https://www.facebook.com/sharer/sharer.php?u=<?= urlencode('https://fancybet.info/pages/detail?slug=' . $slug . '&lang=' . $lang) ?>"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition text-sm md:text-base">
@@ -139,7 +139,7 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
 
                 <!-- Twitter -->
                 <a
-                    href="https://twitter.com/intent/tweet?url=<?= urlencode('https://fancybet.info/pages/detail?slug=' . $slug) ?>&text=<?= urlencode($post['name']) ?>&lang=<?= $lang ?>"
+                    href="https://twitter.com/intent/tweet?url=<?= urlencode('https://fancybet.info/pages/detail?slug=' . $slug . '&lang=' . $lang) ?>&text=<?= urlencode($post['name']) ?>"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="flex items-center gap-2 bg-blue-400 hover:bg-blue-500 text-white px-3 py-2 rounded-lg transition text-sm md:text-base">
@@ -148,21 +148,31 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
 
                 <!-- LinkedIn -->
                 <a
-                    href="https://www.linkedin.com/shareArticle?mini=true&url=<?= urlencode('https://fancybet.info/pages/detail?slug=' . $slug) ?>&title=<?= urlencode($post['name']) ?>&lang=<?= $lang ?>"
+                    href="https://www.linkedin.com/shareArticle?mini=true&url=<?= urlencode('https://fancybet.info/pages/detail?slug=' . $slug . '&lang=' . $lang) ?>&title=<?= urlencode($post['name']) ?>"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="flex items-center gap-2 bg-blue-800 hover:bg-blue-900 text-white px-3 py-2 rounded-lg transition text-sm md:text-base">
                     <i class="fab fa-linkedin-in"></i> LinkedIn
                 </a>
 
+                <!-- Pinterest -->
+                <a
+                    href="https://pinterest.com/pin/create/button/?url=<?= urlencode('https://fancybet.info/pages/detail?slug=' . $slug . '&lang=' . $lang) ?>&media=<?= urlencode($post['image'] ?? 'https://fancybet.info/assets/img/logo.png') ?>&description=<?= urlencode($post['name']) ?>"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg transition text-sm md:text-base">
+                    <i class="fab fa-pinterest-p"></i> Pinterest
+                </a>
+
                 <!-- Copy Link -->
                 <button
                     id="copyLinkBtn"
-                    onclick="copyPostLink('<?= 'https://fancybet.info/pages/detail?slug=' . $slug ?>&lang=<?= $lang ?>')"
+                    onclick="copyPostLink('<?= 'https://fancybet.info/pages/detail?slug=' . $slug . '&lang=' . $lang ?>')"
                     class="flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg transition text-sm md:text-base">
                     <i class="fas fa-link"></i> Copy Link
                 </button>
             </div>
+
         </div>
 
 

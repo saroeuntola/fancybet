@@ -35,14 +35,21 @@ $menu = [
     ],
     '/pages/about' => $lang === 'en' ? 'About' : 'আমাদের সম্পর্কে',
     '/pages/contact' => $lang === 'en' ? 'Contact' : 'যোগাযোগ',
+    '/pages/community' => $lang === 'en' ? 'Community' : 'সম্প্রদায়',
 
 ];
 
 ?>
 <style>
-   .navlink {
-    min-width: 150px;
-   } 
+    .navlink {
+        min-width: 150px;
+    }
+
+    .link-hover:hover {
+        color: red;
+        transition: 550ms;
+
+    }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -64,7 +71,7 @@ $menu = [
             <?php foreach ($menu as $file => $item): ?>
                 <?php if (is_array($item)): ?>
                     <li class="relative dropdown">
-                        <span class="cursor-pointer hover:text-gray-200 transition font-semibold dropdown-toggle">
+                        <span class="cursor-pointer transition dropdown-toggle link-hover">
                             <?= htmlspecialchars($item['title']) ?>
                         </span>
                         <ul class="submenu absolute left-0 mt-4 navlink bg-gray-800 rounded-md shadow-lg hidden z-50">
@@ -79,7 +86,7 @@ $menu = [
                     </li>
                 <?php else: ?>
                     <li>
-                        <a href="<?= $file ?>?lang=<?= $lang ?>" class="hover:text-gray-200 transition <?= $currentPage === basename($file) ? 'font-bold text-white underline' : '' ?>">
+                        <a href="<?= $file ?>?lang=<?= $lang ?>" class="link-hover <?= $currentPage === basename($file) ? 'font-bold text-white underline' : '' ?>">
                             <?= htmlspecialchars($item) ?>
                         </a>
                     </li>
@@ -121,8 +128,7 @@ $menu = [
                 <img id="lang-flag"
                     src="<?= $lang === 'bn' ? '/image/flag/flag_bn.png' : '/image/flag/flag_en.png' ?>"
                     alt="flag" class="w-6 rounded-sm"
-                    loading="lazy"
-                    >
+                    loading="lazy">
             </button>
 
             <!-- Dropdown -->
@@ -157,7 +163,7 @@ $menu = [
             <?php if (is_array($item)): ?>
                 <li class="mobile-dropdown">
                     <!-- Parent item -->
-                    <div class="flex items-center justify-between px-4 py-2 cursor-pointer hover:bg-slate-700 mobile-dropdown-toggle">
+                    <div class="flex items-center justify-between px-4 py-2 cursor-pointer hover:bg-slate-700 mobile-dropdown-toggle link-hover">
                         <span class="font-semibold"><?= htmlspecialchars($item['title']) ?></span>
                         <i class="fa-solid fa-chevron-down text-xs"></i>
                     </div>
@@ -175,7 +181,7 @@ $menu = [
                 </li>
             <?php else: ?>
                 <li>
-                    <a href="<?= $file ?>?lang=<?= $lang ?>" class="block px-4 py-2 hover:bg-slate-700">
+                    <a href="<?= $file ?>?lang=<?= $lang ?>" class="block px-4 py-2 hover:bg-slate-700 link-hover">
                         <?= htmlspecialchars($item) ?>
                     </a>
                 </li>
@@ -185,44 +191,44 @@ $menu = [
 </div>
 
 <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const mobileDropdowns = document.querySelectorAll(".mobile-dropdown");
-            mobileDropdowns.forEach(dropdown => {
-                const toggle = dropdown.querySelector(".mobile-dropdown-toggle");
-                const submenu = dropdown.querySelector(".mobile-submenu");
-                const icon = dropdown.querySelector("i");
-                toggle.addEventListener("click", () => {
-                    submenu.classList.toggle("hidden");
-                    icon.classList.toggle("rotate-180");
-                    icon.classList.toggle("transition-transform");
-                });
+    document.addEventListener("DOMContentLoaded", () => {
+        const mobileDropdowns = document.querySelectorAll(".mobile-dropdown");
+        mobileDropdowns.forEach(dropdown => {
+            const toggle = dropdown.querySelector(".mobile-dropdown-toggle");
+            const submenu = dropdown.querySelector(".mobile-submenu");
+            const icon = dropdown.querySelector("i");
+            toggle.addEventListener("click", () => {
+                submenu.classList.toggle("hidden");
+                icon.classList.toggle("rotate-180");
+                icon.classList.toggle("transition-transform");
             });
         });
+    });
 </script>
 
 <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const dropdowns = document.querySelectorAll('.dropdown');
-            dropdowns.forEach(dropdown => {
-                const toggle = dropdown.querySelector('.dropdown-toggle');
-                const submenu = dropdown.querySelector('.submenu');
-                // Toggle submenu on click
-                toggle.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    submenu.classList.toggle('hidden');
-                });
-             
-                dropdown.addEventListener('mouseenter', () => {
-                    submenu.classList.remove('hidden');
-                });
-                // Close submenu when clicking outside
-                document.addEventListener('click', (e) => {
-                    if (!dropdown.contains(e.target)) {
-                        submenu.classList.add('hidden');
-                    }
-                });
+    document.addEventListener("DOMContentLoaded", () => {
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            const toggle = dropdown.querySelector('.dropdown-toggle');
+            const submenu = dropdown.querySelector('.submenu');
+            // Toggle submenu on click
+            toggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                submenu.classList.toggle('hidden');
+            });
+
+            dropdown.addEventListener('mouseenter', () => {
+                submenu.classList.remove('hidden');
+            });
+            // Close submenu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!dropdown.contains(e.target)) {
+                    submenu.classList.add('hidden');
+                }
             });
         });
+    });
 </script>
 <?php
 $js = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/js/navbar.js');
