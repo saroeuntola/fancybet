@@ -1,13 +1,14 @@
-# Allow all user agents
+
 User-agent: *
+
 Disallow: /admin/
 Disallow: /admin/page/library/
 Disallow: /admin/page/api/
 Disallow: /config/
 Disallow: /node_modules/
-Disallow: /vendor/
 
 Allow: /
 
-# Sitemap location
-Sitemap: https://fancybet.info/sitemap.xml
+Sitemap: https://fancybet.info/sitemap-index.php
+
+
