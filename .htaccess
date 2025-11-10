@@ -13,6 +13,10 @@
     RewriteRule ^index(\.php)?$ / [R=301,L]
     RewriteRule ^sitemap\.xml$ /sitemap-index.php [L]
 
+    RewriteRule ^sitemap-pages\.xml$ sitemap-pages.php [L]
+    RewriteRule ^sitemap-posts\.xml$ sitemap-posts.php [L]
+    RewriteRule ^sitemap-index\.xml$ sitemap-index.php [L]
+
     # -----------------------------------------
     # Sitemap clean URL
     # -----------------------------------------
