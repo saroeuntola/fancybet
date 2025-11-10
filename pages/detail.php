@@ -89,7 +89,7 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
 
     <!-- Styles & Scripts -->
     <link rel="stylesheet" href="/css/detail.css">
-    <script src="./js/jquery-3.7.1.min.js"></script>
+    <script src="/js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="/src/output.css">
 </head>
 

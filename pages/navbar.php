@@ -5,7 +5,6 @@ $currentId = isset($_GET['slug']) ? trim($_GET['slug']) : null;
 
 function buildLangUrl($langTarget, $currentPage, $currentId)
 {
-
     $currentFile = basename($currentPage, '.php');
     // build query
     $params = ['lang' => $langTarget];
@@ -19,6 +18,7 @@ function buildLangUrl($langTarget, $currentPage, $currentId)
     }
     return "{$currentFile}?" . http_build_query($params);
 }
+
 
 // Menu items
 $menu = [
@@ -37,6 +37,41 @@ $menu = [
     '/pages/community' => $lang === 'en' ? 'Community' : 'সম্প্রদায়',
 
 ];
+
+
+// Function to map menu titles to icons
+function getMenuIcon($title)
+    {
+        $map = [
+            // English → Bangla → Icon
+            'home' => 'fa-house',
+            'হোম' => 'fa-house',
+
+            'blog' => 'fa-blog',
+            'ব্লগ' => 'fa-blog',
+
+            'cricket news' => 'fa-baseball-bat-ball',
+            'ক্রিকেট নিউজ' => 'fa-baseball-bat-ball',
+
+            'betting guides' => 'fa-book',
+            'বেটিং গাইড' => 'fa-book',
+
+            'match previews' => 'fa-eye',
+            'ম্যাচ প্রিভিউ' => 'fa-eye',
+
+            'about' => 'fa-circle-info',
+            'আমাদের সম্পর্কে' => 'fa-circle-info',
+
+            'contact' => 'fa-envelope',
+            'যোগাযোগ' => 'fa-envelope',
+
+            'community' => 'fa-users',
+            'সম্প্রদায়' => 'fa-users',
+        ];
+
+        $title = trim(strtolower($title));
+        return $map[$title] ?? 'fa-link';
+}
 
 ?>
 <style>
@@ -147,12 +182,16 @@ $menu = [
 </nav>
 
 <!-- Overlay -->
-<div id="overlay" class="fixed inset-0 bg-black bg-opacity-70 z-20 hidden transition-opacity duration-500"></div>
+<div id="overlay" class="fixed inset-0 z-20 hidden transition-opacity duration-500"></div>
 
 <!-- Sidebar -->
 <div id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-black z-40 transform -translate-x-full transition-transform duration-500 ease-in-out lg:hidden">
     <div class="p-4 border-b border-slate-700 flex justify-between items-center">
-        <span class="text-lg font-bold text-white">Menu</span>
+        <span class="text-lg font-bold text-white">
+            <?=  
+              $lang === 'en'? 'Menu': 'মেনু'
+            ?>
+        </span>
         <button id="closeBtn" class="text-gray-300 hover:text-white focus:outline-none text-xl">
             <i class="fa-solid fa-xmark"></i>
         </button>
@@ -161,17 +200,22 @@ $menu = [
         <?php foreach ($menu as $file => $item): ?>
             <?php if (is_array($item)): ?>
                 <li class="mobile-dropdown">
-                    <!-- Parent item -->
+                    <!-- Parent menu -->
                     <div class="flex items-center justify-between px-4 py-2 cursor-pointer hover:bg-slate-700 mobile-dropdown-toggle link-hover">
-                        <span class="font-semibold"><?= htmlspecialchars($item['title']) ?></span>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid <?= getMenuIcon($item['title']) ?> text-sm"></i>
+                            <span class="font-semibold"><?= htmlspecialchars($item['title']) ?></span>
+                        </div>
                         <i class="fa-solid fa-chevron-down text-xs"></i>
                     </div>
 
                     <!-- Submenu -->
-                    <ul class="hidden pl-4 mt-1 space-y-1 mobile-submenu">
+                    <ul class="hidden pl-6 mt-1 space-y-1 mobile-submenu">
                         <?php foreach ($item['submenu'] as $subFile => $subLabel): ?>
                             <li>
-                                <a href="<?= $subFile ?>?lang=<?= $lang ?>" class="block px-4 py-2 hover:bg-slate-700">
+                                <a href="<?= $subFile ?>?lang=<?= $lang ?>"
+                                    class="flex items-center gap-2 px-4 py-2 hover:bg-slate-700">
+                                    <i class="fa-solid <?= getMenuIcon($subLabel) ?> text-xs"></i>
                                     <?= htmlspecialchars($subLabel) ?>
                                 </a>
                             </li>
@@ -180,13 +224,16 @@ $menu = [
                 </li>
             <?php else: ?>
                 <li>
-                    <a href="<?= $file ?>?lang=<?= $lang ?>" class="block px-4 py-2 hover:bg-slate-700 link-hover">
+                    <a href="<?= $file ?>?lang=<?= $lang ?>"
+                        class="flex items-center gap-2 px-4 py-2 hover:bg-slate-700 link-hover">
+                        <i class="fa-solid <?= getMenuIcon($item) ?> text-sm"></i>
                         <?= htmlspecialchars($item) ?>
                     </a>
                 </li>
             <?php endif; ?>
         <?php endforeach; ?>
     </ul>
+
 </div>
 
 <script>
