@@ -15,10 +15,8 @@ try {
             echo json_encode(['status' => 0, 'message' => 'All fields required']);
             exit;
         }
-
         $c = new Comment();
         $c->add($post_id, $name, $comment, $parent_id ?: null);
-
         $comments = $c->getByPost($post_id);
         echo json_encode(['status' => 1, 'comments' => $comments]);
         exit;

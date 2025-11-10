@@ -111,11 +111,9 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
         }
     </script>
 
-    <!-- Tailwind & Material Tailwind -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@material-tailwind/html@2.1.9/scripts/index.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@material-tailwind/html@2.1.9/scripts/ripple.min.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="/src/output.css">
+   
 </head>
 
 
@@ -236,7 +234,7 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
                         class="px-3 py-2 rounded <?= $i === $page ? 'bg-blue-600 text-white' : 'bg-gray-700 hover:bg-gray-600' ?>">
 
                         <?= $i ?>
-                        
+
                     </a>
                 <?php endfor; ?>
 

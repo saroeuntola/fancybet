@@ -91,7 +91,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
         }
     </script>
     <link rel="stylesheet" href="../src/output.css">
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
 </head>
 
 <body class="bg-gray-900 text-white font-sans">

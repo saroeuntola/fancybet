@@ -35,8 +35,6 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
     <meta name="apple-mobile-web-app-title" content="FancyBet" />
     <link rel="manifest" href="/image/site.webmanifest" />
 
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-
     <!-- CSS -->
     <link rel="stylesheet" href="/src/output.css">
 </head>

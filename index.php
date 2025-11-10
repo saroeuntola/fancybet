@@ -71,7 +71,8 @@ $currentSeo = $seo[$lang];
     <link rel="manifest" href="/image/site.webmanifest" />
     <!-- Styles & Scripts -->
     <link rel="stylesheet" href="/src/output.css">
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/jquery-3.7.1.min.js"></script>
 
     <!-- JSON-LD Schema -->
     <script type="application/ld+json">
