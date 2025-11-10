@@ -67,7 +67,7 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
     <title><?= htmlspecialchars($title) ?></title>
     <meta name="description" content="<?= htmlspecialchars($description) ?>">
     <meta name="keywords" content="<?= htmlspecialchars($keywords) ?>">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <link rel="canonical" href="<?= htmlspecialchars($url) ?>">
 
     <!-- Open Graph / Social -->
@@ -76,8 +76,8 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?= htmlspecialchars($url) ?>">
     <meta property="og:image" content="<?= htmlspecialchars($image) ?>">
-
     <!-- Twitter Card -->
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?= htmlspecialchars($title) ?>">
     <meta name="twitter:description" content="<?= htmlspecialchars($description) ?>">
@@ -113,7 +113,7 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
 
     <script src="./js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="/src/output.css">
-   
+
 </head>
 
 
@@ -122,8 +122,8 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
 
     <div class="px-4 py-8 mt-15 max-w-5xl m-auto">
 
-        <div class="flex justify-between items-center mb-4">
-            <h1 class="lg:text-3xl text-xl font-bold">
+        <div class="flex justify-between items-center mb-4 lg:mt-4">
+            <h1 class="text-xl font-bold">
                 <?= $lang === 'en' ? 'All Cricket News' : 'সমস্ত ক্রিকেট সংবাদ' ?>
             </h1>
 

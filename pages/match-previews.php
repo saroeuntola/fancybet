@@ -71,7 +71,8 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
     <title><?= htmlspecialchars($title) ?></title>
     <meta name="description" content="<?= htmlspecialchars($description) ?>">
     <meta name="keywords" content="<?= htmlspecialchars($keywords) ?>">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
     <link rel="canonical" href="<?= htmlspecialchars($url) ?>">
 
     <!-- Open Graph / Social -->

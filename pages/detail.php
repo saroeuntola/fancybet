@@ -40,7 +40,8 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
     <title><?= htmlspecialchars($postTitle) ?></title>
     <meta name="description" content="<?= htmlspecialchars($postDescription) ?>">
     <meta name="keywords" content="<?= htmlspecialchars($postKeywords) ?>">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
 
     <!-- Canonical -->
     <link rel="canonical" href="<?= htmlspecialchars($postUrl) ?>">
