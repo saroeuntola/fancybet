@@ -9,6 +9,6 @@ Disallow: /node_modules/
 
 Allow: /
 
-Sitemap: https://fancybet.info/sitemap-index.php
+Sitemap: https://fancybet.info/sitemap-index.xml
 
 
