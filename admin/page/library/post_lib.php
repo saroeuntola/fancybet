@@ -94,6 +94,41 @@ class Post {
         }
     }
 
+
+    public function getRecentPost($limit = 6, $lang = 'en')
+    {
+        // Validate language
+        $lang = in_array($lang, ['en', 'bn']) ? $lang : 'en';
+
+        // Select language-specific fields
+        $name_field = $lang === 'en' ? 'name' : 'name_bn';
+        $description_field = $lang === 'en' ? 'description' : 'description_bn';
+        $meta_text_field = $lang === 'en' ? 'meta_text' : 'meta_text_bn';
+        $meta_desc_field = $lang === 'en' ? 'meta_desc' : 'meta_desc_bn';
+        $meta_keyword_field = $lang === 'en' ? 'meta_keyword' : 'meta_keyword_bn';
+
+        $query = "SELECT p.id, p.slug, p.$name_field AS name, p.image, 
+                     p.$description_field AS description, p.$meta_desc_field AS meta_desc,
+                     p.game_link, p.category_id, p.created_at, 
+                     p.$meta_text_field AS meta_text, 
+                     c.name AS category_name 
+              FROM post p
+              JOIN categories c ON p.category_id = c.id 
+              ORDER BY p.created_at DESC
+              LIMIT :limit";
+
+        try {
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Error fetching posts: " . $e->getMessage());
+            return [];
+        }
+    }
+
+
     public function getPost($lang = 'en')
     {
         // Validate language

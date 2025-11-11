@@ -89,7 +89,7 @@ function getMenuIcon($title)
 
 <!-- Navbar -->
 <nav class="w-full bg-black text-white shadow-md fixed top-0 left-0 z-30">
-    <div class="container mx-auto flex items-center justify-between px-4 max-w-screen-lg">
+    <div class="container mx-auto flex items-center justify-between px-4 max-w-7xl">
         <!-- Left: Logo + Mobile Toggle -->
         <div class="flex items-center space-x-3">
             <button id="menu-toggle" class="lg:hidden rounded-md hover:bg-red-700 p-1 focus:outline-none">

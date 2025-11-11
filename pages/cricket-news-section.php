@@ -1,4 +1,3 @@
-
 <div class="text-white pt-4 lg:pt-10">
     <div class="flex justify-between items-center mb-4">
         <h1 class="lg:text-2xl text-lg font-bold text-white ">
@@ -36,8 +35,19 @@
                                 <h2 class="text-xl lg:text-2xl font-bold mb-2 line-clamp-2">
                                     <?= htmlspecialchars($post['name']) ?>
                                 </h2>
-                                <p class="text-gray-300 text-sm line-clamp-2">
-                                    <?= htmlspecialchars(mb_strimwidth(strip_tags(html_entity_decode($post['description'] ?? '')), 0, 120, '...')) ?>
+                                <?php
+                                $plainText = htmlspecialchars(
+                                    strip_tags(html_entity_decode($post['description'] ?? ''))
+                                );
+                                ?>
+                                <!-- Mobile Description (hidden on large screens) -->
+                                <p class="block lg:hidden text-gray-300">
+                                    <?= htmlspecialchars(mb_strimwidth($plainText, 0, 90, '...')) ?>
+                                </p>
+
+                                <!-- PC Description (hidden on small screens) -->
+                                <p class="hidden lg:block text-gray-300">
+                                    <?= htmlspecialchars(mb_strimwidth($plainText, 0, 490, '...')) ?>
                                 </p>
                                 <div class="flex items-center gap-1 text-gray-400 text-xs mt-2">
                                     <i class="fa-solid fa-earth-americas"></i>
@@ -66,7 +76,7 @@
 
         <!-- FEATURE CARDS -->
         <div class="flex flex-col gap-2">
-            <?php foreach (array_slice($limitedPosts, 3, 3) as $post): ?>
+            <?php foreach (array_slice($limitedPosts, 3, 4) as $post): ?>
                 <a href="/pages/detail?slug=<?= urlencode($post['slug']) ?>&lang=<?= $lang ?>">
                     <div class="bg-gray-800 hover:bg-gray-700 shadow rounded-lg overflow-hidden flex h-[160px] lg:h-[160px] transition-transform duration-300 hover:scale-[1.02]">
                         <?php if (!empty($post['image'])): ?>

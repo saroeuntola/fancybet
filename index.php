@@ -107,6 +107,7 @@ $currentSeo = $seo[$lang];
     .scrollbar-hide::-webkit-scrollbar {
         display: none;
     }
+
     .scrollbar-hide {
         -ms-overflow-style: none;
         /* IE and Edge */
@@ -114,13 +115,14 @@ $currentSeo = $seo[$lang];
         /* Firefox */
     }
 </style>
+
 <body class="bg-gray-900">
     <?php include './pages/navbar.php'; ?>
     <?php
     include "./pages/loader.php"
     ?>
 
-    <main class="px-4 max-w-screen-lg mx-auto">
+    <main class="px-4 max-w-7xl mx-auto">
         <section class="pt-20"></section>
 
         <section class="">

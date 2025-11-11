@@ -120,7 +120,7 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
 <body class="bg-gray-900 text-white">
     <?php include "navbar.php"; ?>
 
-    <div class="px-4 py-8 mt-15 max-w-5xl m-auto">
+    <div class="px-4 py-8 mt-15 max-w-7xl m-auto">
 
         <div class="flex justify-between items-center mb-4 lg:mt-4">
             <h1 class="text-xl font-bold">
@@ -161,6 +161,10 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
             <?php foreach ($posts as $post): ?>
                 <?php
                 $postName = htmlspecialchars($post['name'] ?? '');
+
+                if (mb_strlen($postName, 'UTF-8') > 30) {
+                    $postName = mb_substr($postName, 0, 30, 'UTF-8') . '...';
+                }
                 $postSlug = urlencode($post['slug'] ?? '');
                 $postImage = !empty($post['image']) ? htmlspecialchars($post['image']) : null;
                 $postDesc = strip_tags($post['description'] ?? '');

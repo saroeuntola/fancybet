@@ -14,11 +14,11 @@
 
     @media (min-width: 1024px) {
         #mainSlider {
-            height: 498px;
+            height: 668px;
         }
 
         #mainSlider img {
-            height: 310px;
+            height: 410px;
         }
 
         #prevSlide,
@@ -35,4 +35,5 @@
         word-break: break-word;
         /* or break-all */
         overflow-wrap: anywhere;
+        
     }

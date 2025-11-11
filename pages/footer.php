@@ -1,5 +1,5 @@
 <footer class="bg-black text-gray-200 mt-10">
-    <div class="px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-screen-lg mx-auto">
+    <div class="px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
        <!-- branding -->
         <div>
             <img src="/image/FancyBet-footer.png" alt="fancybet logo" class="w-32 mb-4">
