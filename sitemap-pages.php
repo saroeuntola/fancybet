@@ -14,12 +14,12 @@ $today = date('Y-m-d');
 // Static pages
 $pages = [
     ['slug' => '', 'priority' => 1.0, 'freq' => 'daily'],
-    ['slug' => '/pages/about', 'priority' => 0.8, 'freq' => 'monthly'],
-    ['slug' => '/pages/services', 'priority' => 0.8, 'freq' => 'monthly'],
-    ['slug' => '/pages/contact', 'priority' => 0.8, 'freq' => 'monthly'],
-    ['slug' => '/pages/community', 'priority' => 0.8, 'freq' => 'monthly'],
-    ['slug' => '/pages/cricket-news', 'priority' => 1.0, 'freq' => 'monthly'],
-    ['slug' => '/pages/cricket-betting-guides', 'priority' => 1.0, 'freq' => 'monthly'],
+    ['slug' => '/pages/about', 'priority' => 0.8, 'freq' => 'daily'],
+    ['slug' => '/pages/services', 'priority' => 0.8, 'freq' => 'daily'],
+    ['slug' => '/pages/contact', 'priority' => 0.8, 'freq' => 'daily'],
+    ['slug' => '/pages/community', 'priority' => 0.8, 'freq' => 'daily'],
+    ['slug' => '/pages/cricket-news', 'priority' => 1.0, 'freq' => 'daily'],
+    ['slug' => '/pages/cricket-betting-guides', 'priority' => 1.0, 'freq' => 'daily'],
   
 
 ];
