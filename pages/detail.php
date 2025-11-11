@@ -13,16 +13,14 @@ $commentLib = new Comment();
 $comments = $commentLib->getByPost($post['id'] ?? 0);
 $relatedPosts = $postLib->getRelatedpost($post['id'] ?? 0, $post['category_id'] ?? 0, 6);
 $recentPosts = $postLib->getRecentPost(8, $lang);
-// Pagination variables for desktop
-$desktopLimit = 4; // items per page for desktop
+
+$desktopLimit = 4;
 $desktopPage = isset($_GET['related_page']) ? max(1, intval($_GET['related_page'])) : 1;
 $totalDesktopPages = ceil(count($relatedPosts) / $desktopLimit);
 $desktopStart = ($desktopPage - 1) * $desktopLimit;
 $desktopPosts = array_slice($relatedPosts, $desktopStart, $desktopLimit);
 
-
 $baseURL = "https://fancybet.info";
-// Dynamic SEO values from DB
 $postTitle =  ($post['name'] ?? '');
 $postDescription =  ($post['meta_desc'] ?? '');
 $postKeywords = ($post['meta_keyword'] ?? '');
@@ -275,14 +273,14 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
             </div>
         </section>
 
-
         <!-- Right Sidebar -->
         <aside class="lg:col-span-1">
-            <div class="p-4 rounded-lg
-                lg:sticky lg:top-24 h-fit right-sidebar">
+            <div class="p-4 rounded-lg lg:sticky lg:top-24 h-fit right-sidebar">
+
                 <h2 class="text-lg font-bold mb-4 border-b border-gray-700 pb-2">
                     <?= $lang === 'en' ? 'Recent Posts' : 'সাম্প্রতিক পোস্ট' ?>
                 </h2>
+
                 <ul class="space-y-4">
                     <?php foreach ($recentPosts as $r): ?>
                         <li class="flex items-start gap-3">
@@ -298,18 +296,22 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
                                     <?= $title ?>
                                 </a>
 
-                                <p class="text-xs text-gray-400 mt-1"><?= formatDateByLang($r['created_at'] ?? '', $lang) ?></p>
+                                <div class="flex items-center gap-2 mt-2">
+                                    <i class="fa-solid fa-earth-americas text-gray-400"></i>
+                                    <p class="text-xs text-gray-400 mt-1"><?= formatDateByLang($r['created_at'] ?? '', $lang) ?></p>
+                                </div>
+
                             </div>
                         </li>
                     <?php endforeach; ?>
                 </ul>
 
                 <h1 class="mt-5 text-lg font-bold mb-4 border-b border-gray-700 pb-2">
-                   <?=  $lang === 'en' ? "Category" : "বিভাগ"  ?>
+                    <?= $lang === 'en' ? "Category" : "বিভাগ"  ?>
                 </h1>
                 <ul class="flex flex-col gap-2">
                     <a href="/pages/cricket-news?lang=<?= $lang ?>" class="hover:text-red-500">
-                        <?= $lang === 'en' ? 'Cricket News' : 'ক্রিকেট সংবাদ'?>
+                        <?= $lang === 'en' ? 'Cricket News' : 'ক্রিকেট সংবাদ' ?>
                     </a>
                     <a href="/pages/cricket-betting-guides?lang= <?= $lang ?>" class="hover:text-red-500">
                         <?= $lang === 'en' ? 'Cricket Betting Guides' : 'ক্রিকেট বেটিং গাইড' ?>
@@ -322,9 +324,7 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
 
             </div>
         </aside>
-
     </main>
-
 
     <?php include "./footer.php" ?>
     <?php
