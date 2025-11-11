@@ -305,17 +305,17 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
                 </ul>
 
                 <h1 class="mt-5 text-lg font-bold mb-4 border-b border-gray-700 pb-2">
-                    Category
+                   <?=  $lang === 'en' ? "Category" : "বিভাগ"  ?>
                 </h1>
                 <ul class="flex flex-col gap-2">
                     <a href="/pages/cricket-news?lang=<?= $lang ?>" class="hover:text-red-500">
-                        <?= $lang === 'en' ? 'Cricket News' : 'hi' ?>
+                        <?= $lang === 'en' ? 'Cricket News' : 'ক্রিকেট সংবাদ'?>
                     </a>
                     <a href="/pages/cricket-betting-guides?lang= <?= $lang ?>" class="hover:text-red-500">
-                        <?= $lang === 'en' ? 'Cricket Betting Guides' : 'hi' ?>
+                        <?= $lang === 'en' ? 'Cricket Betting Guides' : 'ক্রিকেট বেটিং গাইড' ?>
                     </a>
                     <a href="/pages/match-previews?lang= <?= $lang ?>" class="hover:text-red-500">
-                        <?= $lang === 'en' ? 'Match Previews' : 'hi' ?>
+                        <?= $lang === 'en' ? 'Match Previews' : 'ম্যাচ প্রিভিউ' ?>
                     </a>
 
                 </ul>

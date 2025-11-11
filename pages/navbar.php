@@ -19,7 +19,6 @@ function buildLangUrl($langTarget, $currentPage, $currentId)
     return "{$currentFile}?" . http_build_query($params);
 }
 
-
 // Menu items
 $menu = [
     '/' => $lang === 'en' ? 'Home' : 'হোম',
@@ -37,7 +36,6 @@ $menu = [
     '/pages/community' => $lang === 'en' ? 'Community' : 'সম্প্রদায়',
 
 ];
-
 
 // Function to map menu titles to icons
 function getMenuIcon($title)
