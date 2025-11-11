@@ -85,6 +85,26 @@ Options -Indexes
     AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
 </IfModule>
 
+<FilesMatch "sitemap(-index|-pages|-posts)?\.xml$">
+    <IfModule mod_headers.c>
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+    </IfModule>
+</FilesMatch>
+
+# =========================================
+# Disable Caching for HTML, PHP, and CSS Files
+# =========================================
+<FilesMatch "\.(html|php|css)$">
+    <IfModule mod_headers.c>
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+    </IfModule>
+</FilesMatch>
+
+
 # =========================================
 # Custom 404 Page
 # =========================================
