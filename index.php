@@ -39,7 +39,7 @@ $currentSeo = $seo[$lang];
     <meta name="description" content="<?= htmlspecialchars($currentSeo['description']) ?>">
     <meta name="keywords" content="<?= htmlspecialchars($currentSeo['keywords']) ?>">
     <meta name="author" content="FancyBet">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
     <!-- Canonical -->
     <link rel="canonical" href="<?= htmlspecialchars($currentSeo['canonical']) ?>">
