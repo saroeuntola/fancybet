@@ -31,14 +31,14 @@ echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
 echo "  <url>\n";
 echo "    <loc>{$baseUrl}/image/favicon.svg</loc>\n";
 echo "    <lastmod>{$today}</lastmod>\n";
-echo "    <changefreq>monthly</changefreq>\n";
+echo "    <changefreq>daily</changefreq>\n";
 echo "    <priority>1.0</priority>\n";
 echo "  </url>\n";
 
 echo "  <url>\n";
 echo "    <loc>{$baseUrl}/image/favicon-96x96.png</loc>\n";
 echo "    <lastmod>{$today}</lastmod>\n";
-echo "    <changefreq>monthly</changefreq>\n";
+echo "    <changefreq>daily</changefreq>\n";
 echo "    <priority>1.0</priority>\n";
 echo "  </url>\n";
 
