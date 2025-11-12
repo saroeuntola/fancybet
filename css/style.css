@@ -1,20 +1,20 @@
     #mainSlider {
-        height: 370px;
+        height: 320px;
     }
 
     #mainSlider img {
-        height: 205px;
+        height: 220px;
     }
 
 
     #prevSlide,
     #nextSlide {
-        top: 30%;
+        top: 32%;
     }
 
     @media (min-width: 1024px) {
         #mainSlider {
-            height: 668px;
+            height: 500px;
         }
 
         #mainSlider img {
@@ -23,17 +23,18 @@
 
         #prevSlide,
         #nextSlide {
-            top: 30%;
+            top: 40%;
         }
 
         .item-left {
-            width: 90%;
+            width: 60%;
         }
     }
 
     .item-right {
+
+        width: 400px;
         word-break: break-word;
-        /* or break-all */
         overflow-wrap: anywhere;
         
     }
