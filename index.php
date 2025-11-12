@@ -13,15 +13,15 @@ $relatedPosts = $postLib->getRelatedpost($post['id'] ?? 0, $post['category_id'] 
 // SEO data
 $seo = [
     'en' => [
-        'title' => 'FancyBet Guide - Cricket News & Betting Tips Bangladesh',
-        'description' => 'FancyBet Bangladesh - Your premium guide for cricket news, live cricket betting, and FancyBetting tips. Stay updated with match predictions, IPL, BPL, PSL, and ICC tournaments.',
+        'title' => 'FancyBet  - Cricket News & Betting Tips Bangladesh',
+        'description' => 'fancy bet cricket Bangladesh, FancyBet Bangladesh - Your premium guide for cricket news, live cricket betting, and FancyBetting tips. Stay updated with match predictions, IPL, BPL, PSL, and ICC tournaments.',
         'keywords' => 'FancyBet, cricket news Bangladesh, cricket betting tips, FancyBetting guide, live cricket betting, IPL, BPL, PSL, ICC, sports betting Bangladesh, FancyBet Guide',
         'canonical' => 'https://fancybet.info/?lang=en'
     ],
     'bn' => [
-        'title' => 'FancyBet Guide - ক্রিকেট নিউজ ও বেটিং গাইড বাংলাদেশ',
-        'description' => 'FancyBet বাংলাদেশ - ক্রিকেট নিউজ, লাইভ ক্রিকেট বেটিং এবং FancyBetting টিপসের প্রিমিয়াম গাইড। IPL, BPL, PSL, ICC টুর্নামেন্ট আপডেট পান।',
-        'keywords' => 'FancyBet, ক্রিকেট নিউজ বাংলাদেশ, ক্রিকেট বেটিং টিপস, FancyBetting গাইড, লাইভ ক্রিকেট বেটিং, IPL, BPL, PSL, ICC, স্পোর্টস বেটিং বাংলাদেশ, FancyBet গাইড',
+        'title' => 'FancyBet - ক্রিকেট নিউজ ও বেটিং গাইড বাংলাদেশ',
+        'description' => 'FancyBet বাংলাদেশ - ক্রিকেট নিউজ, লাইভ ক্রিকেট বেটিং এবং Fancy Betting টিপসের প্রিমিয়াম গাইড। IPL, BPL, PSL, ICC টুর্নামেন্ট আপডেট পান।',
+        'keywords' => 'FancyBet, ক্রিকেট নিউজ বাংলাদেশ, ক্রিকেট বেটিং টিপস, Fancy Betting গাইড, লাইভ ক্রিকেট বেটিং, IPL, BPL, PSL, ICC, স্পোর্টস বেটিং বাংলাদেশ, FancyBet গাইড',
         'canonical' => 'https://fancybet.info'
     ]
 ];
@@ -130,9 +130,16 @@ $currentSeo = $seo[$lang];
             include "./pages/cricket-news-section.php"
             ?>
         </section>
+
         <section class="pt-10">
             <?php
             include "./pages/cricket-betting-guides-section.php"
+            ?>
+        </section>
+
+        <section class="pt-10">
+            <?php
+            include "./pages/cricket-betting-tip-section.php"
             ?>
         </section>
 

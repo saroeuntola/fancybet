@@ -4,12 +4,12 @@ $posts = new Post();
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 $categoryPosts = $posts->getPostByCategory(2, $lang);
 ?>
-<div class="scroll-section mb-15 relative">
-    <div class="h-px bg-red-800 w-full mb-4 mt-5"></div>
+<div class="scroll-section mb-20 relative">
+    <div class="h-px bg-red-800 w-full mb-4"></div>
 
     <div class="flex justify-between items-center mb-4 mt-10">
         <h1 class="lg:text-2xl text-lg font-bold text-white ">
-            <?= $lang === 'en' ? 'Cricket Betting Guides' : 'ক্রিকেট বেটিং গাইড' ?>
+            <?= $lang === 'en' ? 'Cricket Betting Tip' : 'ক্রিকেট বেটিং টিপস' ?>
         </h1>
         <a href="/pages/cricket-betting-guides?lang=<?= $lang ?>"
             class="inline-flex items-center gap-1 underline hover:text-red-700 transition text-sm lg:text-base text-white">
@@ -17,10 +17,10 @@ $categoryPosts = $posts->getPostByCategory(2, $lang);
         </a>
     </div>
 
+
     <div class="relative w-full">
         <!-- Left Arrow -->
         <button
-
             class="scroll-left hidden lg:flex absolute left-2 top-[100px] -translate-y-1/2 bg-gray-800/70 hover:opacity-90 text-white w-10 h-10 rounded-full shadow-lg items-center justify-center z-10">
             &#10094;
         </button>
@@ -40,6 +40,7 @@ $categoryPosts = $posts->getPostByCategory(2, $lang);
                 $postDesc = htmlspecialchars($postDesc);
                 $createdAt = $post['created_at'] ?? '';
                 ?>
+
                 <a href="/pages/detail?slug=<?= $postSlug ?>&lang=<?= $lang ?>" class="flex-shrink-0 w-[280px] sm:w-[300px] md:w-[310px] snap-start">
                     <div class="bg-gray-800 hover:bg-gray-700 transition shadow-lg rounded-xl overflow-hidden flex flex-col h-[380px]">
                         <!-- Image -->
@@ -71,11 +72,12 @@ $categoryPosts = $posts->getPostByCategory(2, $lang);
                         </div>
                     </div>
                 </a>
+                
             <?php endforeach; ?>
         </div>
         <!-- Right Arrow -->
-        <button
 
+        <button
             class="absolute scroll-right right-2 top-[100px] -translate-y-1/2 bg-gray-800/70 hover:opacity-90 text-white w-10 h-10 rounded-full shadow-lg hidden lg:flex items-center justify-center z-10">
             &#10095;
         </button>
