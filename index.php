@@ -65,7 +65,7 @@ $currentSeo = $seo[$lang];
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/image/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/image/favicon.svg" />
-    <link rel="shortcut icon" href="/image/favicon.ico" />
+    <link rel="shortcut icon" href="/image/favicon.ico"/>
     <link rel="apple-touch-icon" sizes="180x180" href="/image/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="FancyBet" />
     <link rel="manifest" href="/image/site.webmanifest" />
@@ -116,7 +116,7 @@ $currentSeo = $seo[$lang];
     }
 </style>
 
-<body class="bg-gray-900">
+<body class="dark:bg-gray-900 bg-amber-50">
     <?php include './pages/navbar.php'; ?>
     <?php
     include "./pages/loader.php"

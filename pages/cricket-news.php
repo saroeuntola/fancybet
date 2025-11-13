@@ -117,7 +117,7 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
 </head>
 
 
-<body class="bg-gray-900 text-white">
+<body class="dark:bg-gray-900 bg-amber-50 dark:text-white text-gray-100">
     <?php include "navbar.php"; ?>
 
     <div class="px-4 py-8 mt-15 max-w-7xl m-auto">
@@ -157,11 +157,10 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
         </div>
 
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
             <?php foreach ($posts as $post): ?>
                 <?php
                 $postName = htmlspecialchars($post['name'] ?? '');
-
                 if (mb_strlen($postName, 'UTF-8') > 30) {
                     $postName = mb_substr($postName, 0, 30, 'UTF-8') . '...';
                 }
@@ -176,18 +175,22 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
                 $createdAt = $post['created_at'] ?? '';
                 ?>
                 <a href="/pages/detail?slug=<?= $postSlug ?>&lang=<?= $lang ?>">
-                    <div class="bg-gray-800 shadow rounded-lg overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300">
+                    <div class="flex flex-col transition-all duration-300 ">
                         <!-- Image -->
-                        <?php if ($postImage): ?>
-                            <img src="/admin/page/post/<?= $postImage ?>" alt="<?= $postName ?>" class="w-full lg:h-[200px] h-[230px] object-cover">
-                        <?php else: ?>
-                            <div class="w-full lg:h-[200px] h-[230px] bg-gray-600 flex items-center justify-center text-gray-300 text-sm">
-                                <?= $lang === 'en' ? 'No Image' : 'ছবি নেই' ?>
-                            </div>
-                        <?php endif; ?>
+                        <div class="overflow-hidden h-[220px]">
+                            <?php if ($postImage): ?>
+                                <img src="/admin/page/post/<?= $postImage ?>"
+                                    alt="<?= $postName ?>"
+                                    class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110">
+                            <?php else: ?>
+                                <div class="w-full h-full bg-gray-600 flex items-center justify-center text-gray-300 text-sm">
+                                    <?= $lang === 'en' ? 'No Image' : 'ছবি নেই' ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
 
                         <!-- Content -->
-                        <div class="p-3 flex-1 flex flex-col justify-between">
+                        <div class="py-2 flex-1 flex flex-col">
                             <div>
                                 <h2 class="lg:text-lg text-md font-semibold mb-2 text-white break-words">
                                     <?= $postName ?>
@@ -198,7 +201,7 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
                             </div>
 
                             <!-- Date -->
-                            <div class="flex flex-wrap items-center gap-1 text-gray-400 text-xs mt-2 break-words">
+                            <div class="flex flex-wrap items-center gap-1 text-gray-400 text-xs break-words">
                                 <i class="fa-solid fa-earth-americas"></i>
                                 <span>
                                     <?= $lang === 'bn'
@@ -211,6 +214,7 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
                 </a>
             <?php endforeach; ?>
         </div>
+
 
         <!-- Pagination -->
         <?php if ($totalPages > 1): ?>

@@ -39,36 +39,36 @@ $menu = [
 
 // Function to map menu titles to icons
 function getMenuIcon($title)
-    {
-        $map = [
-            // English → Bangla → Icon
-            'home' => 'fa-house',
-            'হোম' => 'fa-house',
+{
+    $map = [
+        // English → Bangla → Icon
+        'home' => 'fa-house',
+        'হোম' => 'fa-house',
 
-            'blog' => 'fa-blog',
-            'ব্লগ' => 'fa-blog',
+        'blog' => 'fa-blog',
+        'ব্লগ' => 'fa-blog',
 
-            'cricket news' => 'fa-baseball-bat-ball',
-            'ক্রিকেট নিউজ' => 'fa-baseball-bat-ball',
+        'cricket news' => 'fa-baseball-bat-ball',
+        'ক্রিকেট নিউজ' => 'fa-baseball-bat-ball',
 
-            'betting guides' => 'fa-book',
-            'বেটিং গাইড' => 'fa-book',
+        'betting guides' => 'fa-book',
+        'বেটিং গাইড' => 'fa-book',
 
-            'match previews' => 'fa-eye',
-            'ম্যাচ প্রিভিউ' => 'fa-eye',
+        'match previews' => 'fa-eye',
+        'ম্যাচ প্রিভিউ' => 'fa-eye',
 
-            'about' => 'fa-circle-info',
-            'আমাদের সম্পর্কে' => 'fa-circle-info',
+        'about' => 'fa-circle-info',
+        'আমাদের সম্পর্কে' => 'fa-circle-info',
 
-            'contact' => 'fa-envelope',
-            'যোগাযোগ' => 'fa-envelope',
+        'contact' => 'fa-envelope',
+        'যোগাযোগ' => 'fa-envelope',
 
-            'community' => 'fa-users',
-            'সম্প্রদায়' => 'fa-users',
-        ];
+        'community' => 'fa-users',
+        'সম্প্রদায়' => 'fa-users',
+    ];
 
-        $title = trim(strtolower($title));
-        return $map[$title] ?? 'fa-link';
+    $title = trim(strtolower($title));
+    return $map[$title] ?? 'fa-link';
 }
 
 ?>
@@ -86,13 +86,14 @@ function getMenuIcon($title)
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!-- Navbar -->
-<nav class="w-full bg-black text-white shadow-md fixed top-0 left-0 z-30">
+<nav class="w-full bg-gray-500 text-gray-100 dark:bg-black dark:text-white shadow-md fixed top-0 left-0 z-30">
     <div class="container mx-auto flex items-center justify-between px-4 max-w-7xl">
         <!-- Left: Logo + Mobile Toggle -->
         <div class="flex items-center space-x-3">
             <button id="menu-toggle" class="lg:hidden rounded-md hover:bg-red-700 p-1 focus:outline-none">
                 <i class="fa-solid fa-bars text-xl"></i>
             </button>
+
             <a href="/?lang=<?= $lang ?>" class="text-lg font-semibold hover:text-gray-300">
                 <img src="/image/FancyBet.png" alt="fancybet logo" class="w-28 hover:opacity-70 transition-all">
             </a>
@@ -155,6 +156,19 @@ function getMenuIcon($title)
                     </button>
                 </form>
             </div>
+            <button
+                id="theme-toggle"
+                class="p-2 rounded-full hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors duration-300"
+                aria-label="Toggle Theme">
+                <svg
+                    id="theme-icon"
+                    class="h-6 w-6 text-black dark:text-white transition-colors duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24">
+                </svg>
+            </button>
 
             <button id="lang-btn" class="flex items-center gap-2 py-1.5 rounded-md text-sm text-gray-200 cursor-pointer hover:opacity-70">
                 <img id="lang-flag"
@@ -186,8 +200,8 @@ function getMenuIcon($title)
 <div id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-black z-40 transform -translate-x-full transition-transform duration-500 ease-in-out lg:hidden">
     <div class="p-4 border-b border-slate-700 flex justify-between items-center">
         <span class="text-lg font-bold text-white">
-            <?=  
-              $lang === 'en'? 'Menu': 'মেনু'
+            <?=
+            $lang === 'en' ? 'Menu' : 'মেনু'
             ?>
         </span>
         <button id="closeBtn" class="text-gray-300 hover:text-white focus:outline-none text-xl">

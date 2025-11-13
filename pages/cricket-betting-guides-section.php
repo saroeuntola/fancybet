@@ -4,15 +4,14 @@ $posts = new Post();
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 $categoryPosts = $posts->getPostByCategory(2, $lang);
 ?>
-<div class="scroll-section mb-15 relative">
-    <div class="h-px bg-red-800 w-full mb-4 mt-5"></div>
+<div class="scroll-section mb-15 relative dark:text-white text-gray-800">
 
     <div class="flex justify-between items-center mb-4 mt-10">
-        <h1 class="lg:text-2xl text-lg font-bold text-white ">
+        <h1 class="lg:text-2xl text-lg font-bold">
             <?= $lang === 'en' ? 'Cricket Betting Guides' : 'ক্রিকেট বেটিং গাইড' ?>
         </h1>
         <a href="/pages/cricket-betting-guides?lang=<?= $lang ?>"
-            class="inline-flex items-center gap-1 underline hover:text-red-700 transition text-sm lg:text-base text-white">
+            class="inline-flex items-center gap-1 underline hover:text-red-700 transition text-sm lg:text-base">
             <?= $lang === 'en' ? 'View All' : 'সব দেখুন' ?>
         </a>
     </div>
@@ -40,27 +39,26 @@ $categoryPosts = $posts->getPostByCategory(2, $lang);
                 $postDesc = htmlspecialchars($postDesc);
                 $createdAt = $post['created_at'] ?? '';
                 ?>
-                <a href="/pages/detail?slug=<?= $postSlug ?>&lang=<?= $lang ?>" class="flex-shrink-0 w-[280px] sm:w-[300px] md:w-[310px] snap-start">
-                    <div class="bg-gray-800 hover:bg-gray-700 transition shadow-lg rounded-xl overflow-hidden flex flex-col h-[380px]">
-                        <!-- Image -->
+                <a href="/pages/detail?slug=<?= $postSlug ?>&lang=<?= $lang ?>" class="overflow-hidden flex-shrink-0 w-[280px] sm:w-[300px] md:w-[310px] snap-start">
+                    <div class=" dark:text-white text-gray-800 transition flex flex-col h-[340px]">
+
                         <?php if ($postImage): ?>
-                            <img src="/admin/page/post/<?= $postImage ?>" alt="<?= $postName ?>" class="w-full h-[200px] object-cover">
+                            <img src="/admin/page/post/<?= $postImage ?>" alt="<?= $postName ?>" class="w-full h-[200px] object-cover transition-transform duration-500 ease-in-out hover:scale-110 overflow-hidded">
                         <?php else: ?>
                             <div class="w-full h-[200px] bg-gray-600 flex items-center justify-center text-gray-300 text-sm">
                                 <?= $lang === 'en' ? 'No Image' : 'ছবি নেই' ?>
                             </div>
                         <?php endif; ?>
-
                         <!-- Content -->
-                        <div class="p-4 flex-1 flex flex-col justify-between">
-                            <h2 class="lg:text-xl text-md font-semibold mb-2 text-white line-clamp-2 break-words">
+                        <div class="py-2 mt-2 flex-1 flex flex-col">
+                            <h2 class="text-md font-semibold mb-2 dark:text-white text-gray-800 line-clamp-2 break-words">
                                 <?= $postName ?>
                             </h2>
-                            <p class="text-gray-300 text-sm mb-2 break-words">
+                            <p class="dark:text-gray-300 text-gray-800 text-sm break-words">
                                 <?= $postDesc ?>
                             </p>
                             <!-- Date -->
-                            <div class="flex items-center gap-1 text-gray-400 text-xs mt-2 truncate">
+                            <div class="flex items-center gap-1 dark:text-gray-400 text-gray-800 text-xs mt-2 truncate">
                                 <i class="fa-solid fa-earth-americas"></i>
                                 <span>
                                     <?= $lang === 'bn'

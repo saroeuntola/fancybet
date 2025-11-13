@@ -1,10 +1,11 @@
     #mainSlider {
-        height: 320px;
+        height: 310px;
     }
 
     #mainSlider img {
-        height: 220px;
+        height: 200px;
     }
+
 
 
     #prevSlide,
@@ -14,11 +15,13 @@
 
     @media (min-width: 1024px) {
         #mainSlider {
-            height: 500px;
+            height: 474px;
         }
 
+  
+
         #mainSlider img {
-            height: 410px;
+            height: 100%;
         }
 
         #prevSlide,
@@ -27,13 +30,13 @@
         }
 
         .item-left {
-            width: 60%;
+            width: 70%;
         }
     }
 
     .item-right {
 
-        width: 400px;
+        width: 300px;
         word-break: break-word;
         overflow-wrap: anywhere;
         

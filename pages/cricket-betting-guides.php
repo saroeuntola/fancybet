@@ -120,13 +120,12 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
 </head>
 
 
-<body class="bg-gray-900 text-white">
+<body class="dark:bg-gray-900 bg-amber-50 dark:text-white text-gray-800">
     <?php include "navbar.php"; ?>
-
     <div class="px-4 py-8 mt-15 max-w-7xl m-auto">
 
         <div class="flex justify-between items-center mb-4 lg:mt-4">
-            <h1 class="text-xl font-bold">
+            <h1 class="text-xl font-bold dark:text-white text-gray-800">
                 <?= $lang === 'en' ? 'All Cricket Betting Guides' : 'সমস্ত ক্রিকেট বেটিং গাইড' ?>
             </h1>
 
@@ -156,12 +155,12 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
             </form>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <?php foreach ($posts as $post): ?>
                 <?php
                 $postName = htmlspecialchars($post['name'] ?? '');
-                if (mb_strlen($postName, 'UTF-8') > 30) {
-                    $postName = mb_substr($postName, 0, 30, 'UTF-8') . '...';
+                if (mb_strlen($postName, 'UTF-8') > 50) {
+                    $postName = mb_substr($postName, 0, 60, 'UTF-8') . '...';
                 }
                 $postSlug = urlencode($post['slug'] ?? '');
                 $postImage = !empty($post['image']) ? htmlspecialchars($post['image']) : null;
@@ -174,29 +173,32 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
                 $createdAt = $post['created_at'] ?? '';
                 ?>
                 <a href="/pages/detail?slug=<?= $postSlug ?>&lang=<?= $lang ?>">
-                    <div class="bg-gray-800 shadow rounded-lg overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300">
-                        <!-- Image -->
-                        <?php if ($postImage): ?>
-                            <img src="/admin/page/post/<?= $postImage ?>" alt="<?= $postName ?>" class="w-full lg:h-[200px] h-[230px] object-cover">
-                        <?php else: ?>
-                            <div class="w-full lg:h-[200px] h-[230px] bg-gray-600 flex items-center justify-center text-gray-300 text-sm">
-                                <?= $lang === 'en' ? 'No Image' : 'ছবি নেই' ?>
-                            </div>
-                        <?php endif; ?>
+                    <div class="flex flex-row items-stretch transition-all duration-300">
 
-                        <!-- Content -->
-                        <div class="p-3 flex-1 flex flex-col justify-between">
+                        <!-- Image (Left) -->
+                        <div class="overflow-hidden w-[150px] lg:w-[280px] h-[120px] lg:h-[180px] flex-shrink-0">
+                            <?php if ($postImage): ?>
+                                <img src="/admin/page/post/<?= $postImage ?>"
+                                    alt="<?= $postName ?>"
+                                    class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110">
+                            <?php else: ?>
+                                <div class="w-full h-full bg-gray-600 flex items-center justify-center text-gray-300 text-sm">
+                                    <?= $lang === 'en' ? 'No Image' : 'ছবি নেই' ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+
+                        <!-- Content (Right) -->
+                        <div class="ml-2 flex-1 flex flex-col">
                             <div>
                                 <h2 class="lg:text-lg text-md font-semibold mb-2 text-white break-words">
                                     <?= $postName ?>
                                 </h2>
-                                <p class="text-gray-300 mb-3 text-sm break-words lg:text-md">
+                                <p class="text-gray-300 mb-3 text-sm break-words lg:text-md hidden lg:block">
                                     <?= $postDesc ?>
                                 </p>
                             </div>
-
-                            <!-- Date -->
-                            <div class="flex flex-wrap items-center gap-1 text-gray-400 text-xs mt-2 break-words">
+                            <div class="flex flex-wrap items-center gap-1 text-gray-400 text-xs break-words">
                                 <i class="fa-solid fa-earth-americas"></i>
                                 <span>
                                     <?= $lang === 'bn'
@@ -205,11 +207,11 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
                                 </span>
                             </div>
                         </div>
+
                     </div>
                 </a>
             <?php endforeach; ?>
         </div>
-
 
         <!-- Pagination -->
         <?php if ($totalPages > 1): ?>
@@ -256,6 +258,7 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
         <?php endif; ?>
 
     </div>
+    <?=  include "footer.php" ?>
 </body>
 
 </html>
