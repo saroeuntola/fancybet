@@ -2,13 +2,9 @@
         height: 200px;
         margin-bottom: 10px;
     }
-
     #mainSlider img {
         height: 100%;
     }
-
-
-
     #prevSlide,
     #nextSlide {
         top: 45%;
@@ -18,8 +14,6 @@
         #mainSlider {
             height: 468px;
         }
-
-  
 
         #mainSlider img {
             height: 100%;
@@ -34,9 +28,7 @@
             width: 70%;
         }
     }
-
     .item-right {
-
         width: 300px;
         word-break: break-word;
         overflow-wrap: anywhere;

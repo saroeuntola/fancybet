@@ -182,7 +182,7 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
                                     alt="<?= $postName ?>"
                                     class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110">
                             <?php else: ?>
-                                <div class="w-full h-full bg-gray-600 flex items-center justify-center text-gray-300 text-sm">
+                                <div class="w-full h-full bg-gray-600 flex items-center justify-center dark:text-gray-300 text-gray-800 text-sm">
                                     <?= $lang === 'en' ? 'No Image' : 'ছবি নেই' ?>
                                 </div>
                             <?php endif; ?>
@@ -191,13 +191,14 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
                         <!-- Content (Right) -->
                         <div class="ml-2 flex-1 flex flex-col">
                             <div>
-                                <h2 class="lg:text-lg text-md font-semibold mb-2 text-white break-words">
+                                <h2 class="lg:text-lg text-md font-semibold mb-2 dark:text-white text-gray-800 break-words">
                                     <?= $postName ?>
                                 </h2>
-                                <p class="text-gray-300 mb-3 text-sm break-words lg:text-md hidden lg:block">
+                                <p class="dark:text-gray-300 text-gray-800 mb-3 text-sm break-words lg:text-md hidden lg:block">
                                     <?= $postDesc ?>
                                 </p>
                             </div>
+
                             <div class="flex flex-wrap items-center gap-1 text-gray-400 text-xs break-words">
                                 <i class="fa-solid fa-earth-americas"></i>
                                 <span>

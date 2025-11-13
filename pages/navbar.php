@@ -197,7 +197,7 @@ function getMenuIcon($title)
 <div id="overlay" class="fixed inset-0 z-20 hidden transition-opacity duration-500"></div>
 
 <!-- Sidebar -->
-<div id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-black z-40 transform -translate-x-full transition-transform duration-500 ease-in-out lg:hidden">
+<div id="sidebar" class="fixed top-0 left-0 h-full w-64 dark:bg-black bg-gray-500 z-40 transform -translate-x-full transition-transform duration-500 ease-in-out lg:hidden">
     <div class="p-4 border-b border-slate-700 flex justify-between items-center">
         <span class="text-lg font-bold text-white">
             <?=
