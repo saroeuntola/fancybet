@@ -95,18 +95,18 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
 
 </style>
 
-<body class="bg-gray-900">
+<body class="dark:bg-gray-900 bg-amber-50">
     <?php
     include "navbar.php"
     ?>
-    <main class="container max-w-7xl mx-auto px-4 py-8 text-white pt-20 grid grid-cols-1 lg:grid-cols-3 gap-2">
+    <main class="container max-w-7xl mx-auto px-4 py-8 dark:text-white text-gray-900 pt-20 grid grid-cols-1 lg:grid-cols-3 gap-2">
         <!-- Main Content -->
         <section class="lg:col-span-2 space-y-6">
             <!-- Post Card -->
             <div class="mb-6 mt-5">
                 <h1 class="lg:text-3xl text-lg font-bold mb-2"><?= htmlspecialchars($post['name'] ?? '') ?></h1>
                 <?php if (!empty($post['created_at'])): ?>
-                    <p class="text-gray-100 text-sm mb-4">
+                    <p class="dark:text-gray-100 text-gray-800 text-sm mb-4">
                         <?= $lang === 'en' ? 'Published on' : 'প্রকাশিত তারিখ' ?>
                         <?= formatDateByLang($post['created_at'] ?? '', $lang) ?>
                     </p>
@@ -119,7 +119,7 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
                 <div class="break-words desc-editor"><?= str_replace('../api/content_image/', '/admin/page/api/content_image/', $post['description'] ?? '') ?></div>
 
 
-                <h3 class="font-semibold text-lg text-gray-100 mt-10">
+                <h3 class="font-semibold text-lg dark:text-gray-100 text-gray-900 mt-10">
                     <?= $lang === 'en' ? 'Share this post:' : 'এই পোস্টটি শেয়ার করুন:' ?>
                 </h3>
                 <!-- Social Share Buttons -->
@@ -210,19 +210,19 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
 
                             <div
                                 id="relatedGrid"
-                                class="post-grid grid grid-flow-col gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory touch-pan-x cursor-grab select-none px-4 scrollbar-hide">
+                                class="post-grid grid grid-flow-col gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory touch-pan-x cursor-grab select-none px-4 scrollbar-hide">
                                 <?php foreach ($relatedPosts as $rPost): ?>
                                     <a href="/pages/detail?slug=<?= urlencode($rPost['slug']) ?> &lang=<?= $lang ?>" class="w-[270px] flex-shrink-0 snap-start">
-                                        <div class="bg-gray-800 shadow rounded-lg overflow-hidden flex flex-col h-[340px]">
+                                        <div class="overflow-hidden flex flex-col h-[340px]">
                                             <?php if (!empty($rPost['image'])): ?>
                                                 <img
                                                     src="/admin/page/post/<?= htmlspecialchars($rPost['image']) ?>"
                                                     class="w-full h-[180px]">
                                             <?php endif; ?>
-                                            <div class="p-2">
+                                            <div class="py-2">
                                                 <div>
-                                                    <h3 class="text-white font-semibold text-md mb-2"><?= htmlspecialchars($rPost['name']) ?></h3>
-                                                    <p class="text-gray-300 mb-1 break-words whitespace-normal text-sm">
+                                                    <h3 class="dark:text-white text-gray-900 font-semibold text-md mb-2"><?= htmlspecialchars($rPost['name']) ?></h3>
+                                                    <p class="dark:text-gray-300 text-gray-900 mb-1 break-words whitespace-normal text-sm">
                                                         <?php
                                                         // Remove HTML tags
                                                         $plainText = strip_tags($rPost['description'] ?? '');
@@ -236,6 +236,8 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
                                                         ?>
                                                     </p>
                                                 </div>
+
+                                                
                                                 <!-- Date with globe icon -->
                                                 <div class="flex items-center gap-1 text-gray-400 text-xs mt-2">
                                                     <i class="fa-solid fa-earth-americas"></i>

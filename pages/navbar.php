@@ -248,46 +248,7 @@ function getMenuIcon($title)
 
 </div>
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const mobileDropdowns = document.querySelectorAll(".mobile-dropdown");
-        mobileDropdowns.forEach(dropdown => {
-            const toggle = dropdown.querySelector(".mobile-dropdown-toggle");
-            const submenu = dropdown.querySelector(".mobile-submenu");
-            const icon = dropdown.querySelector("i");
-            toggle.addEventListener("click", () => {
-                submenu.classList.toggle("hidden");
-                icon.classList.toggle("rotate-180");
-                icon.classList.toggle("transition-transform");
-            });
-        });
-    });
-</script>
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const dropdowns = document.querySelectorAll('.dropdown');
-        dropdowns.forEach(dropdown => {
-            const toggle = dropdown.querySelector('.dropdown-toggle');
-            const submenu = dropdown.querySelector('.submenu');
-            // Toggle submenu on click
-            toggle.addEventListener('click', (e) => {
-                e.stopPropagation();
-                submenu.classList.toggle('hidden');
-            });
-
-            dropdown.addEventListener('mouseenter', () => {
-                submenu.classList.remove('hidden');
-            });
-            // Close submenu when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!dropdown.contains(e.target)) {
-                    submenu.classList.add('hidden');
-                }
-            });
-        });
-    });
-</script>
 <?php
 $js = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/js/navbar.js');
 $encoded = base64_encode($js);

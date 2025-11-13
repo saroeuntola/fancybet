@@ -4,13 +4,20 @@ $posts = new Post();
 $categoryPosts = $posts->getPostByCategory(2, $lang);
 ?>
 <div class="scroll-section mb-20 relative text-gray-800 dark:text-white">
-    <div class="flex justify-between items-center mb-4 ">
-        <h1 class="lg:text-2xl text-lg font-bold">
+
+    <div class="flex justify-between items-center mb-4">
+        <h1 class="lg:text-2xl text-lg font-bold flex items-center gap-2">
+            <p class="bg-red-700 p-1 rounded-lg">
+                <i class="fa-solid fa-table-tennis-paddle-ball"></i>
+            </p>
+
             <?= $lang === 'en' ? 'Match Previews' : 'ম্যাচ প্রিভিউ' ?>
         </h1>
         <a href="/pages/cricket-previews?lang=<?= $lang ?>"
-            class="inline-flex items-center gap-1 underline hover:text-red-700 transition text-sm lg:text-base ">
+            class="inline-flex items-center text-white gap-1 py-1 px-3 rounded-lg hover:bg-red-600 bg-red-700 transition text-sm lg:text-base">
+
             <?= $lang === 'en' ? 'View All' : 'সব দেখুন' ?>
+            <i class="fa-solid fa-arrow-right"></i>
         </a>
     </div>
 

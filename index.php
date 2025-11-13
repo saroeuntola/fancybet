@@ -65,7 +65,7 @@ $currentSeo = $seo[$lang];
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/image/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/image/favicon.svg" />
-    <link rel="shortcut icon" href="/image/favicon.ico"/>
+    <link rel="shortcut icon" href="/image/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/image/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="FancyBet" />
     <link rel="manifest" href="/image/site.webmanifest" />
@@ -152,7 +152,19 @@ $currentSeo = $seo[$lang];
     <?php
     include "./pages/footer.php"
     ?>
-    <script src="/js/scroll-grid.js"></script>
+
+    <?php
+    $js = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/js/cricket-news.js');
+    $encoded = base64_encode($js);
+    echo '<script src="data:text/javascript;base64,' . $encoded . '" defer></script>';
+    ?>
+
+    <?php
+    $js = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/js/scroll-grid.js');
+    $encoded = base64_encode($js);
+    echo '<script src="data:text/javascript;base64,' . $encoded . '" defer></script>';
+    ?>
+ 
 </body>
 
 </html>

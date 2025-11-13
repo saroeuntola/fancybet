@@ -5,13 +5,20 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 $categoryPosts = $posts->getPostByCategory(2, $lang);
 ?>
 <div class="scroll-section mb-20 relative text-gray-800 dark:text-white">
+   
     <div class="flex justify-between items-center mb-4">
-        <h1 class="lg:text-2xl text-lg font-bold">
+        <h1 class="lg:text-2xl text-lg font-bold flex items-center gap-2">
+            <p class="bg-red-700 p-1 rounded-lg">
+                <i class="fa-solid fa-square-share-nodes text-white"></i>
+            </p>
+
             <?= $lang === 'en' ? 'Cricket Betting Tip' : 'ক্রিকেট বেটিং টিপস' ?>
         </h1>
-        <a href="/pages/cricket-betting-guides?lang=<?= $lang ?>"
-            class="inline-flex items-center gap-1 underline hover:text-red-700 transition text-sm lg:text-base ">
+        <a href="/pages/cricket-betting-tip?lang=<?= $lang ?>"
+            class="inline-flex items-center text-white gap-1 py-1 px-3 rounded-lg hover:bg-red-600 bg-red-700 transition text-sm lg:text-base">
+
             <?= $lang === 'en' ? 'View All' : 'সব দেখুন' ?>
+            <i class="fa-solid fa-arrow-right"></i>
         </a>
     </div>
 

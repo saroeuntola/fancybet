@@ -1,16 +1,17 @@
     #mainSlider {
-        height: 310px;
+        height: 200px;
+        margin-bottom: 10px;
     }
 
     #mainSlider img {
-        height: 200px;
+        height: 100%;
     }
 
 
 
     #prevSlide,
     #nextSlide {
-        top: 32%;
+        top: 45%;
     }
 
     @media (min-width: 1024px) {
@@ -26,7 +27,7 @@
 
         #prevSlide,
         #nextSlide {
-            top: 40%;
+            top: 45%;
         }
 
         .item-left {
