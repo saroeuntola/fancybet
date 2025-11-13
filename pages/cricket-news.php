@@ -117,7 +117,7 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
 </head>
 
 
-<body class="dark:bg-gray-900 bg-amber-50 dark:text-white text-gray-100">
+<body class="dark:bg-gray-900 bg-amber-50 dark:text-white text-gray-800">
     <?php include "navbar.php"; ?>
 
     <div class="px-4 py-8 mt-15 max-w-7xl m-auto">
@@ -161,8 +161,8 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
             <?php foreach ($posts as $post): ?>
                 <?php
                 $postName = htmlspecialchars($post['name'] ?? '');
-                if (mb_strlen($postName, 'UTF-8') > 30) {
-                    $postName = mb_substr($postName, 0, 30, 'UTF-8') . '...';
+                if (mb_strlen($postName, 'UTF-8') > 80) {
+                    $postName = mb_substr($postName, 0, 80, 'UTF-8') . '...';
                 }
                 $postSlug = urlencode($post['slug'] ?? '');
                 $postImage = !empty($post['image']) ? htmlspecialchars($post['image']) : null;
@@ -192,16 +192,16 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
                         <!-- Content -->
                         <div class="py-2 flex-1 flex flex-col">
                             <div>
-                                <h2 class="lg:text-lg text-md font-semibold mb-2 text-white break-words">
+                                <h2 class="lg:text-lg text-md font-semibold mb-2 dark:text-white text-gray-800 break-words">
                                     <?= $postName ?>
                                 </h2>
-                                <p class="text-gray-300 mb-3 text-sm break-words lg:text-md">
+                                <p class="dark:text-gray-300 text-gray-800 mb-3 text-sm break-words lg:text-md">
                                     <?= $postDesc ?>
                                 </p>
                             </div>
 
                             <!-- Date -->
-                            <div class="flex flex-wrap items-center gap-1 text-gray-400 text-xs break-words">
+                            <div class="flex flex-wrap items-center gap-1 dark:text-gray-400 text-gray-800 text-xs break-words">
                                 <i class="fa-solid fa-earth-americas"></i>
                                 <span>
                                     <?= $lang === 'bn'
