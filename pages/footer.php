@@ -1,6 +1,6 @@
-<footer class="bg-black text-gray-200 mt-10">
+<footer class="dark:bg-black bg-gray-500 text-gray-200 mt-10">
     <div class="px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
-       <!-- branding -->
+        <!-- branding -->
         <div>
             <img src="/image/FancyBet-footer.png" alt="fancybet logo" class="w-32 mb-4">
             <p>
@@ -44,7 +44,7 @@
         <!-- Newsletter / Contact -->
         <div>
             <h4 class="text-white font-semibold mb-4"><?= $lang === 'en' ? 'Subscribe to Our Newsletter' : 'আমাদের নিউজলেটারে সাবস্ক্রাইব করুন' ?></h4>
-            <p class="text-gray-400 mb-4 text-sm">
+            <p class="dark:text-gray-400 text-gray-200 mb-4 text-sm">
                 <?= $lang === 'en'
                     ? 'Get weekly updates directly to your inbox about news, tutorials, and community events.'
                     : 'সাপ্তাহিক সংবাদ, টিউটোরিয়াল এবং কমিউনিটি ইভেন্টগুলির আপডেট সরাসরি আপনার ইনবক্সে পান।'
@@ -52,7 +52,7 @@
             </p>
             <form action="" method="POST" class="flex flex-col gap-2">
                 <input type="email" name="email" required placeholder="<?= $lang === 'en' ? 'Enter your email' : 'আপনার ইমেইল লিখুন' ?>"
-                    class="p-3 rounded-lg border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
+                    class="p-3 rounded-lg border border-gray-700 dark:text-gray-400 text-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500">
                 <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg transition-colors">
                     <?= $lang === 'en' ? 'Subscribe' : 'সাবস্ক্রাইব করুন' ?>
                 </button>
@@ -62,8 +62,8 @@
     </div>
 
     <!-- Bottom copyright -->
-    <div class="border-t border-gray-700 mt-6 py-[30px] text-center text-sm text-gray-400">
-        <p class="text-gray-400 mt-2 text-sm">
+    <div class="border-t border-gray-700 mt-6 py-[30px] text-center text-sm dark:text-gray-400 text-gray-200">
+        <p class="dark:text-gray-400 text-gray-200 mt-2 text-sm">
             <?= $lang === 'en' ? '18+, Play Responsibly' : '১৮+ শুধুমাত্র, দায়িত্বশীলভাবে খেলুন' ?>
         </p> <br>
         &copy; <?= date('Y') ?> FancyBet. <?= $lang === 'en' ? 'All rights reserved.' : 'সকল অধিকার সংরক্ষিত।' ?>
