@@ -66,6 +66,7 @@ $currentSeo = $seo[$lang];
     <link rel="icon" type="image/png" href="/image/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/image/favicon.svg" />
     <link rel="shortcut icon" href="/image/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="180x180" href="/image/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="FancyBet" />
     <link rel="manifest" href="/image/site.webmanifest" />
@@ -164,7 +165,7 @@ $currentSeo = $seo[$lang];
     $encoded = base64_encode($js);
     echo '<script src="data:text/javascript;base64,' . $encoded . '" defer></script>';
     ?>
- 
+
 </body>
 
 </html>

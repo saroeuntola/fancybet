@@ -176,7 +176,7 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
                 <!-- Comments Section -->
                 <div>
                     <h3 class="text-xl font-semibold mb-4"><?= $lang === 'en' ? 'Comments' : 'মন্তব্য' ?> (<?= count($comments) ?>)</h3>
-                    <form id="commentForm" class="bg-gray-800 shadow-md rounded-lg p-4 mb-6 space-y-3">
+                    <form id="commentForm" class="dark:bg-gray-800 bg-white shadow-md rounded-lg p-4 mb-6 space-y-3">
                         <input type="hidden" name="post_id" value="<?= $post['id'] ?? 0 ?>">
                         <input type="hidden" name="parent_id" value="">
                         <input type="text" name="name" placeholder="<?= $lang === 'en' ? 'Enter your name' : 'আপনার নাম লিখুন' ?>" required class="w-full px-4 py-2 rounded-lg focus:ring-2 focus:ring-red-500 bg-gray-300 text-gray-800">
