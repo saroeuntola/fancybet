@@ -1,8 +1,9 @@
-<?php
+<?php 
+include('../library/checkroles.php');
 include('../library/post_lib.php');
 include('../library/users_lib.php');
-include('../library/checkroles.php');
-protectPathAccess();
+
+protectRoute([1, 3]);
 $product = new Post();
 $products = $product->getPost();
 

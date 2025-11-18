@@ -1,7 +1,8 @@
 <?php
-session_start();
-include('../library/auth.php');
+include('../library/checkroles.php');
 include('../library/users_lib.php');
+
+protectRoute([1]);
 
 $userAuth = new Auth();
 $role = new User();

@@ -1,17 +1,20 @@
 <?php
 session_start();
 include("auth.php");
-function protectRouteAccess() {
+
+function protectRoute($allowedRoles = [])
+{
     $auth = new Auth();
-   if ($auth->is_logged_in()) {
-    if ($_SESSION['role_id'] != 1 && $_SESSION['role_id'] != 3) {
+
+    // Not logged in
+    if (!$auth->is_logged_in()) {
         header("Location: /no_access");
         exit;
     }
-} else {
-    header("Location: /no_access");
-    exit;
-}
 
+    // User role undefined or not allowed
+    if (!isset($_SESSION['role_id']) || !in_array($_SESSION['role_id'], $allowedRoles)) {
+        header("Location: /no_access");
+        exit;
+    }
 }
-?>

@@ -1,9 +1,9 @@
 <?php
+include('../library/checkroles.php');
 include('../library/post_lib.php');
 include('../library/category_lib.php');
-include('../library/checkroles.php');
 include $_SERVER['DOCUMENT_ROOT'] . '/config/baseURL.php';
-protectPathAccess();
+protectRoute([1, 3]);
 $product = new Post();
 $category = new Category();
 
@@ -175,7 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         const example_image_upload_handler = (blobInfo, progress) => new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
             xhr.withCredentials = true; // send cookies for cross-domain if needed
-            xhr.open('POST', 'http://fancybet:8080/admin/page/api/upload_image'); // PHP endpoint
+            xhr.open('POST', 'https://fancybet.info/admin/page/api/upload_image'); // PHP endpoint
 
             xhr.upload.onprogress = (e) => {
                 progress(e.loaded / e.total * 100);
@@ -221,7 +221,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | table | image | code',
             automatic_uploads: true,
             images_upload_handler: example_image_upload_handler, // use custom handler
-            images_upload_base_path: 'http://fancybet:8080/admin/page/api/content_image/', // optional base path
+            images_upload_base_path: 'https://fancybet.info/admin/page/api/content_image/', // optional base path
             images_upload_credentials: true, // send cookies if needed
             images_reuse_filename: true, // reuse filenames for edits
             image_title: true,

@@ -4,7 +4,7 @@ include('../library/category_lib.php');
 include('../library/checkroles.php');
 include('../library/users_lib.php');
 $category = new Category();
-protectPathAccess();
+protectRoute([1, 3]);
 $categories = $category->getCategories();
 
 

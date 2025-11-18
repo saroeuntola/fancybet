@@ -3,7 +3,7 @@ include('../library/users_lib.php');
 include('../library/checkroles.php');
 
 $user = new User();
-protectPathAccess();
+protectRoute([1]);
 $users = $user->getUsers();
 
 // Handle status toggle

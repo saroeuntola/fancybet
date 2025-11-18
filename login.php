@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 header('Location: ./');
                 exit();
             } elseif ($user['role_id'] == 3) {
-                header('Location: ./admin/players_record');
+                header('Location: ./admin');
                 exit();
             }
         }

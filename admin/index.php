@@ -1,7 +1,7 @@
 <?php 
 include "../admin/page/library/checkroles.php";
 include('../admin/page/library/users_lib.php');
-protectPathAccess(); 
+protectRoute([1, 3]);
 // $categoryCount = dbCount("categories");
 // $productCount = dbCount("games");
 // $userCount = dbCount("users");
