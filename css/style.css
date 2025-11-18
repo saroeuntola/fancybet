@@ -12,9 +12,12 @@
 
     @media (min-width: 1024px) {
         #mainSlider {
-            height: 456px;
+            height: 455px;
         }
-
+        
+        .mainslide_en {
+             height: 474px !important;
+        }
         #prevSlide,
         #nextSlide {
             top: 45%;

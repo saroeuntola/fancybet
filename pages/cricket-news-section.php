@@ -19,7 +19,7 @@
 
         <!-- MAIN SLIDER -->
         <div class="relative overflow-hidden item-left">
-            <div id="mainSlider" class="flex transition-transform duration-700 ease-in-out w-full h-auto">
+            <div id="mainSlider" class="flex transition-transform duration-700 ease-in-out w-full <?= $lang === 'en' ? 'mainslide_en' : '' ?>">
                 <?php
                 if (!empty($limitedPosts)):
                     $mainSlides = array_slice($limitedPosts, 0, 3);
@@ -32,7 +32,7 @@
                             <?php if (!empty($post['image'])): ?>
                                 <img src="/admin/page/post/<?= htmlspecialchars($post['image']) ?>"
                                     alt="<?= htmlspecialchars($post['name']) ?>"
-                                    class="w-full h-[200px] lg:h-[300px] object-cover">
+                                    class="w-full object-cover">
                             <?php else: ?>
                                 <div class="w-full slide-image bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-300 text-sm">
                                     <?= $lang === 'en' ? 'No Image' : 'ছবি নেই' ?>
