@@ -11,8 +11,8 @@ $roles = $role->getRoles();
                     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $username = $_POST['username'];
                         $email    = $_POST['email'];
-                        $phone    = $_POST['phone'];
-                        $password = $_POST['password'];
+    $phone = $_POST['phone'] ?? null;
+    $password = $_POST['password'];
                         $role_id  = $_POST['role'];
 
                         try {
@@ -62,12 +62,12 @@ $roles = $role->getRoles();
             </div>
 
             <!-- Phone -->
-            <div class="mb-4">
+            <!-- <div class="mb-4">
                 <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
                 <input type="text" id="phone" name="phone" required
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
                  focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            </div>
+            </div> -->
 
             <!-- Password -->
             <div class="mb-4">

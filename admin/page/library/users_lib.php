@@ -112,5 +112,35 @@ class User
 
         return dbDelete('users', "id=" . $this->db->quote($id));
     }
+
+
+    public function changePassword($userId, $newPassword)
+    {
+        if (empty($newPassword)) {
+            return false;
+        }
+
+        // Hash the new password
+        $hashed = password_hash($newPassword, PASSWORD_DEFAULT);
+
+        try {
+            $stmt = $this->db->prepare("
+            UPDATE users 
+            SET password = :password 
+            WHERE id = :id
+        ");
+
+            return $stmt->execute([
+                ':password' => $hashed,
+                ':id'       => $userId
+            ]);
+        } catch (PDOException $e) {
+            die("Error updating password: " . $e->getMessage());
+        }
+    }
 }
+
+
+
+
 ?>

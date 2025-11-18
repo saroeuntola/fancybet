@@ -8,13 +8,13 @@ function protectRoute($allowedRoles = [])
 
     // Not logged in
     if (!$auth->is_logged_in()) {
-        header("Location: /no_access");
+        header("Location: /unauthorized");
         exit;
     }
 
     // User role undefined or not allowed
     if (!isset($_SESSION['role_id']) || !in_array($_SESSION['role_id'], $allowedRoles)) {
-        header("Location: /no_access");
+        header("Location: /unauthorized");
         exit;
     }
 }
