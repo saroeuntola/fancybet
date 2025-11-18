@@ -6,9 +6,9 @@ $categoryPosts = $posts->getPostByCategory(2, $lang);
 <div class="scroll-section mb-20 relative text-gray-800 dark:text-white">
 
     <div class="flex justify-between items-center mb-4">
-        <h1 class="lg:text-2xl text-lg font-bold flex items-center gap-2">
+        <h1 class="lg:text-2xl text-lg font-bold flex items-center gap-2 ">
             <p class="bg-red-700 p-1 rounded-lg">
-                <i class="fa-solid fa-table-tennis-paddle-ball"></i>
+                <i class="fa-solid fa-table-tennis-paddle-ball text-white"></i>
             </p>
 
             <?= $lang === 'en' ? 'Match Previews' : 'ম্যাচ প্রিভিউ' ?>

@@ -45,7 +45,7 @@
  let themeIcon = document.getElementById("theme-icon");
 
  function setIcons(dark) {
-   const sunImg = "./image/sun-24.ico";
+   const sunImg = "/image/sun-24.ico";
    const moonIcon = `
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
       d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/>
@@ -59,7 +59,7 @@
    } else {
      themeIcon.outerHTML = `
       <svg id="theme-icon"
-        class="h-6 w-6 text-gray-900 dark:text-yellow-400 transition-transform duration-300 cursor-pointer"
+        class="h-6 w-6 text-white transition-transform duration-300 cursor-pointer"
         fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         ${moonIcon}
       </svg>
