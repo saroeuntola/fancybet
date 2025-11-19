@@ -1,7 +1,7 @@
 <?php
 include('../library/category_lib.php');
 include('../library/checkroles.php');
-protectPathAccess();
+protectRoute([1, 3]);
 
 $cat = new Category();
 

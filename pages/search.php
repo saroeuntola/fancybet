@@ -24,13 +24,10 @@ $posts = $query ? $postObj->searchpost($query, $lang) : [];
 
 <body class="bg-gray-900 text-white">
     <?php include "navbar.php"; ?>
-
     <div class="px-4 py-8 mt-16 max-w-5xl mx-auto">
-
         <h1 class="text-2xl font-bold mb-4">
             <?= $lang === 'en' ? "Search Results for '$query'" : "'$query'-এর জন্য অনুসন্ধানের ফলাফল" ?>
         </h1>
-
         <?php if (!$query): ?>
             <p class="text-gray-300"><?= $lang === 'en' ? 'Please enter a search query.' : 'অনুগ্রহ করে অনুসন্ধান লিখুন।' ?></p>
         <?php elseif (empty($posts)): ?>
@@ -98,9 +95,7 @@ $posts = $query ? $postObj->searchpost($query, $lang) : [];
                     </p>
                 <?php endif; ?>
             </div>
-
         <?php endif; ?>
-
     </div>
 </body>
 
