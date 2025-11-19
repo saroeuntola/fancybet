@@ -104,14 +104,15 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
         <section class="lg:col-span-2 space-y-6">
             <!-- Post Card -->
             <div class="mb-6 mt-5">
-                <h1 class="lg:text-3xl text-lg font-bold mb-2"><?= htmlspecialchars($post['name'] ?? '') ?></h1>
+                <h1 class="lg:text-3xl text-lg font-bold mb-4"><?= htmlspecialchars($post['name'] ?? '') ?></h1>
+
+                <h3 class="dark:text-gray-100 text-gray-800 text-sm mb-2"><?= $lang === 'en' ? 'Posted by' : 'পোস্ট করেছেন' ?> <?= htmlspecialchars($post['public_by'] ?? 'Tola') ?></h3>
                 <?php if (!empty($post['created_at'])): ?>
                     <p class="dark:text-gray-100 text-gray-800 text-sm mb-4">
                         <?= $lang === 'en' ? 'Published on' : 'প্রকাশিত তারিখ' ?>
                         <?= formatDateByLang($post['created_at'] ?? '', $lang) ?>
                     </p>
                 <?php endif; ?>
-
                 <?php if (!empty($post['image'])): ?>
                     <img src="/admin/page/post/<?= htmlspecialchars($post['image']) ?>" class="w-full md:h-[380px] h-[220px] lg:h-[380px] mb-4 rounded">
                 <?php endif; ?>
@@ -237,7 +238,7 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
                                                     </p>
                                                 </div>
 
-                                                
+
                                                 <!-- Date with globe icon -->
                                                 <div class="flex items-center gap-1 text-gray-400 text-xs mt-2">
                                                     <i class="fa-solid fa-earth-americas"></i>

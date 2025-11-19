@@ -4,7 +4,7 @@
         height: 48px;
         border-radius: 50%;
         display: inline-block;
-        border-top: 4px solid #FFF;
+        border-top: 4px solid green;
         border-right: 4px solid transparent;
         box-sizing: border-box;
         animation: rotation 1s linear infinite;
@@ -38,7 +38,7 @@
 </style>
 
 <!-- Loader -->
-<div id="pageLoader" class="fixed inset-0 z-50 bg-gray-900 flex items-center justify-center transition-opacity  duration-1000" aria-live="polite">
+<div id="pageLoader" class="fixed inset-0 z-50 bg-amber-50 flex items-center justify-center transition-opacity  duration-1000" aria-live="polite">
     <div class="loader inset-0 ease-linear"></div>
 </div>
 

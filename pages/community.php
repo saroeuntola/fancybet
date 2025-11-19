@@ -68,7 +68,7 @@ $text = $content[$lang];
     <script src="./js/jquery-3.6.0.min.js"></script>
 </head>
 
-<body class="bg-gray-900 text-amber-50 font-inter">
+<body class="dark:bg-gray-900 bg-amber-50 dark:text-amber-50 font-inter">
     <?php include 'navbar.php'; ?>
     <main class="max-w-5xl m-auto pt-10 lg:mt-15 px-4">
         <!-- Hero Section -->
@@ -84,7 +84,7 @@ $text = $content[$lang];
         <!-- Why Join Section -->
         <section class="py-12">
             <div class="container mx-auto text-white">
-                <h2 class="text-2xl font-semibold mb-6 text-center"><?= htmlspecialchars($text['whyJoin']) ?></h2>
+                <h2 class="text-2xl font-semibold mb-6 text-center dark:text-white text-gray-800"><?= htmlspecialchars($text['whyJoin']) ?></h2>
                 <div class="grid md:grid-cols-3 gap-6">
                     <div class="p-6 bg-red-800 rounded-xl shadow hover:shadow-lg transition">
                         <h3 class="text-xl font-semibold mb-3"><?= htmlspecialchars($text['discussionTitle']) ?></h3>

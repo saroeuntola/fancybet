@@ -94,7 +94,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
     <script src="/js/jquery-3.7.1.min.js"></script>
 </head>
 
-<body class="bg-gray-900 text-white font-sans">
+<body class="dark:bg-gray-900 text-white bg-amber-50 font-sans">
     <?php
     include "./loader.php"
     ?>
@@ -105,7 +105,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
         </h1>
     </header>
 
-    <main class="max-w-4xl mx-auto px-6 leading-relaxed text-gray-200 py-10">
+    <main class="max-w-4xl mx-auto px-6 leading-relaxed dark:text-gray-200 text-gray-800 py-10">
         <?php if ($lang === 'bn'): ?>
             <p class="mb-6">
                 ক্রিকেট বাংলাদেশের সবচেয়ে জনপ্রিয় খেলা এবং এটি দেশের প্রতিটি মানুষের হৃদয়ে বিশেষ জায়গা করে নিয়েছে।

@@ -1,4 +1,4 @@
-<?php 
+<?php
 include('../library/checkroles.php');
 include('../library/post_lib.php');
 include('../library/users_lib.php');
@@ -56,6 +56,7 @@ $products = $product->getPost();
                                 <th scope="col" class="px-6 py-3">Image</th>
                                 <th scope="col" class="px-6 py-3">Name</th>
                                 <th scope="col" class="px-6 py-3">Category</th>
+                                <th scope="col" class="px-6 py-3">Post by </th>
                                 <th scope="col" class="px-6 py-3 text-center">Actions</th>
                             </tr>
                         </thead>
@@ -72,6 +73,10 @@ $products = $product->getPost();
 
                                         <td class="px-6 py-4">
                                             <?php echo htmlspecialchars($item['category_name']); ?>
+                                        </td>
+
+                                        <td class="px-6 py-4">
+                                            <?php echo htmlspecialchars($item['public_by']); ?>
                                         </td>
                                         <td class="px-4 py-4 flex justify-center space-x-3">
                                             <a href="edit?id=<?php echo $item['id']; ?>"
@@ -101,7 +106,7 @@ $products = $product->getPost();
             </div>
         </div>
     </main>
-    
+
     <script src="../assets/js/admin_script.js"></script>
 </body>
 

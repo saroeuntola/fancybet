@@ -33,7 +33,9 @@ class Post {
                 p.category_id, 
                 p.created_at, 
                 p.$meta_text_field AS meta_text, 
-                c.name AS category_name 
+                c.name AS category_name,
+                p.public_by
+
               FROM post p
               JOIN categories c ON p.category_id = c.id 
               WHERE p.category_id = :categoryId 
@@ -111,7 +113,8 @@ class Post {
                      p.$description_field AS description, p.$meta_desc_field AS meta_desc,
                      p.game_link, p.category_id, p.created_at, 
                      p.$meta_text_field AS meta_text, 
-                     c.name AS category_name 
+                     c.name AS category_name,
+                     p.public_by
               FROM post p
               JOIN categories c ON p.category_id = c.id 
               ORDER BY p.created_at DESC
@@ -144,7 +147,8 @@ class Post {
                      p.$description_field AS description, p.$description_field AS description, p.$meta_desc_field AS meta_desc,
                      p.game_link, p.category_id, p.created_at, 
                      p.$meta_text_field AS meta_text, 
-                     c.name AS category_name 
+                     c.name AS category_name,
+                     p.public_by
               FROM post p
               JOIN categories c ON p.category_id = c.id 
               ORDER BY p.created_at DESC";
@@ -335,7 +339,7 @@ class Post {
         return $slug;
     }
 
-    public function createpost($name, $image, $description, $link, $category_id, $meta_text, $name_bn, $description_bn, $meta_text_bn, $meta_desc, $meta_keyword, $meta_desc_bn, $meta_keyword_bn, $slug = null)
+    public function createpost($name, $image, $description, $link, $category_id, $meta_text, $name_bn, $description_bn, $meta_text_bn, $meta_desc, $meta_keyword, $meta_desc_bn, $meta_keyword_bn, $public_by, $slug = null)
     {
         // Auto-generate slug from English name if not provided
         $slug = $slug ?: $this->generateSlug($name);
@@ -355,12 +359,13 @@ class Post {
             'meta_keyword' => $meta_keyword,
             'meta_desc_bn' => $meta_desc_bn,
             'meta_keyword_bn' => $meta_keyword_bn,
+            'public_by' => $public_by
             
         ];
         return dbInsert('post', $data);
     }
 
-    public function updatePost($id, $name, $image, $description, $game_link, $category_id, $meta_text, $name_bn, $description_bn, $meta_text_bn, $meta_desc, $meta_keyword, $meta_desc_bn, $meta_keyword_bn, $slug = null)
+    public function updatePost($id, $name, $image, $description, $game_link, $category_id, $meta_text, $name_bn, $description_bn, $meta_text_bn, $meta_desc, $meta_keyword, $meta_desc_bn, $meta_keyword_bn, $public_by, $slug = null)
     {
         if (!$this->getPostById($id)) {
             return false;
@@ -384,6 +389,8 @@ class Post {
             'meta_keyword' => $meta_keyword,
             'meta_desc_bn' => $meta_desc_bn,
             'meta_keyword_bn' => $meta_keyword_bn,
+            'public_by' => $public_by
+        
 
         ];
         return dbUpdate('post', $data, "id=" . $this->db->quote($id));
