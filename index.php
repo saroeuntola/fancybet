@@ -28,7 +28,7 @@ $seo = [
 $currentSeo = $seo[$lang];
 ?>
 <!DOCTYPE html>
-<html lang="<?= $lang === 'en' ? "en-BD" : "bn-BD" ?>">
+<html lang="<?= $lang === 'en' ? "en-BD" : "bn-BD" ?>" class="dark:bg-gray-900 bg-amber-50">
 
 <head>
     <meta charset="UTF-8">
@@ -153,7 +153,7 @@ $currentSeo = $seo[$lang];
     <?php
     include "./pages/footer.php"
     ?>
-
+    <?php include './pages/scroll-to-top.php'; ?>
     <?php
     $js = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/js/cricket-news.js');
     $encoded = base64_encode($js);

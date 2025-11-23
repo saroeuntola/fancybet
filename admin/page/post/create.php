@@ -185,7 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
 
                 console.log('Upload success:', json.url);
-                resolve(json.url); // This URL will be inserted into TinyMCE
+                resolve(json.url);
             };
 
             xhr.onerror = () => {
@@ -197,17 +197,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             xhr.send(formData);
         });
 
-        // TinyMCE initialization
         tinymce.init({
-            selector: '#editor-en, #editor-bn', // your textareas/divs
+            selector: '#editor-en, #editor-bn',
             height: 500,
             plugins: 'table image link lists code',
             toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | table | image | code',
             automatic_uploads: true,
-            images_upload_handler: example_image_upload_handler, // use custom handler
-            images_upload_base_path: 'https://fancybet.info/admin/page/api/content_image/', // optional base path
-            images_upload_credentials: true, // send cookies if needed
-            images_reuse_filename: true, // reuse filenames for edits
+            images_upload_handler: example_image_upload_handler, 
+            images_upload_base_path: 'https://fancybet.info/admin/page/api/content_image/',
+            images_upload_credentials: true,
+            images_reuse_filename: true,
             image_title: true,
             file_picker_types: 'image',
             license_key: 'gpl',

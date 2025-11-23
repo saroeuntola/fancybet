@@ -261,6 +261,7 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
         <?php endif; ?>
 
     </div>
+    <?php include 'scroll-to-top.php'; ?>
 </body>
 
 </html>

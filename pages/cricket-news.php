@@ -57,7 +57,7 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
 ?>
 
 <!DOCTYPE html>
-<html lang="<?= $lang === 'en' ? "en-BD" : "bn-BD" ?>">
+<html lang="<?= $lang === 'en' ? "en-BD" : "bn-BD" ?>" class="bg-gray-900">
 
 <head>
     <meta charset="UTF-8">
@@ -119,7 +119,7 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
 
 <body class="dark:bg-gray-900 bg-amber-50 dark:text-white text-gray-800">
     <?php include "navbar.php"; ?>
-
+    <?php include "loader.php"; ?>
     <div class="px-4 py-8 mt-15 max-w-7xl m-auto">
 
         <div class="flex justify-between items-center mb-4 lg:mt-4">
@@ -261,6 +261,7 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
         <?php endif; ?>
 
     </div>
+    <?php include 'scroll-to-top.php'; ?>
 </body>
 
 </html>

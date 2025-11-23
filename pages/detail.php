@@ -330,6 +330,7 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
     </main>
 
     <?php include "./footer.php" ?>
+    <?php include 'scroll-to-top.php'; ?>
     <?php
     $comments_json = json_encode($comments);
     $post_id = json_encode($post['id'] ?? 0);
