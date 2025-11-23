@@ -4,7 +4,8 @@ $posts = new Post();
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 $categoryPosts = $posts->getPostByCategory(2, $lang);
 ?>
-<div class="scroll-section mb-15 relative dark:text-white text-gray-800">
+<div class="scroll-section relative dark:text-white text-gray-800 bg-white dark:bg-[#252525]
+            shadow-[0_0_5px_0_rgba(0,0,0,0.2)] p-4">
 
     <div class="flex justify-between items-center mb-4">
         <h1 class="lg:text-2xl text-lg font-bold flex items-center gap-2">

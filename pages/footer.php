@@ -1,4 +1,4 @@
-<footer class="dark:bg-black bg-gray-500 text-gray-200 mt-10">
+<footer class="bg-[#252525] text-gray-200 mt-10">
     <div class="px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
         <!-- branding -->
         <div>

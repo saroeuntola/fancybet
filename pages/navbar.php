@@ -86,7 +86,7 @@ function getMenuIcon($title)
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!-- Navbar -->
-<nav class="w-full bg-gray-500 text-gray-100 dark:bg-black dark:text-white shadow-md fixed top-0 left-0 z-30">
+<nav class="w-full bg-[#252525] text-gray-100 dark:text-white shadow-md fixed top-0 left-0 z-30">
     <div class="container mx-auto flex items-center justify-between px-4 max-w-7xl">
         <!-- Left: Logo + Mobile Toggle -->
         <div class="flex items-center space-x-3">

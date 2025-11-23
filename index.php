@@ -117,7 +117,7 @@ $currentSeo = $seo[$lang];
     }
 </style>
 
-<body class="dark:bg-gray-900 bg-amber-50">
+<body class="dark:bg-black bg-[#f5f5f5]">
     <?php include './pages/navbar.php'; ?>
     <?php
     include "./pages/loader.php"

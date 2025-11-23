@@ -3,7 +3,8 @@ require_once './admin/page/library/post_lib.php';
 $posts = new Post();
 $categoryPosts = $posts->getPostByCategory(2, $lang);
 ?>
-<div class="scroll-section mb-20 relative text-gray-800 dark:text-white">
+<div class="scroll-section mb-15 relative dark:text-white text-gray-800 bg-white dark:bg-[#252525]
+            shadow-[0_0_5px_0_rgba(0,0,0,0.2)] p-4">
 
     <div class="flex justify-between items-center mb-4">
         <h1 class="lg:text-2xl text-lg font-bold flex items-center gap-2 ">

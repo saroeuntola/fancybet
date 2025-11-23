@@ -90,9 +90,9 @@
 
  themeButton.addEventListener("click", toggleTheme);
 
- // Force default theme to white (light)
+ // 🔹 DEFAULT: Dark Theme
  const saved = localStorage.getItem("theme");
- const isDarkMode = saved === "dark"; // Default is light if not saved
+ const isDarkMode = saved === "light" ? false : true; // Default is dark if not saved
  setTheme(isDarkMode);
 
 

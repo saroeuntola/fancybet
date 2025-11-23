@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         return `
-<div class="bg-white dark:bg-gray-800 shadow rounded-lg p-4 mb-3 ${
+<div class="bg-gray-200 dark:bg-[#130a0a] shadow rounded-lg p-4 mb-3 ${
           parentId ? "ml-12" : ""
         } hover:shadow-lg transition-shadow duration-300" data-id="${c.id}">
     <div class="flex items-start space-x-3 mb-2">

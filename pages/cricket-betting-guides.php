@@ -120,145 +120,149 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
 </head>
 
 
-<body class="dark:bg-gray-900 bg-amber-50 dark:text-white text-gray-800">
+<body class="dark:bg-black bg-[#f5f5f5] dark:text-white text-gray-800">
     <?php include "navbar.php"; ?>
-    <div class="px-4 py-8 mt-15 max-w-7xl m-auto">
+    <main class="px-4 mt-[80px] max-w-7xl m-auto">
+        <div class="dark:text-white text-gray-800 bg-white dark:bg-[#252525]
+            shadow-[0_0_5px_0_rgba(0,0,0,0.2)] p-4">
 
-        <div class="flex justify-between items-center mb-4 lg:mt-4">
-            <h1 class="text-xl font-bold dark:text-white text-gray-800">
-                <?= $lang === 'en' ? 'All Cricket Betting Guides' : 'সমস্ত ক্রিকেট বেটিং গাইড' ?>
-            </h1>
+            <div class="flex justify-between items-center mb-4 lg:mt-4">
+                <h1 class="text-xl font-bold dark:text-white text-gray-800">
+                    <?= $lang === 'en' ? 'All Cricket Betting Guides' : 'সমস্ত ক্রিকেট বেটিং গাইড' ?>
+                </h1>
 
-            <!-- Sort Dropdown -->
-            <form method="get" id="sortForm" class="relative ">
-                <input type="hidden" name="lang" value="<?= $lang ?>">
-                <select name="sort" onchange="this.form.submit()"
-                    class="appearance-none bg-gray-700 text-white px-3 py-1 rounded pr-8 border-0 focus:outline-none hover:bg-red-800 transition-all">
-                    <option value="all" <?= $sort === 'all' ? 'selected' : '' ?>>
-                        <?= $lang === 'en' ? 'All' : 'সব' ?>
-                    </option>
-                    <option value="latest" <?= $sort === 'latest' ? 'selected' : '' ?>>
-                        <?= $lang === 'en' ? 'Latest' : 'সর্বশেষ' ?>
-                    </option>
-                    <option value="oldest" <?= $sort === 'oldest' ? 'selected' : '' ?>>
-                        <?= $lang === 'en' ? 'Oldest' : 'প্রাচীনতম' ?>
-                    </option>
-                    <option value="a-z" <?= $sort === 'a-z' ? 'selected' : '' ?>>
-                        <?= $lang === 'en' ? 'A-Z' : 'ক-খ' ?>
-                    </option>
-                    <option value="z-a" <?= $sort === 'z-a' ? 'selected' : '' ?>>
-                        <?= $lang === 'en' ? 'Z-A' : 'খ-ক' ?>
-                    </option>
-                </select>
-                <!-- Font Awesome arrow -->
-                <i class="fa-solid fa-chevron-down absolute right-2 top-1/2 transform -translate-y-1/2 text-white pointer-events-none"></i>
-            </form>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <?php foreach ($posts as $post): ?>
-                <?php
-                $postName = htmlspecialchars($post['name'] ?? '');
-                if (mb_strlen($postName, 'UTF-8') > 50) {
-                    $postName = mb_substr($postName, 0, 60, 'UTF-8') . '...';
-                }
-                $postSlug = urlencode($post['slug'] ?? '');
-                $postImage = !empty($post['image']) ? htmlspecialchars($post['image']) : null;
-                $postDesc = strip_tags($post['description'] ?? '');
-                $postDesc = html_entity_decode($postDesc, ENT_QUOTES | ENT_HTML5);
-                if (mb_strlen($postDesc, 'UTF-8') > 80) {
-                    $postDesc = mb_substr($postDesc, 0, 75, 'UTF-8') . '...';
-                }
-                $postDesc = htmlspecialchars($postDesc);
-                $createdAt = $post['created_at'] ?? '';
-                ?>
-                <a href="/pages/detail?slug=<?= $postSlug ?>&lang=<?= $lang ?>">
-                    <div class="flex flex-row items-stretch transition-all duration-300">
-
-                        <!-- Image (Left) -->
-                        <div class="overflow-hidden w-[150px] lg:w-[280px] h-[120px] lg:h-[180px] flex-shrink-0">
-                            <?php if ($postImage): ?>
-                                <img src="/admin/page/post/<?= $postImage ?>"
-                                    alt="<?= $postName ?>"
-                                    class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110">
-                            <?php else: ?>
-                                <div class="w-full h-full bg-gray-600 flex items-center justify-center dark:text-gray-300 text-gray-800 text-sm">
-                                    <?= $lang === 'en' ? 'No Image' : 'ছবি নেই' ?>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-
-                        <!-- Content (Right) -->
-                        <div class="ml-2 flex-1 flex flex-col">
-                            <div>
-                                <h2 class="lg:text-lg text-md font-semibold mb-2 dark:text-white text-gray-800 break-words">
-                                    <?= $postName ?>
-                                </h2>
-                                <p class="dark:text-gray-300 text-gray-800 mb-3 text-sm break-words lg:text-md hidden lg:block">
-                                    <?= $postDesc ?>
-                                </p>
-                            </div>
-
-                            <div class="flex flex-wrap items-center gap-1 text-gray-400 text-xs break-words">
-                                <i class="fa-solid fa-earth-americas"></i>
-                                <span>
-                                    <?= $lang === 'bn'
-                                        ? formatDateByLang($createdAt, 'bn')
-                                        : date("F j, Y", strtotime($createdAt)) ?>
-                                </span>
-                            </div>
-                        </div>
-
-                    </div>
-                </a>
-            <?php endforeach; ?>
-        </div>
-
-        <!-- Pagination -->
-        <?php if ($totalPages > 1): ?>
-            <div class="flex justify-center items-center space-x-2 mt-8 text-white">
-
-                <!-- First Page -->
-                <?php if ($page > 1): ?>
-                    <a href="?page=1"
-                        class="px-3 py-2 bg-gray-700 rounded hover:bg-gray-600">&laquo;</a>
-                <?php endif; ?>
-
-                <!-- Previous -->
-                <?php if ($page > 1): ?>
-                    <a href="?page=<?= $page - 1 ?>"
-                        class="px-3 py-2 bg-gray-700 rounded hover:bg-gray-600">&lt;</a>
-                <?php endif; ?>
-
-                <!-- Page Numbers -->
-                <?php
-                $range = 3; // show 3 pages before and after current
-                $start = max(1, $page - $range);
-                $end = min($totalPages, $page + $range);
-                for ($i = $start; $i <= $end; $i++): ?>
-                    <a href="?page=<?= $i ?>"
-                        class="px-3 py-2 rounded <?= $i === $page
-                                                        ? 'bg-blue-600 text-white'
-                                                        : 'bg-gray-700 hover:bg-gray-600' ?>">
-                        <?= $i ?>
-                    </a>
-                <?php endfor; ?>
-
-                <!-- Next -->
-                <?php if ($page < $totalPages): ?>
-                    <a href="?page=<?= $page + 1 ?>"
-                        class="px-3 py-2 bg-gray-700 rounded hover:bg-gray-600">&gt;</a>
-                <?php endif; ?>
-
-                <!-- Last Page -->
-                <?php if ($page < $totalPages): ?>
-                    <a href="?page=<?= $totalPages ?>"
-                        class="px-3 py-2 bg-gray-700 rounded hover:bg-gray-600">&raquo;</a>
-                <?php endif; ?>
+                <!-- Sort Dropdown -->
+                <form method="get" id="sortForm" class="relative ">
+                    <input type="hidden" name="lang" value="<?= $lang ?>">
+                    <select name="sort" onchange="this.form.submit()"
+                        class="appearance-none bg-gray-700 text-white px-3 py-1 rounded pr-8 border-0 focus:outline-none hover:bg-red-800 transition-all">
+                        <option value="all" <?= $sort === 'all' ? 'selected' : '' ?>>
+                            <?= $lang === 'en' ? 'All' : 'সব' ?>
+                        </option>
+                        <option value="latest" <?= $sort === 'latest' ? 'selected' : '' ?>>
+                            <?= $lang === 'en' ? 'Latest' : 'সর্বশেষ' ?>
+                        </option>
+                        <option value="oldest" <?= $sort === 'oldest' ? 'selected' : '' ?>>
+                            <?= $lang === 'en' ? 'Oldest' : 'প্রাচীনতম' ?>
+                        </option>
+                        <option value="a-z" <?= $sort === 'a-z' ? 'selected' : '' ?>>
+                            <?= $lang === 'en' ? 'A-Z' : 'ক-খ' ?>
+                        </option>
+                        <option value="z-a" <?= $sort === 'z-a' ? 'selected' : '' ?>>
+                            <?= $lang === 'en' ? 'Z-A' : 'খ-ক' ?>
+                        </option>
+                    </select>
+                    <!-- Font Awesome arrow -->
+                    <i class="fa-solid fa-chevron-down absolute right-2 top-1/2 transform -translate-y-1/2 text-white pointer-events-none"></i>
+                </form>
             </div>
-        <?php endif; ?>
 
-    </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <?php foreach ($posts as $post): ?>
+                    <?php
+                    $postName = htmlspecialchars($post['name'] ?? '');
+                    if (mb_strlen($postName, 'UTF-8') > 50) {
+                        $postName = mb_substr($postName, 0, 60, 'UTF-8') . '...';
+                    }
+                    $postSlug = urlencode($post['slug'] ?? '');
+                    $postImage = !empty($post['image']) ? htmlspecialchars($post['image']) : null;
+                    $postDesc = strip_tags($post['description'] ?? '');
+                    $postDesc = html_entity_decode($postDesc, ENT_QUOTES | ENT_HTML5);
+                    if (mb_strlen($postDesc, 'UTF-8') > 80) {
+                        $postDesc = mb_substr($postDesc, 0, 75, 'UTF-8') . '...';
+                    }
+                    $postDesc = htmlspecialchars($postDesc);
+                    $createdAt = $post['created_at'] ?? '';
+                    ?>
+                    <a href="/pages/detail?slug=<?= $postSlug ?>&lang=<?= $lang ?>">
+                        <div class="flex flex-row items-stretch transition-all duration-300">
+
+                            <!-- Image (Left) -->
+                            <div class="overflow-hidden w-[150px] lg:w-[280px] h-[120px] lg:h-[180px] flex-shrink-0">
+                                <?php if ($postImage): ?>
+                                    <img src="/admin/page/post/<?= $postImage ?>"
+                                        alt="<?= $postName ?>"
+                                        class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110">
+                                <?php else: ?>
+                                    <div class="w-full h-full bg-gray-600 flex items-center justify-center dark:text-gray-300 text-gray-800 text-sm">
+                                        <?= $lang === 'en' ? 'No Image' : 'ছবি নেই' ?>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+
+                            <!-- Content (Right) -->
+                            <div class="ml-2 flex-1 flex flex-col">
+                                <div>
+                                    <h2 class="lg:text-lg text-md font-semibold mb-2 dark:text-white text-gray-800 break-words">
+                                        <?= $postName ?>
+                                    </h2>
+                                    <p class="dark:text-gray-300 text-gray-800 mb-3 text-sm break-words lg:text-md hidden lg:block">
+                                        <?= $postDesc ?>
+                                    </p>
+                                </div>
+
+                                <div class="flex flex-wrap items-center gap-1 text-gray-400 text-xs break-words">
+                                    <i class="fa-solid fa-earth-americas"></i>
+                                    <span>
+                                        <?= $lang === 'bn'
+                                            ? formatDateByLang($createdAt, 'bn')
+                                            : date("F j, Y", strtotime($createdAt)) ?>
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+
+            <!-- Pagination -->
+            <?php if ($totalPages > 1): ?>
+                <div class="flex justify-center items-center space-x-2 mt-8 text-white">
+
+                    <!-- First Page -->
+                    <?php if ($page > 1): ?>
+                        <a href="?page=1"
+                            class="px-3 py-2 bg-gray-700 rounded hover:bg-gray-600">&laquo;</a>
+                    <?php endif; ?>
+
+                    <!-- Previous -->
+                    <?php if ($page > 1): ?>
+                        <a href="?page=<?= $page - 1 ?>"
+                            class="px-3 py-2 bg-gray-700 rounded hover:bg-gray-600">&lt;</a>
+                    <?php endif; ?>
+
+                    <!-- Page Numbers -->
+                    <?php
+                    $range = 3; // show 3 pages before and after current
+                    $start = max(1, $page - $range);
+                    $end = min($totalPages, $page + $range);
+                    for ($i = $start; $i <= $end; $i++): ?>
+                        <a href="?page=<?= $i ?>"
+                            class="px-3 py-2 rounded <?= $i === $page
+                                                            ? 'bg-blue-600 text-white'
+                                                            : 'bg-gray-700 hover:bg-gray-600' ?>">
+                            <?= $i ?>
+                        </a>
+                    <?php endfor; ?>
+
+                    <!-- Next -->
+                    <?php if ($page < $totalPages): ?>
+                        <a href="?page=<?= $page + 1 ?>"
+                            class="px-3 py-2 bg-gray-700 rounded hover:bg-gray-600">&gt;</a>
+                    <?php endif; ?>
+
+                    <!-- Last Page -->
+                    <?php if ($page < $totalPages): ?>
+                        <a href="?page=<?= $totalPages ?>"
+                            class="px-3 py-2 bg-gray-700 rounded hover:bg-gray-600">&raquo;</a>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
+
+        </div>
+    </main>
+
     <?= include "footer.php" ?>
 
     <?php include 'scroll-to-top.php'; ?>
