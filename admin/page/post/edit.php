@@ -6,7 +6,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/config/baseURL.php';
 protectRoute([1, 3]);
 $product = new Post();
 $category = new Category();
-
+$currentUser = $_SESSION ['username'];
 if (isset($_GET['id'])) {
     $id = (int)$_GET['id'];
     $productData = $product->getPostById($id, 'en');
@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $meta_keyword = $_POST['meta_keyword'] ?? '';
     $meta_desc_bn = $_POST['meta_desc_bn'] ?? '';
     $meta_keyword_bn = $_POST['meta_keyword_bn'] ?? '';
+    $public_by = $currentUser;
     // Keep old image unless a new one is uploaded
     $imagePath = $productData['image'];
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
@@ -41,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $imageFileName = preg_replace("/[^a-zA-Z0-9._-]/", "", basename($_FILES["image"]["name"]));
         $imagePath = $uploadDir . $imageFileName;
         if (!move_uploaded_file($_FILES["image"]["tmp_name"], $imagePath)) {
-            $imagePath = $productData['image']; // Revert to old image if upload fails
+            $imagePath = $productData['image'];
         }
     }
 
@@ -49,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($gameName) || empty($description) || empty($categoryId)) {
         echo "<p class='text-red-500 text-center'>Error: Title, Description, and Category are required.</p>";
     } else {
-        if ($product->updatePost($id, $gameName, $imagePath, $description, $game_link, $categoryId, $meta_text, $name_bn, $description_bn, $meta_text_bn, $meta_desc, $meta_keyword, $meta_desc_bn, $meta_keyword_bn)) {
+        if ($product->updatePost($id, $gameName, $imagePath, $description, $game_link, $categoryId, $meta_text, $name_bn, $description_bn, $meta_text_bn, $meta_desc, $meta_keyword, $meta_desc_bn, $meta_keyword_bn, $public_by )) {
             header("Location: index.php");
             exit;
         } else {
