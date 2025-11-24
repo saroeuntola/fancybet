@@ -84,6 +84,7 @@ if (isset($_GET['toggle_status_id'])) {
                                 <th class="px-6 py-3">Email</th>
                                 <th class="px-6 py-3">Role</th>
                                 <th class="px-6 py-3">Status</th>
+                                <th class="px-6 py-3">Created at</th>
                                 <th class="px-6 py-3">Change Password</th>
                                 <th class=" px-6 py-3 text-center">Actions</th>
                             </tr>
@@ -112,6 +113,7 @@ if (isset($_GET['toggle_status_id'])) {
                                             </span>
 
                                         </td>
+
                                         <td class="px-6 py-4">
                                             <?php if ($userRow['status'] == 1): ?>
                                                 <span class="active px-3 py-1 text-white rounded-full text-sm">Active</span>
@@ -119,7 +121,7 @@ if (isset($_GET['toggle_status_id'])) {
                                                 <span class="inactive px-3 py-1 text-white rounded-full text-sm">Inactive</span>
                                             <?php endif; ?>
                                         </td>
-
+                                        <td class="px-6 py-4"><?= htmlspecialchars($userRow['created_at']); ?></td>
                                         <td class="px-6 py-4 text-center">
                                             <button
                                                 class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition changePassBtn"
