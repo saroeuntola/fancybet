@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body class="bg-gray-800 flex items-center justify-center w-full">
-    <div class="w-full max-w-4xl bg-white p-8 rounded-lg shadow-lg">
+    <div class="w-full max-w-7xl bg-white p-8 rounded-lg shadow-lg">
         <h2 class="text-3xl font-bold text-center mb-6 text-indigo-700">Edit Post</h2>
 
         <form action="edit?id=<?= htmlspecialchars($productData['id']) ?>" method="POST" enctype="multipart/form-data" class="space-y-5" onsubmit="syncTinyMCEContent()">
@@ -217,7 +217,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // TinyMCE initialization
         tinymce.init({
             selector: '#editor-en, #editor-bn', // your textareas/divs
-            height: 500,
+            height: 800,
             plugins: 'table image link lists code',
             toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | table | image | code',
             automatic_uploads: true,
