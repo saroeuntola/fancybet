@@ -4,38 +4,40 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 include('./admin/page/library/auth.php');
 $auth = new Auth();
-
 // Initialize error message
 $error_message = '';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $remember = isset($_POST['remember']);
+                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                        $username = $_POST['username'];
+                        $password = $_POST['password'];
+                        $remember = isset($_POST['remember']);
 
-    if ($auth->login($username, $password, $remember)) {
-        $result = dbSelect('users', 'role_id', "username=" . $auth->db->quote($username));
-        if ($result && count($result) > 0) {
-            $user = $result[0];
-            if ($user['role_id'] == 1) {
-                header('Location: ./admin');
-                exit();
-            } elseif ($user['role_id'] == 2) {
-                header('Location: ./');
-                exit();
-            } elseif ($user['role_id'] == 3) {
-                header('Location: ./admin');
-                exit();
-            }
-        }
-    } else {
-        // Set the error message to show in HTML
-        $error_message = "Invalid username or password!";
-    }
-}
-?>
+                        $loginStatus = $auth->login($username, $password, $remember);
 
-how to downlaod internet downlaoad manager in broswe
+                        if ($loginStatus === true) {
+                            $result = dbSelect('users', 'role_id', "username=" . $auth->db->quote($username));
+                            if ($result && count($result) > 0) {
+                                $user = $result[0];
+
+                                if ($user['role_id'] == 1 || $user['role_id'] == 3) {
+                                    header('Location: ./admin');
+                                    exit();
+                                } elseif ($user['role_id'] == 2) {
+                                    header('Location: ./');
+                                    exit();
+                                }
+                            }
+                        } elseif ($loginStatus === "inactive") {
+                            $error_message = "Your account is disabled! Please Contact Admin";
+                            
+                        } else {
+                            $error_message = "Invalid username or password!";
+                        }
+                    }
+
+                    ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
