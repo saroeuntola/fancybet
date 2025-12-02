@@ -95,9 +95,6 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 </head>
 
 <body class="dark:bg-gray-900 text-white bg-amber-50 font-sans">
-    <?php
-    include "./loader.php"
-    ?>
     <?php include "navbar.php"; ?>
     <header class="text-center pt-20">
         <h1 class="text-3xl md:text-4xl font-bold mt-10 text-red-700">

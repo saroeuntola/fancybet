@@ -1,7 +1,7 @@
 <?php
 require_once './admin/page/library/post_lib.php';
 $posts = new Post();
-$categoryPosts = $posts->getPostByCategory(2, $lang);
+$categoryPosts = $posts->getPostByCategory(6, $lang);
 ?>
 <div class="scroll-section mb-15 relative dark:text-white text-gray-800 bg-white dark:bg-[#252525]
             shadow-[0_0_5px_0_rgba(0,0,0,0.2)] p-4">
@@ -83,5 +83,8 @@ $categoryPosts = $posts->getPostByCategory(2, $lang);
             class="absolute scroll-right right-2 top-[100px] -translate-y-1/2 bg-gray-800/70 hover:opacity-90 text-white w-10 h-10 rounded-full shadow-lg hidden lg:flex items-center justify-center z-10">
             &#10095;
         </button>
+
+
+        
     </div>
 </div>

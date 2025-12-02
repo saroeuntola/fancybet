@@ -2,6 +2,7 @@
 require_once '../admin/page/library/db.php';
 require_once '../admin/page/library/post_lib.php';
 require_once './services/bn-date.php';
+require_once '../baseURL.php';
 $postObj = new Post();
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 
@@ -117,6 +118,7 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
 
     <script src="./js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="/src/output.css">
+    <link rel="stylesheet" href="/css/pagination.css">
 </head>
 
 
@@ -180,7 +182,7 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
                             <!-- Image (Left) -->
                             <div class="overflow-hidden w-[150px] lg:w-[280px] h-[120px] lg:h-[180px] flex-shrink-0">
                                 <?php if ($postImage): ?>
-                                    <img src="/admin/page/post/<?= $postImage ?>"
+                                    <img src="<?= $ImageURL ?><?= $postImage ?>"
                                         alt="<?= $postName ?>"
                                         class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110">
                                 <?php else: ?>
@@ -216,47 +218,95 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
                 <?php endforeach; ?>
             </div>
 
+
             <!-- Pagination -->
             <?php if ($totalPages > 1): ?>
-                <div class="flex justify-center items-center space-x-2 mt-8 text-white">
+                <div class="pagination-container">
+                    <nav class="pagination-nav">
+                        <!-- First Page -->
+                        <?php if ($page > 1): ?>
+                            <a href="?page=1" class="pagination-btn" title="First page">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+                                </svg>
+                            </a>
+                        <?php else: ?>
+                            <span class="pagination-btn disabled">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+                                </svg>
+                            </span>
+                        <?php endif; ?>
 
-                    <!-- First Page -->
-                    <?php if ($page > 1): ?>
-                        <a href="?page=1"
-                            class="px-3 py-2 bg-gray-700 rounded hover:bg-gray-600">&laquo;</a>
-                    <?php endif; ?>
+                        <!-- Previous -->
+                        <?php if ($page > 1): ?>
+                            <a href="?page=<?= $page - 1 ?>" class="pagination-btn" title="Previous page">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </a>
+                        <?php else: ?>
+                            <span class="pagination-btn disabled">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </span>
+                        <?php endif; ?>
 
-                    <!-- Previous -->
-                    <?php if ($page > 1): ?>
-                        <a href="?page=<?= $page - 1 ?>"
-                            class="px-3 py-2 bg-gray-700 rounded hover:bg-gray-600">&lt;</a>
-                    <?php endif; ?>
+                        <!-- Page Numbers -->
+                        <div class="pagination-pages">
+                            <?php
+                            $range = 3;
+                            $start = max(1, $page - $range);
+                            $end = min($totalPages, $page + $range);
 
-                    <!-- Page Numbers -->
-                    <?php
-                    $range = 3; // show 3 pages before and after current
-                    $start = max(1, $page - $range);
-                    $end = min($totalPages, $page + $range);
-                    for ($i = $start; $i <= $end; $i++): ?>
-                        <a href="?page=<?= $i ?>"
-                            class="px-3 py-2 rounded <?= $i === $page
-                                                            ? 'bg-blue-600 text-white'
-                                                            : 'bg-gray-700 hover:bg-gray-600' ?>">
-                            <?= $i ?>
-                        </a>
-                    <?php endfor; ?>
+                            // Show ellipsis if not starting at page 1
+                            if ($start > 1): ?>
+                                <span class="pagination-ellipsis">...</span>
+                            <?php endif;
 
-                    <!-- Next -->
-                    <?php if ($page < $totalPages): ?>
-                        <a href="?page=<?= $page + 1 ?>"
-                            class="px-3 py-2 bg-gray-700 rounded hover:bg-gray-600">&gt;</a>
-                    <?php endif; ?>
+                            for ($i = $start; $i <= $end; $i++): ?>
+                                <a href="?page=<?= $i ?>" class="pagination-number <?= $i === $page ? 'active' : '' ?>">
+                                    <?= $i ?>
+                                </a>
+                            <?php endfor;
 
-                    <!-- Last Page -->
-                    <?php if ($page < $totalPages): ?>
-                        <a href="?page=<?= $totalPages ?>"
-                            class="px-3 py-2 bg-gray-700 rounded hover:bg-gray-600">&raquo;</a>
-                    <?php endif; ?>
+                            // Show ellipsis if not ending at last page
+                            if ($end < $totalPages): ?>
+                                <span class="pagination-ellipsis">...</span>
+                            <?php endif; ?>
+                        </div>
+
+                        <!-- Next -->
+                        <?php if ($page < $totalPages): ?>
+                            <a href="?page=<?= $page + 1 ?>" class="pagination-btn" title="Next page">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        <?php else: ?>
+                            <span class="pagination-btn disabled">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </span>
+                        <?php endif; ?>
+
+                        <!-- Last Page -->
+                        <?php if ($page < $totalPages): ?>
+                            <a href="?page=<?= $totalPages ?>" class="pagination-btn" title="Last page">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        <?php else: ?>
+                            <span class="pagination-btn disabled">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                                </svg>
+                            </span>
+                        <?php endif; ?>
+                    </nav>
                 </div>
             <?php endif; ?>
 

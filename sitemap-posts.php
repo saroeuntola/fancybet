@@ -48,7 +48,7 @@ foreach ($posts as $post) {
     <loc><?= htmlspecialchars($loc, ENT_XML1) ?></loc>
     <lastmod><?= $lastmod ?></lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <priority>1.0</priority>
 
 <?php if ($image): ?>
     <image:image>

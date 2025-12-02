@@ -35,7 +35,7 @@ $categoryPosts = $posts->getPostByCategory(2, $lang);
         <div class="scroll-grid flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory touch-pan-x cursor-grab select-none scrollbar-hide px-4 md:px-10 w-full">
             <?php foreach ($categoryPosts as $post): ?>
                 <?php
-                $postName = htmlspecialchars($post['name'] ?? '');
+                $postName = htmlspecialchars(html_entity_decode($post['name'] ?? ''));
                 $postSlug = urlencode($post['slug'] ?? '');
                 $postImage = !empty($post['image']) ? htmlspecialchars($post['image']) : null;
                 $postDesc = strip_tags($post['description'] ?? '');
@@ -50,7 +50,7 @@ $categoryPosts = $posts->getPostByCategory(2, $lang);
                     <div class=" dark:text-white text-gray-800 transition flex flex-col h-[340px]">
 
                         <?php if ($postImage): ?>
-                            <img src="/admin/page/post/<?= $postImage ?>" alt="<?= $postName ?>" class="w-full h-[200px] object-cover transition-transform duration-500 ease-in-out hover:scale-110 overflow-hidded">
+                            <img src="<?= $ImageURL ?><?= $postImage ?>" alt="<?= $postName ?>" class="w-full h-[200px] object-cover transition-transform duration-500 ease-in-out hover:scale-110 overflow-hidded">
                         <?php else: ?>
                             <div class="w-full h-[200px] bg-gray-600 flex items-center justify-center text-gray-300 text-sm">
                                 <?= $lang === 'en' ? 'No Image' : 'ছবি নেই' ?>

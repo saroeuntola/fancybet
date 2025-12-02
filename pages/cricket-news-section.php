@@ -29,7 +29,7 @@
 
                             <!-- Image -->
                             <?php if (!empty($post['image'])): ?>
-                                <img src="/admin/page/post/<?= htmlspecialchars($post['image']) ?>"
+                                <img src="<?= $ImageURL?><?= htmlspecialchars($post['image']) ?>"
                                     alt="<?= htmlspecialchars($post['name']) ?>"
                                     class="w-full object-cover">
                             <?php else: ?>

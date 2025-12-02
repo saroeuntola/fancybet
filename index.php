@@ -3,6 +3,7 @@ include './admin/page/library/post_lib.php';
 include './admin/page/library/comment_lib.php';
 include './admin/page/library/db.php';
 include './pages/services/bn-date.php';
+include './baseURL.php';
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 $postLib = new Post();
 $posts = $postLib->getPost($lang);
@@ -119,10 +120,6 @@ $currentSeo = $seo[$lang];
 
 <body class="dark:bg-black bg-[#f5f5f5]">
     <?php include './pages/navbar.php'; ?>
-    <?php
-    include "./pages/loader.php"
-    ?>
-
     <main class="px-4 max-w-7xl mx-auto">
         <section class="pt-20"></section>
 
@@ -139,9 +136,7 @@ $currentSeo = $seo[$lang];
         </section>
 
         <section class="pt-10">
-            <?php
-            include "./pages/cricket-betting-tip-section.php"
-            ?>
+         
         </section>
 
         <section class="">

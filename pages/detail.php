@@ -3,6 +3,7 @@ include '../admin/page/library/post_lib.php';
 include '../admin/page/library/comment_lib.php';
 include '../admin/page/library/db.php';
 include './services/bn-date.php';
+include '../baseURL.php';
 
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 $slug = $_GET['slug'] ?? '';
@@ -20,12 +21,26 @@ $totalDesktopPages = ceil(count($relatedPosts) / $desktopLimit);
 $desktopStart = ($desktopPage - 1) * $desktopLimit;
 $desktopPosts = array_slice($relatedPosts, $desktopStart, $desktopLimit);
 
-$baseURL = "https://fancybet.info";
+$baseURL = $ImageURL;
 $postTitle =  ($post['name'] ?? '');
 $postDescription =  ($post['meta_desc'] ?? '');
 $postKeywords = ($post['meta_keyword'] ?? '');
 $postImage = $post['image'] ?? '/image/favicon-96x96.png';
 $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lang=" . $lang;
+
+$baseUrl = $ImageURL;
+$descriptionWithFullUrl = preg_replace_callback(
+    '/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i',
+    function ($matches) use ($baseUrl) {
+        $src = $matches[1];
+
+        if (!preg_match('#^https?://#i', $src)) {
+            $src = rtrim($baseUrl, '/') . '/' . ltrim($src, '/');
+        }
+        return str_replace($matches[1], $src, $matches[0]);
+    },
+    $post['description'] ?? ''
+);
 ?>
 <!DOCTYPE html>
 <html lang="<?= $lang === 'en' ? "en-BD" : "bn-BD" ?>" class="">
@@ -49,16 +64,16 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
     <meta property="og:description" content="<?= htmlspecialchars($postDescription) ?>">
     <meta property="og:type" content="article">
     <meta property="og:url" content="<?= htmlspecialchars($postUrl) ?>">
-    <meta property="og:image" content="<?= $baseURL ?>/admin/page/post/<?= htmlspecialchars($postImage) ?>">
+    <meta property="og:image" content="<?= $baseURL ?><?= htmlspecialchars($postImage) ?>">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?= htmlspecialchars($postTitle) ?>">
     <meta name="twitter:description" content="<?= htmlspecialchars($postDescription) ?>">
-    <meta name="twitter:image" content="<?= $baseURL ?>/admin/page/post/<?= htmlspecialchars($postImage) ?>">
+    <meta name="twitter:image" content="<?= $baseURL ?><?= htmlspecialchars($postImage) ?>">
 
     <!-- Favicon -->
-    <link rel="icon" href="/admin/page/post/<?= htmlspecialchars($postImage) ?>" type="image/png">
+    <link rel="icon" href="<?= $baseURL ?><?= htmlspecialchars($postImage) ?>" type="image/png">
 
     <!-- Schema.org Article -->
     <script type="application/ld+json">
@@ -92,7 +107,11 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
     <link rel="stylesheet" href="/src/output.css">
 </head>
 <style>
+    .desc-editor a {
 
+        color: skyblue;
+        text-decoration: underline;
+    }
 </style>
 
 <body class="dark:bg-black bg-[#f5f5f5]">
@@ -115,11 +134,12 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
                         </p>
                     <?php endif; ?>
                     <?php if (!empty($post['image'])): ?>
-                        <img src="/admin/page/post/<?= htmlspecialchars($post['image']) ?>" class="w-full md:h-[380px] h-[220px] lg:h-[380px] mb-4 rounded">
+                        <img src="<?= $ImageURL ?><?= htmlspecialchars($post['image']) ?>" class="w-full h-auto mb-4 rounded">
                     <?php endif; ?>
 
-                    <div class="break-words desc-editor"><?= str_replace('../api/content_image/', '/admin/page/api/content_image/', $post['description'] ?? '') ?></div>
-
+                    <div class="break-words desc-editor" style="white-space: pre-line;">
+                        <?= $descriptionWithFullUrl ?>
+                    </div>
 
                     <h3 class="font-semibold text-lg dark:text-gray-100 text-gray-900 mt-10">
                         <?= $lang === 'en' ? 'Share this post:' : 'এই পোস্টটি শেয়ার করুন:' ?>
@@ -189,8 +209,6 @@ $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lan
 
                     </div>
                 </div>
-
-
 
                 <div class="bg-white dark:bg-[#252525] p-4 shadow-[0_0_5px_0_rgba(0,0,0,0.2)]">
                     <!-- Related Posts -->
