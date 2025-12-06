@@ -92,10 +92,8 @@
 
  // 🔹 DEFAULT: Dark Theme
  const saved = localStorage.getItem("theme");
- const isDarkMode = saved === "light" ? false : true; // Default is dark if not saved
+ const isDarkMode = saved === "light" ? false : true;
  setTheme(isDarkMode);
-
-
 
   document.addEventListener("DOMContentLoaded", () => {
     const dropdowns = document.querySelectorAll(".dropdown");

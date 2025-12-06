@@ -4,7 +4,8 @@ include '../admin/page/library/comment_lib.php';
 include '../admin/page/library/db.php';
 include './services/bn-date.php';
 include '../baseURL.php';
-
+include './breadcrumb.php';
+require_once '../pages/services/menu.php';
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 $slug = $_GET['slug'] ?? '';
 $postLib = new Post();
@@ -28,20 +29,29 @@ $postKeywords = ($post['meta_keyword'] ?? '');
 $postImage = $post['image'] ?? '/image/favicon-96x96.png';
 $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lang=" . $lang;
 
-$baseUrl = $ImageURL;
+
 $descriptionWithFullUrl = preg_replace_callback(
     '/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i',
-    function ($matches) use ($baseUrl) {
+    function ($matches) use ($ImageURL) {
         $src = $matches[1];
 
         if (!preg_match('#^https?://#i', $src)) {
-            $src = rtrim($baseUrl, '/') . '/' . ltrim($src, '/');
+            $src = rtrim($ImageURL, '/') . '/' . ltrim($src, '/');
         }
         return str_replace($matches[1], $src, $matches[0]);
     },
     $post['description'] ?? ''
 );
+
+
+
+$breadcrumbs = generateBreadcrumb($lang, $menu);
+
+$baseURL =  "https://fancybet.info/";
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="<?= $lang === 'en' ? "en-BD" : "bn-BD" ?>" class="">
 
@@ -71,40 +81,26 @@ $descriptionWithFullUrl = preg_replace_callback(
     <meta name="twitter:title" content="<?= htmlspecialchars($postTitle) ?>">
     <meta name="twitter:description" content="<?= htmlspecialchars($postDescription) ?>">
     <meta name="twitter:image" content="<?= $baseURL ?><?= htmlspecialchars($postImage) ?>">
-
     <!-- Favicon -->
     <link rel="icon" href="<?= $baseURL ?><?= htmlspecialchars($postImage) ?>" type="image/png">
-
     <!-- Schema.org Article -->
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": "<?= addslashes($postTitle) ?>",
-            "description": "<?= addslashes($postDescription) ?>",
-            "image": "<?= $baseURL ?>/admin/page/post/<?= addslashes($postImage) ?>",
-            "author": {
-                "@type": "Organization",
-                "name": "FancyBet"
-            },
-            "publisher": {
-                "@type": "Organization",
-                "name": "FancyBet",
-                "logo": {
-                    "@type": "ImageObject",
-                    "url": "<?= $baseURL ?>/image/favicon-96x96.png"
-                }
-            },
-            "url": "<?= addslashes($postUrl) ?>",
-            "datePublished": "<?= $post['created_at'] ?? date('Y-m-d') ?>",
-            "mainEntityOfPage": "<?= addslashes($postUrl) ?>"
-        }
-    </script>
 
-    <!-- Styles & Scripts -->
-    <link rel="stylesheet" href="/css/detail.css">
-    <script src="/js/jquery-3.7.1.min.js"></script>
-    <link rel="stylesheet" href="/src/output.css">
+    <!-- Preload Critical CSS -->
+    <link rel="preload" href="/css/detail.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="/src/output.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="./css/style.css" as="style" onload="this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="/src/output.css">
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="/css/detail.css">
+    </noscript>
+
+    <!-- SEO JSON-LD -->
+    <?php outputFullSchema($breadcrumbs, $post, $baseURL, $ImageURL); ?>
+    <!-- Preload JS -->
+    <link rel="preload" href="./js/jquery-3.7.1.min.js" as="script">
+    <!-- Deferred JS -->
+    <script src="./js/jquery-3.7.1.min.js" defer></script>
 </head>
 <style>
     .desc-editor a {
@@ -119,8 +115,8 @@ $descriptionWithFullUrl = preg_replace_callback(
     include "navbar.php"
     ?>
     <main class="container max-w-7xl mx-auto px-4 mt-[80px]">
-
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+
             <!-- Main Content -->
             <section class="lg:col-span-2 space-y-6 dark:text-white text-gray-800 ">
                 <!-- Post Card -->

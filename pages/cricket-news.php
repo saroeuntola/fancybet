@@ -3,6 +3,9 @@ require_once '../admin/page/library/db.php';
 require_once '../admin/page/library/post_lib.php';
 require_once './services/bn-date.php';
 require_once '../baseURL.php';
+require_once './breadcrumb.php';
+require_once '../pages/services/menu.php';
+
 $postObj = new Post();
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 
@@ -33,10 +36,9 @@ switch ($sort) {
         $orderBy = 'name';
         $orderDir = 'DESC';
         break;
-    default:
-        $sort = 'all';
 }
 
+// Get posts
 $totalPosts = count($postObj->getPostByCategory($categoryId, $lang));
 $totalPages = ceil($totalPosts / $limit);
 $posts = $postObj->getPostByCategory($categoryId, $lang, $limit, $offset, $orderBy, $orderDir);
@@ -55,8 +57,12 @@ $keywords = $lang === 'en'
 
 $url = "https://fancybet.info/pages/cricket-news?lang={$lang}";
 $image = "https://fancybet.info/image/favicon-96x96.png";
-?>
 
+
+
+// Generate breadcrumbs
+$breadcrumbs = generateBreadcrumb($lang, $menu);
+?>
 <!DOCTYPE html>
 <html lang="<?= $lang === 'en' ? "en-BD" : "bn-BD" ?>" class="">
 
@@ -64,21 +70,17 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Dynamic SEO -->
     <title><?= htmlspecialchars($title) ?></title>
     <meta name="description" content="<?= htmlspecialchars($description) ?>">
     <meta name="keywords" content="<?= htmlspecialchars($keywords) ?>">
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <link rel="canonical" href="<?= htmlspecialchars($url) ?>">
 
-    <!-- Open Graph / Social -->
+    <!-- Open Graph / Twitter -->
     <meta property="og:title" content="<?= htmlspecialchars($title) ?>">
     <meta property="og:description" content="<?= htmlspecialchars($description) ?>">
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?= htmlspecialchars($url) ?>">
     <meta property="og:image" content="<?= htmlspecialchars($image) ?>">
-    <!-- Twitter Card -->
-
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?= htmlspecialchars($title) ?>">
     <meta name="twitter:description" content="<?= htmlspecialchars($description) ?>">
@@ -86,37 +88,16 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/image/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/image/favicon.svg" />
-    <link rel="shortcut icon" href="/image/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/image/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="FancyBet" />
-    <link rel="manifest" href="/image/site.webmanifest" />
 
-    <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "NewsArticle",
-            "headline": "<?= addslashes($title) ?>",
-            "description": "<?= addslashes($description) ?>",
-            "url": "<?= addslashes($url) ?>",
-            "publisher": {
-                "@type": "Organization",
-                "name": "FancyBet",
-                "logo": {
-                    "@type": "ImageObject",
-                    "url": "<?= addslashes($image) ?>"
-                }
-            },
-            "mainEntityOfPage": "<?= addslashes($url) ?>"
-        }
-    </script>
-
-    <script src="./js/jquery-3.7.1.min.js"></script>
+    <!-- CSS & JS -->
     <link rel="stylesheet" href="/src/output.css">
     <link rel="stylesheet" href="/css/pagination.css">
+    <script src="./js/jquery-3.7.1.min.js"></script>
 
+    <!-- JSON-LD: NewsArticle + BreadcrumbList -->
+    <?php outputFullSchemaPage($breadcrumbs, ['name' => $title, 'description' => html_entity_decode(strip_tags($description))], 'https://fancybet.info'); ?>
 </head>
+
 
 
 <body class="dark:bg-black bg-[#f5f5f5] dark:text-white text-gray-800">
@@ -124,10 +105,11 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
     <?php include "loader.php"; ?>
 
     <main class="px-4 max-w-7xl m-auto">
+
         <div class=" bg-white dark:bg-[#252525] mt-[80px]
             shadow-[0_0_5px_0_rgba(0,0,0,0.2)] p-4">
-
             <div class="flex justify-between items-center mb-4">
+
                 <h1 class="text-xl font-bold">
                     <?= $lang === 'en' ? 'All Cricket News' : 'সমস্ত ক্রিকেট সংবাদ' ?>
                 </h1>

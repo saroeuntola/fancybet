@@ -83,7 +83,15 @@ function getMenuIcon($title)
 
     }
 </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="preload"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+
+<noscript>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</noscript>
 
 <!-- Navbar -->
 <nav class="w-full bg-[#252525] text-gray-100 dark:text-white shadow-md fixed top-0 left-0 z-30">
@@ -197,7 +205,7 @@ function getMenuIcon($title)
 <div id="overlay" class="fixed inset-0 z-20 hidden transition-opacity duration-500"></div>
 
 <!-- Sidebar -->
-<div id="sidebar" class="fixed top-0 left-0 h-full w-64 dark:bg-black bg-gray-500 z-40 transform -translate-x-full transition-transform duration-500 ease-in-out lg:hidden">
+<div id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-[#252525] z-40 transform -translate-x-full transition-transform duration-500 ease-in-out lg:hidden">
     <div class="p-4 border-b border-slate-700 flex justify-between items-center">
         <span class="text-lg font-bold text-white">
             <?=

@@ -41,7 +41,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 </head>
 
 
-<body class="bg-gray-900 text-white">
+<body class="dark:bg-black bg-white dark:text-white text-gray-900">
 
     <?php include './navbar.php'; ?>
     <!-- Page Header -->
@@ -54,7 +54,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
     <main class="max-w-5xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 gap-3">
 
         <!-- Contact Form -->
-        <div class="bg-gray-800 p-8 rounded-xl shadow-md">
+        <div class="dark:bg-gray-800 p-8 rounded-xl shadow-md">
             <h2 class="text-2xl font-semibold mb-6"><?= $lang === 'en' ? 'Send Us a Message' : 'আমাদের একটি বার্তা পাঠান' ?></h2>
             <form action="" method="POST" class="flex flex-col gap-4">
                 <input type="text" name="name" placeholder="<?= $lang === 'en' ? 'Your Name' : 'আপনার নাম' ?>" required

@@ -14,8 +14,8 @@ $relatedPosts = $postLib->getRelatedpost($post['id'] ?? 0, $post['category_id'] 
 // SEO data
 $seo = [
     'en' => [
-        'title' => 'FancyBet  - Cricket News & Betting Tips Bangladesh',
-        'description' => 'fancy bet cricket Bangladesh, FancyBet Bangladesh - Your premium guide for cricket news, live cricket betting, and FancyBetting tips. Stay updated with match predictions, IPL, BPL, PSL, and ICC tournaments.',
+        'title' => 'FancyBet  - Cricket News & Betting Guide Bangladesh',
+        'description' => 'FancyBet Cricket News, FancyBet Bangladesh - Your premium guide for cricket news, live cricket betting, and FancyBetting tips. Stay updated with match predictions, IPL, BPL, PSL, and ICC tournaments.',
         'keywords' => 'FancyBet, cricket news Bangladesh, cricket betting tips, FancyBetting guide, live cricket betting, IPL, BPL, PSL, ICC, sports betting Bangladesh, FancyBet Guide',
         'canonical' => 'https://fancybet.info/?lang=en'
     ],
@@ -35,7 +35,7 @@ $currentSeo = $seo[$lang];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- SEO -->
+    <!-- SEO Meta Tags -->
     <title><?= htmlspecialchars($currentSeo['title']) ?></title>
     <meta name="description" content="<?= htmlspecialchars($currentSeo['description']) ?>">
     <meta name="keywords" content="<?= htmlspecialchars($currentSeo['keywords']) ?>">
@@ -48,61 +48,69 @@ $currentSeo = $seo[$lang];
     <!-- Language Alternates -->
     <link rel="alternate" hreflang="en" href="https://fancybet.info/?lang=en">
     <link rel="alternate" hreflang="bn" href="https://fancybet.info/?lang=bn">
-    <link rel="alternate" hreflang="x-default" href="https://fancybet.info">
+    <link rel="alternate" hreflang="x-default" href="https://fancybet.info/?lang=bn">
 
-    <!-- Open Graph -->
+    <!-- Open Graph / Twitter Card -->
     <meta property="og:title" content="<?= htmlspecialchars($currentSeo['title']) ?>">
     <meta property="og:description" content="<?= htmlspecialchars($currentSeo['description']) ?>">
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?= htmlspecialchars($currentSeo['canonical']) ?>">
     <meta property="og:image" content="https://fancybet.info/image/favicon-96x96.png">
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?= htmlspecialchars($currentSeo['title']) ?>">
     <meta name="twitter:description" content="<?= htmlspecialchars($currentSeo['description']) ?>">
     <meta name="twitter:image" content="https://fancybet.info/image/favicon-96x96.png">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/image/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/image/favicon.svg" />
-    <link rel="shortcut icon" href="/image/favicon.ico" />
+    <!-- Favicon / Apple Touch Icons -->
+    <link rel="icon" type="image/png" href="/image/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="/image/favicon.svg">
+    <link rel="shortcut icon" href="/image/favicon.ico">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="/image/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="FancyBet" />
-    <link rel="manifest" href="/image/site.webmanifest" />
-    <!-- Styles & Scripts -->
-    <link rel="stylesheet" href="/src/output.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/jquery-3.7.1.min.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/image/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-title" content="FancyBet">
+    <link rel="manifest" href="/image/site.webmanifest">
+
+    <!-- Preload Critical CSS -->
+    <link rel="preload" href="/src/output.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="./css/style.css" as="style" onload="this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="/src/output.css">
+        <link rel="stylesheet" href="./css/style.css">
+    </noscript>
+
+    <!-- Preload Key Images -->
+    <link rel="preload" href="https://fancybet.info/image/favicon-96x96.png" as="image">
+    <link rel="preload" href="https://fancybet.info/image/apple-touch-icon.png" as="image">
+
+    <!-- Preload JS -->
+    <link rel="preload" href="./js/jquery-3.7.1.min.js" as="script">
+
+    <!-- Deferred JS -->
+    <script src="./js/jquery-3.7.1.min.js" defer></script>
 
     <!-- JSON-LD Schema -->
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "FancyBet",
-            "url": "https://fancybet.info/",
-            "logo": "https://fancybet.info/image/favicon-96x96.png",
-            "sameAs": [
-                "https://www.facebook.com/FancyBet",
-                "https://twitter.com/FancyBet",
-                "https://www.instagram.com/FancyBet"
-            ],
+            "@type": "WebPage",
+            "name": "<?= addslashes($currentSeo['title']) ?>",
+            "url": "<?= htmlspecialchars($currentSeo['canonical']) ?>",
             "description": "<?= addslashes($currentSeo['description']) ?>",
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Dhaka",
-                "addressCountry": "BD"
-            },
-            "contactPoint": {
-                "@type": "ContactPoint",
-                "contactType": "customer support",
-                "email": "support@fancybet.online",
-                "url": "https://fancybet.info/pages/contact"
+            "inLanguage": "<?= $lang === 'en' ? 'en' : 'bn' ?>",
+            "publisher": {
+                "@type": "Organization",
+                "name": "FancyBet",
+                "url": "https://fancybet.info/",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://fancybet.info/image/favicon-96x96.png"
+                }
             }
         }
     </script>
+
+
 </head>
 
 <style>
@@ -121,6 +129,7 @@ $currentSeo = $seo[$lang];
 <body class="dark:bg-black bg-[#f5f5f5]">
     <?php include './pages/navbar.php'; ?>
     <main class="px-4 max-w-7xl mx-auto">
+
         <section class="pt-20"></section>
 
         <section class="">
@@ -136,7 +145,7 @@ $currentSeo = $seo[$lang];
         </section>
 
         <section class="pt-10">
-         
+
         </section>
 
         <section class="">
