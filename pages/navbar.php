@@ -91,7 +91,7 @@ function getMenuIcon($title)
 
 
 <!-- Navbar -->
-<nav class="w-full bg-[#252525] text-gray-100 dark:text-white shadow-md fixed top-0 left-0 z-30">
+<nav class="w-full bg-[#580902] dark:bg-[#252525] text-gray-100 dark:text-white shadow-md fixed top-0 left-0 z-30">
     <div class="container mx-auto flex items-center justify-between px-4 max-w-7xl">
         <!-- Left: Logo + Mobile Toggle -->
         <div class="flex items-center space-x-3">
@@ -151,7 +151,7 @@ function getMenuIcon($title)
                 <i class="fa-solid fa-magnifying-glass text-xl"></i>
             </button>
             <!-- Mobile Search Dropdown (hidden by default) -->
-            <div id="mobile-search-dropdown" class="hidden fixed top-[60px] left-0 w-full bg-red-800 p-3 z-40 shadow-md">
+            <div id="mobile-search-dropdown" class="hidden fixed top-[60px] left-0 w-full bg-[#580902] dark:bg-[#252525] p-3 z-40 shadow-md">
                 <form action="/pages/search" method="get" class="flex items-center">
                     <input type="hidden" name="lang" value="<?= $lang ?>" class="py-4">
                     <input type="text" name="q" placeholder="<?= $lang === 'en' ? 'Search...' : 'অনুসন্ধান করুন...' ?>"
@@ -202,7 +202,7 @@ function getMenuIcon($title)
 <div id="overlay" class="fixed inset-0 z-20 hidden transition-opacity duration-500"></div>
 
 <!-- Sidebar -->
-<div id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-[#252525] z-40 transform -translate-x-full transition-transform duration-500 ease-in-out lg:hidden">
+<div id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-[#580902] dark:bg-[#252525] z-40 transform -translate-x-full transition-transform duration-500 ease-in-out lg:hidden">
     <div class="p-4 border-b border-slate-700 flex justify-between items-center">
         <span class="text-lg font-bold text-white">
             <?=

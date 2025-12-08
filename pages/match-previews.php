@@ -6,7 +6,7 @@ require_once '../baseURL.php';
 $postObj = new Post();
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 
-$categoryId = 3;
+$categoryId = 6;
 $limit = 9;
 $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
 $offset = ($page - 1) * $limit;
@@ -55,6 +55,8 @@ $keywords = $lang === 'en'
 
 $url = "https://fancybet.info/pages/cricket-news?lang={$lang}";
 $image = "https://fancybet.info/image/favicon-96x96.png";
+
+$pageName = "Match Previews";
 ?>
 
 <!DOCTYPE html>
@@ -115,21 +117,25 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
     <script src="./js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="/src/output.css">
     <link rel="stylesheet" href="/css/pagination.css">
+    <link rel="stylesheet" href="/css/breadcrumb.css">
 
 </head>
 
 
 <body class="dark:bg-black bg-[#f5f5f5] dark:text-white text-gray-800">
     <?php include "navbar.php"; ?>
-    <?php include "loader.php"; ?>
 
     <main class="px-4 max-w-7xl m-auto">
-        <div class=" bg-white dark:bg-[#252525] mt-[80px]
-            shadow-[0_0_5px_0_rgba(0,0,0,0.2)] p-4">
 
+    <div class="mt-[80px]">
+         <?php include './services/breadcrumb-static.php' ?>
+    </div>
+        <div class=" bg-white dark:bg-[#252525] 
+            shadow-[0_0_5px_0_rgba(0,0,0,0.2)] p-4">
+           
             <div class="flex justify-between items-center mb-4">
                 <h1 class="text-xl font-bold">
-                    <?= $lang === 'en' ? 'All Cricket News' : 'সমস্ত ক্রিকেট সংবাদ' ?>
+                    <?= $lang === 'en' ? 'All Match Previews' : 'সমস্ত ক্রিকেট সংবাদ' ?>
                 </h1>
 
                 <!-- Sort Dropdown -->

@@ -62,6 +62,8 @@ $keywords = $lang === 'en'
 
 $url = "https://fancybet.info/pages/cricket-betting-guides?lang={$lang}";
 $image = "https://fancybet.info/image/favicon-96x96.png";
+
+$pageName = "Cricket Betting Guides";
 ?>
 
 <head>
@@ -119,16 +121,18 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
     <script src="./js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="/src/output.css">
     <link rel="stylesheet" href="/css/pagination.css">
+    <link rel="stylesheet" href="/css/breadcrumb.css">
 </head>
 
 
 <body class="dark:bg-black bg-[#f5f5f5] dark:text-white text-gray-800">
     <?php include "navbar.php"; ?>
     <main class="px-4 mt-[80px] max-w-7xl m-auto">
+        <?php include './services/breadcrumb-static.php'; ?>
         <div class="dark:text-white text-gray-800 bg-white dark:bg-[#252525]
             shadow-[0_0_5px_0_rgba(0,0,0,0.2)] p-4">
 
-            <div class="flex justify-between items-center mb-4 lg:mt-4">
+            <div class="flex justify-between items-center mb-4">
                 <h1 class="text-xl font-bold dark:text-white text-gray-800">
                     <?= $lang === 'en' ? 'All Cricket Betting Guides' : 'সমস্ত ক্রিকেট বেটিং গাইড' ?>
                 </h1>
@@ -225,7 +229,7 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
                     <nav class="pagination-nav">
                         <!-- First Page -->
                         <?php if ($page > 1): ?>
-                            <a href="?page=1" class="pagination-btn" title="First page">
+                            <a href="?page=1&lang=<?= $lang ?>" class="pagination-btn" title="First page">
                                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
                                 </svg>
@@ -240,7 +244,7 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
 
                         <!-- Previous -->
                         <?php if ($page > 1): ?>
-                            <a href="?page=<?= $page - 1 ?>" class="pagination-btn" title="Previous page">
+                            <a href="?page=<?= $page - 1 ?>&lang=<?= $lang ?>" class="pagination-btn" title="Previous page">
                                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                                 </svg>
@@ -266,7 +270,7 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
                             <?php endif;
 
                             for ($i = $start; $i <= $end; $i++): ?>
-                                <a href="?page=<?= $i ?>" class="pagination-number <?= $i === $page ? 'active' : '' ?>">
+                                <a href="?page=<?= $i ?>&lang=<?= $lang ?>" class="pagination-number <?= $i === $page ? 'active' : '' ?>">
                                     <?= $i ?>
                                 </a>
                             <?php endfor;
@@ -279,7 +283,7 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
 
                         <!-- Next -->
                         <?php if ($page < $totalPages): ?>
-                            <a href="?page=<?= $page + 1 ?>" class="pagination-btn" title="Next page">
+                            <a href="?page=<?= $page + 1 ?>$lang=<?= $lang ?>" class="pagination-btn" title="Next page">
                                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                 </svg>
@@ -294,7 +298,7 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
 
                         <!-- Last Page -->
                         <?php if ($page < $totalPages): ?>
-                            <a href="?page=<?= $totalPages ?>" class="pagination-btn" title="Last page">
+                            <a href="?page=<?= $totalPages ?>&lang=<?= $lang ?>" class="pagination-btn" title="Last page">
                                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
                                 </svg>
@@ -313,7 +317,7 @@ $image = "https://fancybet.info/image/favicon-96x96.png";
         </div>
     </main>
 
-    <?= include "footer.php" ?>
+    <?php include "footer.php" ?>
 
     <?php include 'scroll-to-top.php'; ?>
 </body>

@@ -14,7 +14,7 @@ $categoryPosts = $posts->getPostByCategory(6, $lang);
 
             <?= $lang === 'en' ? 'Match Previews' : 'ম্যাচ প্রিভিউ' ?>
         </h1>
-        <a href="/pages/cricket-previews?lang=<?= $lang ?>"
+        <a href="/pages/match-previews?lang=<?= $lang ?>"
             class="inline-flex items-center text-white gap-1 py-1 px-3 rounded-lg hover:bg-red-600 bg-red-700 transition text-sm lg:text-base">
 
             <?= $lang === 'en' ? 'View All' : 'সব দেখুন' ?>
