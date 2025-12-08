@@ -71,24 +71,13 @@ $currentSeo = $seo[$lang];
     <meta name="apple-mobile-web-app-title" content="FancyBet">
     <link rel="manifest" href="/image/site.webmanifest">
 
-    <!-- Preload Critical CSS -->
-    <link rel="preload" href="/src/output.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="stylesheet" href="/src/output.css">
     <link rel="preload" href="./css/style.css" as="style" onload="this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="/src/output.css">
-        <link rel="stylesheet" href="./css/style.css">
-    </noscript>
-
-    <!-- Preload Key Images -->
     <link rel="preload" href="https://fancybet.info/image/favicon-96x96.png" as="image">
     <link rel="preload" href="https://fancybet.info/image/apple-touch-icon.png" as="image">
 
-    <!-- Preload JS -->
-    <link rel="preload" href="./js/jquery-3.7.1.min.js" as="script">
-
     <!-- Deferred JS -->
     <script src="./js/jquery-3.7.1.min.js" defer></script>
-
     <!-- JSON-LD Schema -->
     <script type="application/ld+json">
         {

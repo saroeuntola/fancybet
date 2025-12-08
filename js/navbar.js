@@ -117,9 +117,6 @@
       });
     });
   });
-
-
-
    document.addEventListener("DOMContentLoaded", () => {
      const mobileDropdowns = document.querySelectorAll(".mobile-dropdown");
      mobileDropdowns.forEach((dropdown) => {

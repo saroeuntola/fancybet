@@ -1,41 +1,46 @@
 <?php
-// ===========================================
-// FancyBet Posts Sitemap (Images + Google News)
-// ===========================================
 
-// End all previous buffered output to avoid BOM or whitespace
+
 while (ob_get_level()) ob_end_clean();
+ob_start();
 
-header("Content-Type: application/xml; charset=UTF-8");
+header("Content-Type: application/xml; charset=utf-8");
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
 
+$baseUrl = "https://fancybet.info";
+$today = date('Y-m-d');
 require_once __DIR__ . '/admin/page/library/db.php';
 require_once __DIR__ . '/admin/page/library/post_lib.php';
 
-$baseUrl = "https://fancybet.info";
+$baseUrl   = "https://fancybet.info";
 $languages = ['en', 'bn'];
-$today = date('Y-m-d');
+$today     = date('Y-m-d');
 
+// Fetch posts
 $postLib = new Post();
 try {
     $posts = $postLib->getPost();
 } catch (Exception $e) {
     $posts = [];
 }
-
-echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+ob_clean();
+// Required: Write XML header first
+echo '<?xml version="1.0" encoding="UTF-8"?>';
 ?>
+
 <urlset
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
     xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
 
     <?php foreach ($posts as $post): ?>
-
         <?php
         if (empty($post['slug'])) continue;
 
-        $slug = urlencode($post['slug']);
-        $title = htmlspecialchars(strip_tags($post['name'] ?? ''), ENT_XML1);
+        $slug        = urlencode($post['slug']);
+        $title       = htmlspecialchars(strip_tags($post['name'] ?? ''), ENT_XML1);
         $description = htmlspecialchars(strip_tags(mb_substr($post['description'] ?? '', 0, 160)), ENT_XML1);
 
         $image = !empty($post['image'])
@@ -52,14 +57,13 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
         ?>
 
         <?php foreach ($languages as $lang): ?>
-            <?php
-            $loc = "$baseUrl/pages/detail?slug=$slug&lang=$lang";
-            ?>
+            <?php $loc = $baseUrl . "/pages/detail?slug={$slug}&lang={$lang}"; ?>
+
             <url>
                 <loc><?= htmlspecialchars($loc, ENT_XML1) ?></loc>
                 <lastmod><?= $lastmod ?></lastmod>
                 <changefreq>daily</changefreq>
-                <priority>1</priority>
+                <priority>1.0</priority>
 
                 <?php if ($image): ?>
                     <image:image>
@@ -76,9 +80,9 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
                     <news:publication_date><?= $pubDate ?></news:publication_date>
                     <news:title><?= $title ?></news:title>
                 </news:news>
-
             </url>
-        <?php endforeach; ?>
 
+        <?php endforeach; ?>
     <?php endforeach; ?>
+
 </urlset>

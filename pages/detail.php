@@ -65,7 +65,6 @@ $baseURL =  "https://fancybet.info/";
     <meta name="keywords" content="<?= htmlspecialchars($postKeywords) ?>">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
-
     <!-- Canonical -->
     <link rel="canonical" href="<?= htmlspecialchars($postUrl) ?>">
 
@@ -83,22 +82,16 @@ $baseURL =  "https://fancybet.info/";
     <meta name="twitter:image" content="<?= $baseURL ?><?= htmlspecialchars($postImage) ?>">
     <!-- Favicon -->
     <link rel="icon" href="<?= $baseURL ?><?= htmlspecialchars($postImage) ?>" type="image/png">
-    <!-- Schema.org Article -->
 
+    <link rel="stylesheet" href="/src/output.css">
+    
     <!-- Preload Critical CSS -->
     <link rel="preload" href="/css/detail.css" as="style" onload="this.rel='stylesheet'">
-    <link rel="preload" href="/src/output.css" as="style" onload="this.rel='stylesheet'">
     <link rel="preload" href="./css/style.css" as="style" onload="this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="/src/output.css">
-        <link rel="stylesheet" href="./css/style.css">
-        <link rel="stylesheet" href="/css/detail.css">
-    </noscript>
 
-    <!-- SEO JSON-LD -->
+    <!-- Schema.org Article  -->
     <?php outputFullSchema($breadcrumbs, $post, $baseURL, $ImageURL); ?>
-    <!-- Preload JS -->
-    <link rel="preload" href="./js/jquery-3.7.1.min.js" as="script">
+
     <!-- Deferred JS -->
     <script src="./js/jquery-3.7.1.min.js" defer></script>
 </head>
@@ -140,6 +133,7 @@ $baseURL =  "https://fancybet.info/";
                     <h3 class="font-semibold text-lg dark:text-gray-100 text-gray-900 mt-10">
                         <?= $lang === 'en' ? 'Share this post:' : 'এই পোস্টটি শেয়ার করুন:' ?>
                     </h3>
+
                     <!-- Social Share Buttons -->
                     <div class="mt-3 flex flex-wrap gap-3 justify-start md:justify-start items-center">
                         <!-- Facebook -->
