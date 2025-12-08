@@ -21,7 +21,7 @@ $staticPages = [
 ];
 
 // Home URL
-$homeUrl = "http://fancybet:8080/";
+$homeUrl = "https://fancybet.info/";
 
 // Get page slug
 $pageSlug = $staticPages[$pageName] ?? '';
