@@ -23,7 +23,7 @@ function buildLangUrl($langTarget, $currentPage, $currentId)
 $menu = [
     '/' => $lang === 'en' ? 'Home' : 'হোম',
     '/blog' => [
-        'title' => $lang === 'en' ? 'Blog' : 'ব্লগ',
+        'title' => $lang === 'en' ? 'Crickets' : 'ক্রিকেট',
         'submenu' => [
             '/pages/cricket-news' => $lang === 'en' ? 'Cricket News' : 'ক্রিকেট নিউজ',
             '/pages/cricket-betting-guides' => $lang === 'en' ? 'Betting Guides' : 'বেটিং গাইড',
@@ -45,8 +45,8 @@ function getMenuIcon($title)
         'home' => 'fa-house',
         'হোম' => 'fa-house',
 
-        'blog' => 'fa-blog',
-        'ব্লগ' => 'fa-blog',
+        'Crickets' => 'fa-blog',
+        'ক্রিকেট' => 'fa-blog',
 
         'cricket news' => 'fa-baseball-bat-ball',
         'ক্রিকেট নিউজ' => 'fa-baseball-bat-ball',
@@ -83,15 +83,12 @@ function getMenuIcon($title)
 
     }
 </style>
-<link rel="preload"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-    as="style"
-    onload="this.onload=null;this.rel='stylesheet'">
 
-<noscript>
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-</noscript>
+<!-- Preconnect to the CDN domain for faster connection -->
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<!-- Load Font Awesome CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
 
 <!-- Navbar -->
 <nav class="w-full bg-[#252525] text-gray-100 dark:text-white shadow-md fixed top-0 left-0 z-30">

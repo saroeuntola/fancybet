@@ -5,6 +5,7 @@ include '../admin/page/library/db.php';
 include './services/bn-date.php';
 include '../baseURL.php';
 include './breadcrumb.php';
+
 require_once '../pages/services/menu.php';
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
 $slug = $_GET['slug'] ?? '';
@@ -28,9 +29,10 @@ $postDescription =  ($post['meta_desc'] ?? '');
 $postKeywords = ($post['meta_keyword'] ?? '');
 $postImage = $post['image'] ?? '/image/favicon-96x96.png';
 $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lang=" . $lang;
+ 
 
 
-$descriptionWithFullUrl = preg_replace_callback(
+    $descriptionWithFullUrl = preg_replace_callback(
     '/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i',
     function ($matches) use ($ImageURL) {
         $src = $matches[1];
@@ -84,10 +86,13 @@ $baseURL =  "https://fancybet.info/";
     <link rel="icon" href="<?= $baseURL ?><?= htmlspecialchars($postImage) ?>" type="image/png">
 
     <link rel="stylesheet" href="/src/output.css">
-    
+    <link rel="stylesheet" href="/css/breadcrumb.css">
+
     <!-- Preload Critical CSS -->
     <link rel="preload" href="/css/detail.css" as="style" onload="this.rel='stylesheet'">
-    <link rel="preload" href="./css/style.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="/css/style.css" as="style" onload="this.rel='stylesheet'">
+    
+
 
     <!-- Schema.org Article  -->
     <?php outputFullSchema($breadcrumbs, $post, $baseURL, $ImageURL); ?>
@@ -97,7 +102,6 @@ $baseURL =  "https://fancybet.info/";
 </head>
 <style>
     .desc-editor a {
-
         color: skyblue;
         text-decoration: underline;
     }
@@ -108,6 +112,10 @@ $baseURL =  "https://fancybet.info/";
     include "navbar.php"
     ?>
     <main class="container max-w-7xl mx-auto px-4 mt-[80px]">
+      <?php 
+        include './services/breadcrumb-menu.php';
+      ?>
+
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
 
             <!-- Main Content -->

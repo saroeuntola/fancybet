@@ -1,5 +1,7 @@
 <?php
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'en';
+$pageName = "Contact";
+
 ?>
 <!DOCTYPE html>
 <html lang="<?= $lang === 'bn' ? 'bn-BD' : 'en' ?>">
@@ -92,17 +94,23 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
     </script>
     <link rel="stylesheet" href="../src/output.css">
     <script src="/js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="/css/breadcrumb.css">
 </head>
 
-<body class="dark:bg-gray-900 text-white bg-amber-50 font-sans">
+<body class="dark:bg-black bg-[#f5f5f5] text-white">
     <?php include "navbar.php"; ?>
-    <header class="text-center pt-20">
-        <h1 class="text-3xl md:text-4xl font-bold mt-10 text-red-700">
-            <?= $lang === 'bn' ? 'বাংলাদেশে ক্রিকেট সম্পর্কে' : 'About Fancybet' ?>
-        </h1>
-    </header>
 
-    <main class="max-w-4xl mx-auto px-6 leading-relaxed dark:text-gray-200 text-gray-800 py-10">
+    <div class="mt-20 max-w-4xl mx-auto px-4">
+        <?php include './services/breadcrumb-static.php';  ?>
+    </div>
+
+<div class="px-4">
+     <main class="max-w-4xl mx-auto px-4 leading-relaxed dark:text-gray-200 text-gray-800 py-10 dark:bg-[#252525] bg-white rounded-md">
+        <header class="text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-red-700 mb-6">
+                <?= $lang === 'bn' ? 'বাংলাদেশে ক্রিকেট সম্পর্কে' : 'About Fancybet' ?>
+            </h1>
+        </header>
         <?php if ($lang === 'bn'): ?>
             <p class="mb-6">
                 ক্রিকেট বাংলাদেশের সবচেয়ে জনপ্রিয় খেলা এবং এটি দেশের প্রতিটি মানুষের হৃদয়ে বিশেষ জায়গা করে নিয়েছে।
@@ -146,6 +154,8 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
             </p>
         <?php endif; ?>
     </main>
+</div>
+   
 
     <?php include "footer.php"; ?>
 </body>

@@ -1,14 +1,13 @@
 <?php
 
-
 while (ob_get_level()) ob_end_clean();
-ob_start();
+
 
 header("Content-Type: application/xml; charset=utf-8");
 header("Cache-Control: no-cache, no-store, must-revalidate");
 header("Pragma: no-cache");
 header("Expires: 0");
-
+ob_start ();
 $baseUrl = "https://fancybet.info";
 $today = date('Y-m-d');
 require_once __DIR__ . '/admin/page/library/db.php';
@@ -25,9 +24,11 @@ try {
 } catch (Exception $e) {
     $posts = [];
 }
+
 ob_clean();
-// Required: Write XML header first
-echo '<?xml version="1.0" encoding="UTF-8"?>';
+echo '<?xml version="1.0" encoding="UTF-8" ?>';
+
+
 ?>
 
 <urlset

@@ -27,6 +27,8 @@ $seo = [
     ]
 ];
 $currentSeo = $seo[$lang];
+
+$pageName = "Home";
 ?>
 <!DOCTYPE html>
 <html lang="<?= $lang === 'en' ? "en-BD" : "bn-BD" ?>" class="dark:bg-gray-900 bg-amber-50">
@@ -72,7 +74,9 @@ $currentSeo = $seo[$lang];
     <link rel="manifest" href="/image/site.webmanifest">
 
     <link rel="stylesheet" href="/src/output.css">
+    <link rel="stylesheet" href="./css/breadcrumb.css" />
     <link rel="preload" href="./css/style.css" as="style" onload="this.rel='stylesheet'">
+
     <link rel="preload" href="https://fancybet.info/image/favicon-96x96.png" as="image">
     <link rel="preload" href="https://fancybet.info/image/apple-touch-icon.png" as="image">
 
@@ -118,9 +122,10 @@ $currentSeo = $seo[$lang];
 <body class="dark:bg-black bg-[#f5f5f5]">
     <?php include './pages/navbar.php'; ?>
     <main class="px-4 max-w-7xl mx-auto">
+        <section class="pt-15"></section>
+        <section class="mt-5"></section>
 
-        <section class="pt-20"></section>
-
+ <?php include './pages/services/breadcrumb-static.php';  ?>
         <section class="">
             <?php
             include "./pages/cricket-news-section.php"

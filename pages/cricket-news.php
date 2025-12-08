@@ -13,7 +13,7 @@ $categoryId = 3;
 $limit = 9;
 $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
 $offset = ($page - 1) * $limit;
-
+$pageName = "Cricket News";
 // Sorting
 $sort = $_GET['sort'] ?? 'all';
 $orderBy = '';
@@ -92,22 +92,25 @@ $breadcrumbs = generateBreadcrumb($lang, $menu);
     <!-- CSS & JS -->
     <link rel="stylesheet" href="/src/output.css">
     <link rel="stylesheet" href="/css/pagination.css">
+    <link rel="stylesheet" href="/css/breadcrumb.css">
     <script src="./js/jquery-3.7.1.min.js"></script>
-
+  
     <!-- JSON-LD: NewsArticle + BreadcrumbList -->
     <?php outputFullSchemaPage($breadcrumbs, ['name' => $title, 'description' => html_entity_decode(strip_tags($description))], 'https://fancybet.info'); ?>
 </head>
 
 
 
+
 <body class="dark:bg-black bg-[#f5f5f5] dark:text-white text-gray-800">
     <?php include "navbar.php"; ?>
-    <?php include "loader.php"; ?>
 
-    <main class="px-4 max-w-7xl m-auto">
-
-        <div class=" bg-white dark:bg-[#252525] mt-[80px]
-            shadow-[0_0_5px_0_rgba(0,0,0,0.2)] p-4">
+    <main class="px-4 max-w-7xl m-auto mt-[80px]">
+        <?php
+        include './services/breadcrumb-static.php';
+        ?>
+        <div class="bg-white dark:bg-[#252525]
+            shadow-[0_0_5px_0_rgba(0,0,0,0.2)] p-4 card-container">
             <div class="flex justify-between items-center mb-4">
 
                 <h1 class="text-xl font-bold">
