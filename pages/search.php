@@ -22,16 +22,16 @@ $posts = $query ? $postObj->searchpost($query, $lang) : [];
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
 </head>
 
-<body class="bg-gray-900 text-white">
+<body class="dark:bg-black dark:text-white bg-[#f5f5f5] text-gray-900">
     <?php include "navbar.php"; ?>
-    <div class="px-4 py-8 mt-16 max-w-5xl mx-auto">
+    <div class="px-4 py-8 mt-16 max-w-7xl mx-auto">
         <h1 class="text-2xl font-bold mb-4">
             <?= $lang === 'en' ? "Search Results for '$query'" : "'$query'-এর জন্য অনুসন্ধানের ফলাফল" ?>
         </h1>
         <?php if (!$query): ?>
-            <p class="text-gray-300"><?= $lang === 'en' ? 'Please enter a search query.' : 'অনুগ্রহ করে অনুসন্ধান লিখুন।' ?></p>
+            <p class="dark:text-gray-300"><?= $lang === 'en' ? 'Please enter a search query.' : 'অনুগ্রহ করে অনুসন্ধান লিখুন।' ?></p>
         <?php elseif (empty($posts)): ?>
-            <p class="text-gray-300"><?= $lang === 'en' ? 'No results found.' : 'কোন ফলাফল পাওয়া যায়নি।' ?></p>
+            <p class="dark:text-gray-300"><?= $lang === 'en' ? 'No results found.' : 'কোন ফলাফল পাওয়া যায়নি।' ?></p>
         <?php else: ?>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <?php if (!empty($posts)): ?>
@@ -52,13 +52,13 @@ $posts = $query ? $postObj->searchpost($query, $lang) : [];
                         $createdAt = $post['created_at'] ?? '';
                         ?>
                         <a href="/pages/detail?slug=<?= $postSlug ?>&lang=<?= $lang ?>">
-                            <div class="bg-gray-800 shadow rounded-lg overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300">
+                            <div class="dark:bg-[#252525] bg-white shadow rounded-lg overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300">
                                 <!-- Image -->
                                 <?php if ($postImage): ?>
                                     <img src="/admin/page/post/<?= $postImage ?>" alt="<?= $postName ?>"
                                         class="w-full lg:h-[200px] h-[230px] object-cover">
                                 <?php else: ?>
-                                    <div class="w-full lg:h-[200px] h-[230px] bg-gray-600 flex items-center justify-center text-gray-300 text-sm">
+                                    <div class="w-full lg:h-[200px] h-[230px] bg-gray-600 flex items-center justify-center dark:text-gray-300 text-sm">
                                         <?= $lang === 'en' ? 'No Image' : 'ছবি নেই' ?>
                                     </div>
                                 <?php endif; ?>
@@ -70,7 +70,7 @@ $posts = $query ? $postObj->searchpost($query, $lang) : [];
                                         <h2 class="lg:text-lg text-md font-semibold mb-2 text-white break-words">
                                             <?= $postName ?>
                                         </h2>
-                                        <p class="text-gray-300 mb-3 text-sm break-words lg:text-md">
+                                        <p class="dark:text-gray-300 mb-3 text-sm break-words lg:text-md">
                                             <?= $postDesc ?>
                                         </p>
                                     </div>
@@ -90,7 +90,7 @@ $posts = $query ? $postObj->searchpost($query, $lang) : [];
 
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <p class="text-gray-300 text-center col-span-full mt-4">
+                    <p class="dark:text-gray-300 text-center col-span-full mt-4">
                         <?= $lang === 'en' ? 'No posts found.' : 'কোনো পোস্ট পাওয়া যায়নি।' ?>
                     </p>
                 <?php endif; ?>

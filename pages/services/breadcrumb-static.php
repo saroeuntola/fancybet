@@ -8,7 +8,7 @@
 
 // Static pages mapping
 $staticPages = [
-    "About" => "about",
+    "About Us" => "about",
     "Contact" => "contact",
     "Privacy Policy" => "privacy-policy",
     "Terms & Conditions" => "terms",

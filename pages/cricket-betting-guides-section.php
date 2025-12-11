@@ -13,7 +13,7 @@ $categoryPosts = $posts->getPostByCategory(2, $lang);
                 <i class="fa-solid fa-lines-leaning text-white"></i>
             </p>
 
-            <?= $lang === 'en' ? 'Cricket Betting Guides' : 'ক্রিকেট বেটিং গাইড' ?>
+            <?= $lang === 'en' ? 'Betting Guides' : 'ক্রিকেট বেটিং গাইড' ?>
         </h1>
         <a href="/pages/cricket-betting-guides?lang=<?= $lang ?>"
             class="inline-flex items-center text-white gap-1 py-1 px-3 rounded-lg hover:bg-red-600 bg-red-700 transition text-sm lg:text-base">

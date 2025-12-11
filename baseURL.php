@@ -1,4 +1,4 @@
 <?php
-$ImageURL = "http://dummy-blog:8080/";
+$ImageURL = "https://link123dzo.net/";
 
 

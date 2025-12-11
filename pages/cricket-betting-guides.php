@@ -124,7 +124,6 @@ $pageName = "Cricket Betting Guides";
     <link rel="stylesheet" href="/css/breadcrumb.css">
 </head>
 
-
 <body class="dark:bg-black bg-[#f5f5f5] dark:text-white text-gray-800">
     <?php include "navbar.php"; ?>
     <main class="px-4 mt-[80px] max-w-7xl m-auto">

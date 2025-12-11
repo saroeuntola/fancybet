@@ -68,11 +68,11 @@ $text = $content[$lang];
     <script src="./js/jquery-3.6.0.min.js"></script>
 </head>
 
-<body class="dark:bg-gray-900 bg-amber-50 dark:text-amber-50 font-inter">
+<body class="dark:bg-black bg-[#f5f5f5] dark:text-white font-inter">
     <?php include 'navbar.php'; ?>
-    <main class="max-w-5xl m-auto pt-10 lg:mt-15 px-4">
+    <main class="max-w-5xl m-auto pt-10 px-4">
         <!-- Hero Section -->
-        <section class="bg-gradient-to-r from-indigo-600 to-purple-700 mt-16 text-white text-center p-4 rounded-3xl">
+        <section class="mt-10 dark:text-white text-center p-4 rounded-3xl">
             <div class="container mx-auto">
                 <h1 class="text-2xl font-bold mb-6"><?= htmlspecialchars($text['title']) ?></h1>
                 <p class="max-w-2xl mx-auto text-lg opacity-90">
@@ -86,15 +86,15 @@ $text = $content[$lang];
             <div class="container mx-auto text-white">
                 <h2 class="text-2xl font-semibold mb-6 text-center dark:text-white text-gray-800"><?= htmlspecialchars($text['whyJoin']) ?></h2>
                 <div class="grid md:grid-cols-3 gap-6">
-                    <div class="p-6 bg-red-800 rounded-xl shadow hover:shadow-lg transition">
+                    <div class="p-6 bg-[#252525] rounded-xl shadow hover:shadow-lg transition">
                         <h3 class="text-xl font-semibold mb-3"><?= htmlspecialchars($text['discussionTitle']) ?></h3>
                         <p><?= htmlspecialchars($text['discussionDesc']) ?></p>
                     </div>
-                    <div class="p-6 bg-red-800 rounded-xl shadow hover:shadow-lg transition">
+                    <div class="p-6 bg-[#252525] rounded-xl shadow hover:shadow-lg transition">
                         <h3 class="text-xl font-semibold mb-3"><?= htmlspecialchars($text['tipsTitle']) ?></h3>
                         <p><?= htmlspecialchars($text['tipsDesc']) ?></p>
                     </div>
-                    <div class="p-6 bg-red-800 rounded-xl shadow hover:shadow-lg transition">
+                    <div class="p-6 bg-[#252525] rounded-xl shadow hover:shadow-lg transition">
                         <h3 class="text-xl font-semibold mb-3"><?= htmlspecialchars($text['globalTitle']) ?></h3>
                         <p><?= htmlspecialchars($text['globalDesc']) ?></p>
                     </div>

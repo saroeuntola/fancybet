@@ -1,6 +1,6 @@
 <?php
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'en';
-$pageName = "Contact";
+$pageName = "About Us";
 
 ?>
 <!DOCTYPE html>
@@ -105,9 +105,9 @@ $pageName = "Contact";
     </div>
 
 <div class="px-4">
-     <main class="max-w-4xl mx-auto px-4 leading-relaxed dark:text-gray-200 text-gray-800 py-10 dark:bg-[#252525] bg-white rounded-md">
+     <main class="max-w-4xl mx-auto px-6 leading-relaxed dark:text-gray-200 text-gray-800 py-4 dark:bg-[#252525] bg-white rounded-md">
         <header class="text-center">
-            <h1 class="text-3xl md:text-4xl font-bold text-red-700 mb-6">
+            <h1 class="lg:text-3xl text-2xl font-bold mb-6">
                 <?= $lang === 'bn' ? 'বাংলাদেশে ক্রিকেট সম্পর্কে' : 'About Fancybet' ?>
             </h1>
         </header>

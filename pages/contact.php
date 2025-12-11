@@ -41,11 +41,11 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 </head>
 
 
-<body class="dark:bg-black bg-white dark:text-white text-gray-900">
+<body class="dark:bg-black bg-[#f5f5f5] dark:text-white text-gray-900">
 
     <?php include './navbar.php'; ?>
     <!-- Page Header -->
-    <header class=" text-white py-6 text-center mt-28">
+    <header class=" dark:text-white py-4 text-center mt-10">
         <h1 class="text-3xl font-bold"><?= $lang === 'en' ? 'Contact Us' : 'যোগাযোগ করুন' ?></h1>
         <p class="mt-2 text-sm"><?= $lang === 'en' ? 'We would love to hear from you!' : 'আমরা আপনার প্রতিক্রিয়ার অপেক্ষায় আছি!' ?></p>
     </header>
@@ -54,29 +54,29 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
     <main class="max-w-5xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 gap-3">
 
         <!-- Contact Form -->
-        <div class="dark:bg-gray-800 p-8 rounded-xl shadow-md">
+        <div class="dark:bg-[#252525] p-8 rounded-xl shadow-md bg-white">
             <h2 class="text-2xl font-semibold mb-6"><?= $lang === 'en' ? 'Send Us a Message' : 'আমাদের একটি বার্তা পাঠান' ?></h2>
             <form action="" method="POST" class="flex flex-col gap-4">
                 <input type="text" name="name" placeholder="<?= $lang === 'en' ? 'Your Name' : 'আপনার নাম' ?>" required
-                    class="p-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500 text-white">
+                    class="p-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500 dark:text-white">
                 <input type="email" name="email" placeholder="<?= $lang === 'en' ? 'Your Email' : 'আপনার ইমেইল' ?>" required
-                    class="p-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500 text-white">
+                    class="p-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500 dark:text-white">
 
                 <textarea name="message" rows="6" placeholder="<?= $lang === 'en' ? 'Your Message' : 'আপনার বার্তা' ?>" required
-                    class="p-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500 text-white"></textarea>
-                <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-lg transition-colors">
+                    class="p-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500 dark:text-white"></textarea>
+                <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-lg transition-colors cursor-pointer">
                     <?= $lang === 'en' ? 'Send Message' : 'বার্তা পাঠান' ?>
                 </button>
             </form>
         </div>
 
         <!-- Contact Info & Social Media -->
-        <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+        <div class="bg-white dark:bg-[#252525] p-8 rounded-xl shadow-md">
 
             <div class="mb-6">
                 <h2 class="text-2xl font-semibold mb-4"><?= $lang === 'en' ? 'Contact Information' : 'যোগাযোগের তথ্য' ?></h2>
-                <p class="text-gray-300 mb-2"><strong><?= $lang === 'en' ? 'Email:' : 'ইমেইল:' ?></strong> info@fancybet.info</p>
-                <p class="text-gray-300 mb-2"><strong><?= $lang === 'en' ? 'Phone:' : 'ফোন:' ?></strong> +880 12 345 678</p>
+                <p class="dark:text-gray-300 mb-2"><strong><?= $lang === 'en' ? 'Email:' : 'ইমেইল:' ?></strong> info@fancybet.info</p>
+                <p class="dark:text-gray-300 mb-2"><strong><?= $lang === 'en' ? 'Phone:' : 'ফোন:' ?></strong> +880 12 345 678</p>
             </div>
 
             <div>

@@ -46,8 +46,8 @@
             <h4 class="text-white font-semibold mb-4"><?= $lang === 'en' ? 'Subscribe to Our Newsletter' : 'আমাদের নিউজলেটারে সাবস্ক্রাইব করুন' ?></h4>
             <p class="dark:text-gray-400 text-gray-200 mb-4 text-sm">
                 <?= $lang === 'en'
-                    ? 'Get weekly updates directly to your inbox about news, tutorials, and community events.'
-                    : 'সাপ্তাহিক সংবাদ, টিউটোরিয়াল এবং কমিউনিটি ইভেন্টগুলির আপডেট সরাসরি আপনার ইনবক্সে পান।'
+                    ? 'Get weekly updates directly to your inbox about crickets news, betting guide, and community events.'
+                    : 'ক্রিকেটের খবর, বেটিং গাইড এবং কমিউনিটি ইভেন্ট সম্পর্কে সরাসরি আপনার ইনবক্সে সাপ্তাহিক আপডেট পান।'
                 ?>
             </p>
             <form action="" method="POST" class="flex flex-col gap-2">
