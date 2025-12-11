@@ -49,7 +49,7 @@ $categoryPosts = $posts->getPostByCategory(6, $lang);
                     <div class=" dark:text-white text-gray-800 transition flex flex-col h-[340px]">
 
                         <?php if ($postImage): ?>
-                            <img src="/admin/page/post/<?= $postImage ?>" alt="<?= $postName ?>" class="w-full h-[200px] object-cover transition-transform duration-500 ease-in-out hover:scale-110 overflow-hidded">
+                            <img src="<?=$ImageURL?><?= $postImage ?>" alt="<?= $postName ?>" class="w-full h-[200px] object-cover transition-transform duration-500 ease-in-out hover:scale-110 overflow-hidded">
                         <?php else: ?>
                             <div class="w-full h-[200px] bg-gray-600 flex items-center justify-center text-gray-300 text-sm">
                                 <?= $lang === 'en' ? 'No Image' : 'ছবি নেই' ?>

@@ -75,15 +75,15 @@ $baseURL =  "https://fancybet.info/";
     <meta property="og:description" content="<?= htmlspecialchars($postDescription) ?>">
     <meta property="og:type" content="article">
     <meta property="og:url" content="<?= htmlspecialchars($postUrl) ?>">
-    <meta property="og:image" content="<?= $baseURL ?><?= htmlspecialchars($postImage) ?>">
+    <meta property="og:image" content="<?= $ImageURL ?><?= htmlspecialchars($postImage) ?>">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?= htmlspecialchars($postTitle) ?>">
     <meta name="twitter:description" content="<?= htmlspecialchars($postDescription) ?>">
-    <meta name="twitter:image" content="<?= $baseURL ?><?= htmlspecialchars($postImage) ?>">
+    <meta name="twitter:image" content="<?= $ImageURL ?><?= htmlspecialchars($postImage) ?>">
     <!-- Favicon -->
-    <link rel="icon" href="<?= $baseURL ?><?= htmlspecialchars($postImage) ?>" type="image/png">
+    <link rel="icon" href="<?= $ImageURL ?><?= htmlspecialchars($postImage) ?>" type="image/png">
 
     <link rel="stylesheet" href="/src/output.css">
     <link rel="stylesheet" href="/css/breadcrumb.css">

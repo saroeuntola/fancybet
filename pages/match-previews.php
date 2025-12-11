@@ -190,7 +190,7 @@ $pageName = "Match Previews";
                             <!-- Image -->
                             <div class="overflow-hidden h-[220px]">
                                 <?php if ($postImage): ?>
-                                    <img src="<?= $ImageURL ?><?= $postImage ?>"
+                                    <img src="<?=$ImageURL?><?= $postImage ?>"
                                         alt="<?= $postName ?>"
                                         class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110">
                                 <?php else: ?>

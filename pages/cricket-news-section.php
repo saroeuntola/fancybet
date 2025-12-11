@@ -76,7 +76,7 @@
                 <a href="/pages/detail?slug=<?= urlencode($post['slug']) ?>&lang=<?= $lang ?>">
                     <div class="overflow-hidden flex h-[120px]transition-transform duration-300 hover:scale-[1.02]">
                         <?php if (!empty($post['image'])): ?>
-                            <img src="/admin/page/post/<?= htmlspecialchars($post['image']) ?>"
+                            <img src="<?= $ImageURL ?><?= htmlspecialchars($post['image']) ?>"
                                 alt="<?= htmlspecialchars($post['name']) ?>"
                                 class="w-[160px] object-cover">
                         <?php else: ?>
