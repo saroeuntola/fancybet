@@ -1,5 +1,9 @@
 <?php
-include '../admin/page/library/post_lib.php';
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+    include '../admin/page/library/post_lib.php';
 include '../admin/page/library/comment_lib.php';
 include '../admin/page/library/db.php';
 include './services/bn-date.php';
@@ -237,7 +241,7 @@ $baseURL =  "https://fancybet.info/";
                                             <div class="overflow-hidden flex flex-col h-[340px]">
                                                 <?php if (!empty($rPost['image'])): ?>
                                                     <img
-                                                        src="/admin/page/post/<?= htmlspecialchars($rPost['image']) ?>"
+                                                        src="<?= $ImageURL ?><?= htmlspecialchars($rPost['image']) ?>"
                                                         class="w-full h-[180px]">
                                                 <?php endif; ?>
                                                 <div class="py-2">
