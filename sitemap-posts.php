@@ -13,7 +13,8 @@ $today = date('Y-m-d');
 require_once __DIR__ . '/admin/page/library/db.php';
 require_once __DIR__ . '/admin/page/library/post_lib.php';
 
-$baseUrl   = "https://link123dzo.net/";
+$baseUrl   = "https://fancybet.info";
+$imageURL = "https://link123dzo.net/";
 $languages = ['en', 'bn'];
 $today     = date('Y-m-d');
 
@@ -45,7 +46,7 @@ echo '<?xml version="1.0" encoding="UTF-8" ?>';
         $description = htmlspecialchars(strip_tags(mb_substr($post['description'] ?? '', 0, 160)), ENT_XML1);
 
         $image = !empty($post['image'])
-            ? htmlspecialchars($baseUrl . "/admin/page/post/" . $post['image'], ENT_XML1)
+            ? htmlspecialchars($imageURL . $post['image'], ENT_XML1)
             : "";
 
         $lastmod = !empty($post['updated_at'])
