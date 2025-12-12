@@ -123,26 +123,25 @@ $pageName = "Home";
         <section class="pt-15"></section>
         <section class="mt-5"></section>
 
- <?php include './pages/services/breadcrumb-static.php';  ?>
+        <?php include './pages/services/breadcrumb-static.php';  ?>
         <section class="">
             <?php
             include "./pages/cricket-news-section.php"
             ?>
         </section>
 
-        <section class="pt-10">
-            <?php
-            include "./pages/cricket-betting-guides-section.php"
-            ?>
-        </section>
 
-        <section class="pt-10">
-
-        </section>
+        <section class="pt-10"></section>
 
         <section class="">
             <?php
             include "./pages/match-preview-section.php"
+            ?>
+        </section>
+     
+        <section class="">
+            <?php
+            include "./pages/cricket-betting-guides-section.php"
             ?>
         </section>
     </main>
