@@ -136,7 +136,3 @@ Options -Indexes
     ModPagespeedEnableFilters convert_png_to_jpeg
     ModPagespeedEnableFilters convert_jpeg_to_webp
 </IfModule>
-
-<FilesMatch "\.(html|htm|php|xml)$">
-    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
-</FilesMatch>

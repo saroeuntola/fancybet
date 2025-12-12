@@ -3,3 +3,5 @@
 /admin/page/post/post_image/*
 
 .env
+
+.htaccess

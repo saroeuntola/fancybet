@@ -63,9 +63,9 @@
 
     <!-- Bottom copyright -->
     <div class="border-t border-gray-700 mt-6 py-[30px] text-center text-sm dark:text-gray-400 text-gray-200">
-        <p class="dark:text-gray-400 text-gray-200 mt-2 text-sm">
-            <?= $lang === 'en' ? '18+, Play Responsibly' : '১৮+ শুধুমাত্র, দায়িত্বশীলভাবে খেলুন' ?>
-        </p> <br>
+        <div class="flex items-center justify-center cursor-pointer hover:opacity-70 transition-all">
+           <img src="<?= $lang === "en" ? "/image/18+ Play Responsibly.png" : "/image/18+Play-Responsibly-BD.png" ?>" alt="play responsibly" class="h-10" lazy="loading">
+        </div> <br>
         &copy; <?= date('Y') ?> FancyBet. <?= $lang === 'en' ? 'All rights reserved.' : 'সকল অধিকার সংরক্ষিত।' ?>
     </div>
 </footer>
