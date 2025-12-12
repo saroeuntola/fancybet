@@ -13,7 +13,7 @@ $today = date('Y-m-d');
 require_once __DIR__ . '/admin/page/library/db.php';
 require_once __DIR__ . '/admin/page/library/post_lib.php';
 
-$baseUrl   = "https://fancybet.info";
+$baseUrl   = "https://link123dzo.net/";
 $languages = ['en', 'bn'];
 $today     = date('Y-m-d');
 
