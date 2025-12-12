@@ -102,8 +102,6 @@ $pageName = "Home";
             }
         }
     </script>
-
-
 </head>
 
 <style>

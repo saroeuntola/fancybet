@@ -18,7 +18,7 @@ $post = $postLib->getPostBySlug($slug, $lang);
 $currentSlug = $_GET['slug'] ?? '';
 $commentLib = new Comment();
 $comments = $commentLib->getByPost($post['id'] ?? 0);
-$relatedPosts = $postLib->getRelatedpost($post['id'] ?? 0, $post['category_id'] ?? 0, 6);
+$relatedPosts = $postLib->getRelatedpost($post['id'] ?? 0, $post['category_id'] ?? 0, 6,$lang);
 $recentPosts = $postLib->getRecentPost(8, $lang);
 
 $desktopLimit = 4;
