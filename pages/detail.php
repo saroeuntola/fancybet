@@ -275,11 +275,11 @@ $baseURL =  "https://fancybet.info/";
                                     } elseif ($categoryId == 3) {
                                         $seeMoreLink = '/pages/cricket-news';
                                     } elseif ($categoryId == 6) {
-                                        $seeMoreLink = '/pages/match-preview';
+                                        $seeMoreLink = '/pages/match-previews';
                                     }
                                     ?>
                                     <!-- See More Card -->
-                                    <a href="<?= htmlspecialchars($seeMoreLink) ?>" class="w-[260px] flex-shrink-0 snap-start cursor-pointer py-20">
+                                    <a href="<?= htmlspecialchars($seeMoreLink) ?>?lang=<?= $lang ?>" class="w-[260px] flex-shrink-0 snap-start cursor-pointer py-20">
                                         <div class="overflow-hidden flex flex-col items-center justify-center">
                                             <button class="bg-red-700 p-2 rounded-lg">See More</button>
                                         </div>
