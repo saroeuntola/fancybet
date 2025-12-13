@@ -4,7 +4,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
 ?>
 <!DOCTYPE html>
 <html lang="<?= $lang === 'en' ? 'en-BD' : 'bn-BD' ?>">
-    
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,6 +38,7 @@ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['l
     <!-- CSS -->
     <link rel="stylesheet" href="/src/output.css">
     <script src="/js/jquery-3.7.1.min.js"></script>
+    <?= include "./services/ahrefts.php" ?>
 </head>
 
 

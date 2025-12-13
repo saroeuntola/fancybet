@@ -118,21 +118,20 @@ $pageName = "Match Previews";
     <link rel="stylesheet" href="/src/output.css">
     <link rel="stylesheet" href="/css/pagination.css">
     <link rel="stylesheet" href="/css/breadcrumb.css">
-
+    <?= include "./services/ahrefts.php" ?>
 </head>
-
 
 <body class="dark:bg-black bg-[#f5f5f5] dark:text-white text-gray-800">
     <?php include "navbar.php"; ?>
 
     <main class="px-4 max-w-7xl m-auto">
 
-    <div class="mt-[80px]">
-         <?php include './services/breadcrumb-static.php' ?>
-    </div>
+        <div class="mt-[80px]">
+            <?php include './services/breadcrumb-static.php' ?>
+        </div>
         <div class=" bg-white dark:bg-[#252525] 
             shadow-[0_0_5px_0_rgba(0,0,0,0.2)] p-4">
-           
+
             <div class="flex justify-between items-center mb-4">
                 <h1 class="text-xl font-bold">
                     <?= $lang === 'en' ? 'All Match Previews' : 'সমস্ত ক্রিকেট সংবাদ' ?>
@@ -190,7 +189,7 @@ $pageName = "Match Previews";
                             <!-- Image -->
                             <div class="overflow-hidden h-[220px]">
                                 <?php if ($postImage): ?>
-                                    <img src="<?=$ImageURL?><?= $postImage ?>"
+                                    <img src="<?= $ImageURL ?><?= $postImage ?>"
                                         alt="<?= $postName ?>"
                                         class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110">
                                 <?php else: ?>

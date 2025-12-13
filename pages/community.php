@@ -66,6 +66,7 @@ $text = $content[$lang];
     <link href="/src/output.css" rel="stylesheet">
     <link rel="stylesheet" href="./dist/css/all.min.css" />
     <script src="./js/jquery-3.6.0.min.js"></script>
+    <?= include "./services/ahrefts.php" ?>
 </head>
 
 <body class="dark:bg-black bg-[#f5f5f5] dark:text-white font-inter">

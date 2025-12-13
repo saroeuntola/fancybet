@@ -95,6 +95,8 @@ $pageName = "About Us";
     <link rel="stylesheet" href="../src/output.css">
     <script src="/js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="/css/breadcrumb.css">
+
+    <?= include "./services/ahrefts.php" ?>
 </head>
 
 <body class="dark:bg-black bg-[#f5f5f5] text-white">
@@ -104,58 +106,58 @@ $pageName = "About Us";
         <?php include './services/breadcrumb-static.php';  ?>
     </div>
 
-<div class="px-4">
-     <main class="max-w-4xl mx-auto px-6 leading-relaxed dark:text-gray-200 text-gray-800 py-4 dark:bg-[#252525] bg-white rounded-md">
-        <header class="text-center">
-            <h1 class="lg:text-3xl text-2xl font-bold mb-6">
-                <?= $lang === 'bn' ? 'বাংলাদেশে ক্রিকেট সম্পর্কে' : 'About Fancybet' ?>
-            </h1>
-        </header>
-        <?php if ($lang === 'bn'): ?>
-            <p class="mb-6">
-                ক্রিকেট বাংলাদেশের সবচেয়ে জনপ্রিয় খেলা এবং এটি দেশের প্রতিটি মানুষের হৃদয়ে বিশেষ জায়গা করে নিয়েছে।
-                ঢাকা থেকে শুরু করে প্রত্যন্ত গ্রামের মাঠে, ক্রিকেটই মানুষের একত্রিত হবার অন্যতম কারণ।
-                ১৯৭৭ সালে আন্তর্জাতিক ক্রিকেটে বাংলাদেশের যাত্রা শুরু হয়, এবং ২০০০ সালে টেস্ট মর্যাদা লাভের মাধ্যমে
-                ক্রিকেট বাংলাদেশের জাতীয় পরিচয়ের অংশে পরিণত হয়।
-            </p>
+    <div class="px-4">
+        <main class="max-w-4xl mx-auto px-6 leading-relaxed dark:text-gray-200 text-gray-800 py-4 dark:bg-[#252525] bg-white rounded-md">
+            <header class="text-center">
+                <h1 class="lg:text-3xl text-2xl font-bold mb-6">
+                    <?= $lang === 'bn' ? 'বাংলাদেশে ক্রিকেট সম্পর্কে' : 'About Fancybet' ?>
+                </h1>
+            </header>
+            <?php if ($lang === 'bn'): ?>
+                <p class="mb-6">
+                    ক্রিকেট বাংলাদেশের সবচেয়ে জনপ্রিয় খেলা এবং এটি দেশের প্রতিটি মানুষের হৃদয়ে বিশেষ জায়গা করে নিয়েছে।
+                    ঢাকা থেকে শুরু করে প্রত্যন্ত গ্রামের মাঠে, ক্রিকেটই মানুষের একত্রিত হবার অন্যতম কারণ।
+                    ১৯৭৭ সালে আন্তর্জাতিক ক্রিকেটে বাংলাদেশের যাত্রা শুরু হয়, এবং ২০০০ সালে টেস্ট মর্যাদা লাভের মাধ্যমে
+                    ক্রিকেট বাংলাদেশের জাতীয় পরিচয়ের অংশে পরিণত হয়।
+                </p>
 
-            <p class="mb-6">
-                আজকের দিনে ক্রিকেট শুধু খেলা নয়, এটি একটি শিল্প, একটি অনুপ্রেরণা।
-                ফ্যান্সি বেট ক্রিকেট বাংলাদেশের ক্রিকেট ভক্তদের জন্য একটি নির্ভরযোগ্য প্ল্যাটফর্ম,
-                যেখানে আপনি পাবেন প্রতিটি ম্যাচের আপডেট, দলীয় বিশ্লেষণ, খেলোয়াড়দের পারফরম্যান্স রিপোর্ট এবং
-                ক্রিকেট বিশ্বের সর্বশেষ খবর।
-            </p>
+                <p class="mb-6">
+                    আজকের দিনে ক্রিকেট শুধু খেলা নয়, এটি একটি শিল্প, একটি অনুপ্রেরণা।
+                    ফ্যান্সি বেট ক্রিকেট বাংলাদেশের ক্রিকেট ভক্তদের জন্য একটি নির্ভরযোগ্য প্ল্যাটফর্ম,
+                    যেখানে আপনি পাবেন প্রতিটি ম্যাচের আপডেট, দলীয় বিশ্লেষণ, খেলোয়াড়দের পারফরম্যান্স রিপোর্ট এবং
+                    ক্রিকেট বিশ্বের সর্বশেষ খবর।
+                </p>
 
-            <p>
-                আমাদের লক্ষ্য হল ক্রিকেটপ্রেমীদের জন্য একটি স্মার্ট, নিরাপদ এবং তথ্যসমৃদ্ধ জায়গা তৈরি করা।
-                আপনি হোন টেস্ট ম্যাচ প্রেমিক, টি-টোয়েন্টি অনুরাগী বা আইপিএল ভক্ত — ফ্যান্সি বেট ক্রিকেটে রয়েছে
-                আপনার জন্য সবকিছু। ক্রিকেট শুধু খেলা নয়, এটি বাংলাদেশের আত্মার অংশ।
-            </p>
+                <p>
+                    আমাদের লক্ষ্য হল ক্রিকেটপ্রেমীদের জন্য একটি স্মার্ট, নিরাপদ এবং তথ্যসমৃদ্ধ জায়গা তৈরি করা।
+                    আপনি হোন টেস্ট ম্যাচ প্রেমিক, টি-টোয়েন্টি অনুরাগী বা আইপিএল ভক্ত — ফ্যান্সি বেট ক্রিকেটে রয়েছে
+                    আপনার জন্য সবকিছু। ক্রিকেট শুধু খেলা নয়, এটি বাংলাদেশের আত্মার অংশ।
+                </p>
 
-        <?php else: ?>
-            <p class="mb-6">
-                Cricket is the heartbeat of Bangladesh — a game that transcends sport to become a national passion.
-                From the bustling streets of Dhaka to the quiet fields of rural villages, cricket unites people of all ages
-                and backgrounds. Bangladesh’s cricket journey began in 1977 and reached a historic milestone in 2000
-                when the country earned Test status, marking its place on the global cricket stage.
-            </p>
+            <?php else: ?>
+                <p class="mb-6">
+                    Cricket is the heartbeat of Bangladesh — a game that transcends sport to become a national passion.
+                    From the bustling streets of Dhaka to the quiet fields of rural villages, cricket unites people of all ages
+                    and backgrounds. Bangladesh’s cricket journey began in 1977 and reached a historic milestone in 2000
+                    when the country earned Test status, marking its place on the global cricket stage.
+                </p>
 
-            <p class="mb-6">
-                Today, cricket in Bangladesh is more than just competition; it’s a way of life.
-                FancyBet Cricket is dedicated to providing fans with up-to-date match coverage,
-                in-depth analysis, player insights, and the latest cricket news from Bangladesh and beyond.
-            </p>
+                <p class="mb-6">
+                    Today, cricket in Bangladesh is more than just competition; it’s a way of life.
+                    FancyBet Cricket is dedicated to providing fans with up-to-date match coverage,
+                    in-depth analysis, player insights, and the latest cricket news from Bangladesh and beyond.
+                </p>
 
-            <p>
-                Our mission is to create a smart, safe, and informative space for cricket enthusiasts.
-                Whether you follow Test cricket, T20 tournaments, or the Bangladesh Premier League —
-                FancyBet Cricket brings everything you need to stay connected with the game you love.
-                Cricket isn’t just played in Bangladesh; it lives in our hearts.
-            </p>
-        <?php endif; ?>
-    </main>
-</div>
-   
+                <p>
+                    Our mission is to create a smart, safe, and informative space for cricket enthusiasts.
+                    Whether you follow Test cricket, T20 tournaments, or the Bangladesh Premier League —
+                    FancyBet Cricket brings everything you need to stay connected with the game you love.
+                    Cricket isn’t just played in Bangladesh; it lives in our hearts.
+                </p>
+            <?php endif; ?>
+        </main>
+    </div>
+
 
     <?php include "footer.php"; ?>
 </body>
