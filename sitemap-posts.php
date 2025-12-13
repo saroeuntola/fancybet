@@ -7,7 +7,7 @@ header("Content-Type: application/xml; charset=utf-8");
 header("Cache-Control: no-cache, no-store, must-revalidate");
 header("Pragma: no-cache");
 header("Expires: 0");
-ob_start ();
+ob_start();
 $baseUrl = "https://fancybet.info";
 $today = date('Y-m-d');
 require_once __DIR__ . '/admin/page/library/db.php';
@@ -59,18 +59,21 @@ echo '<?xml version="1.0" encoding="UTF-8" ?>';
         ?>
 
         <?php foreach ($languages as $lang): ?>
-            <?php $loc = $baseUrl . "/pages/detail?slug={$slug}&lang={$lang}"; ?>
+            <?php
+            $loc = $baseUrl . "/pages/detail?slug={$slug}&lang={$lang}";
+            $priority = ($lang === 'en') ? '0.8' : '1.0';
+            ?>
 
             <url>
                 <loc><?= htmlspecialchars($loc, ENT_XML1) ?></loc>
                 <lastmod><?= $lastmod ?></lastmod>
                 <changefreq>daily</changefreq>
-                <priority>1.0</priority>
+                <priority><?= $priority ?></priority>
 
                 <?php if ($image): ?>
                     <image:image>
-                        <image:loc><?= $image ?></image:loc>
-                        <image:title><?= $title ?></image:title>
+                        <image:loc><?= htmlspecialchars($image, ENT_XML1) ?></image:loc>
+                        <image:title><?= htmlspecialchars($title, ENT_XML1) ?></image:title>
                     </image:image>
                 <?php endif; ?>
 
@@ -80,11 +83,11 @@ echo '<?xml version="1.0" encoding="UTF-8" ?>';
                         <news:language><?= $lang ?></news:language>
                     </news:publication>
                     <news:publication_date><?= $pubDate ?></news:publication_date>
-                    <news:title><?= $title ?></news:title>
+                    <news:title><?= htmlspecialchars($title, ENT_XML1) ?></news:title>
                 </news:news>
             </url>
-
         <?php endforeach; ?>
+
     <?php endforeach; ?>
 
 </urlset>
