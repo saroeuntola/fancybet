@@ -1,9 +1,9 @@
 <?php
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-    include '../admin/page/library/post_lib.php';
+include '../admin/page/library/post_lib.php';
 include '../admin/page/library/comment_lib.php';
 include '../admin/page/library/db.php';
 include './services/bn-date.php';
@@ -18,7 +18,7 @@ $post = $postLib->getPostBySlug($slug, $lang);
 $currentSlug = $_GET['slug'] ?? '';
 $commentLib = new Comment();
 $comments = $commentLib->getByPost($post['id'] ?? 0);
-$relatedPosts = $postLib->getRelatedpost($post['id'] ?? 0, $post['category_id'] ?? 0, 6,$lang);
+$relatedPosts = $postLib->getRelatedpost($post['id'] ?? 0, $post['category_id'] ?? 0, 6, $lang);
 $recentPosts = $postLib->getRecentPost(8, $lang);
 
 $desktopLimit = 4;
@@ -27,16 +27,16 @@ $totalDesktopPages = ceil(count($relatedPosts) / $desktopLimit);
 $desktopStart = ($desktopPage - 1) * $desktopLimit;
 $desktopPosts = array_slice($relatedPosts, $desktopStart, $desktopLimit);
 
-$baseURL = $ImageURL;
+
 $postTitle =  ($post['name'] ?? '');
 $postDescription =  ($post['meta_desc'] ?? '');
 $postKeywords = ($post['meta_keyword'] ?? '');
 $postImage = $post['image'] ?? '/image/favicon-96x96.png';
 $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lang=" . $lang;
- 
 
 
-    $descriptionWithFullUrl = preg_replace_callback(
+
+$descriptionWithFullUrl = preg_replace_callback(
     '/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i',
     function ($matches) use ($ImageURL) {
         $src = $matches[1];
@@ -95,7 +95,7 @@ $baseURL =  "https://fancybet.info/";
     <!-- Preload Critical CSS -->
     <link rel="preload" href="/css/detail.css" as="style" onload="this.rel='stylesheet'">
     <link rel="preload" href="/css/style.css" as="style" onload="this.rel='stylesheet'">
-    
+
 
 
     <!-- Schema.org Article  -->
@@ -116,9 +116,9 @@ $baseURL =  "https://fancybet.info/";
     include "navbar.php"
     ?>
     <main class="container max-w-7xl mx-auto px-4 mt-[80px]">
-      <?php 
+        <?php
         include './services/breadcrumb-menu.php';
-      ?>
+        ?>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
 
@@ -318,16 +318,19 @@ $baseURL =  "https://fancybet.info/";
                                         $title = mb_substr($title, 0, 57, 'UTF-8') . '...';
                                     }
                                     ?>
-                                    <a href="/pages/detail?slug=<?= urlencode($r['slug']) ?>&lang=<?= $lang ?>"
-                                        class="block w-full font-medium hover:text-red-500 text-sm">
-                                        <?= $title ?>
-                                    </a>
-
-                                    <div class="flex items-center gap-2 mt-2">
-                                        <i class="fa-solid fa-earth-americas text-gray-400"></i>
-                                        <p class="text-xs text-gray-400 mt-1"><?= formatDateByLang($r['created_at'] ?? '', $lang) ?></p>
+                                    <div class="flex flex-row gap-3">
+                                        <img src="<?= $ImageURL ?><?= $r['image'] ?>" alt="" class="w-30">
+                                        <div>
+                                            <a href="/pages/detail?slug=<?= urlencode($r['slug']) ?>&lang=<?= $lang ?>"
+                                                class="block w-full font-medium hover:text-red-500 text-sm">
+                                                <?= $title ?>
+                                            </a>
+                                            <div class="flex items-center gap-2 mt-2">
+                                                <i class="fa-solid fa-earth-americas text-gray-400"></i>
+                                                <p class="text-xs text-gray-400 mt-1"><?= formatDateByLang($r['created_at'] ?? '', $lang) ?></p>
+                                            </div>
+                                        </div>
                                     </div>
-
                                 </div>
                             </li>
                         <?php endforeach; ?>
