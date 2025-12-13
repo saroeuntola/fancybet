@@ -212,6 +212,7 @@ $baseURL =  "https://fancybet.info/";
                     </div>
                 </div>
 
+                <!-- ralated contents -->
                 <div class="bg-white dark:bg-[#252525] p-4 shadow-[0_0_5px_0_rgba(0,0,0,0.2)]">
                     <!-- Related Posts -->
                     <?php if (!empty($relatedPosts)): ?>
@@ -219,20 +220,16 @@ $baseURL =  "https://fancybet.info/";
                             <h2 class="text-xl font-bold mb-3"><?= $lang === 'en' ? 'Related Contents' : 'সম্পর্কিত বিষয়বস্তু' ?></h2>
 
                             <div class="relative w-full overflow-hidden">
-                                <!-- Left Arrow -->
                                 <button
                                     id="relatedPrev"
                                     class="absolute left-2 top-24 -translate-y-1/2 bg-gray-800/70 hover:opacity-90 text-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center z-10">
                                     &#10094;
                                 </button>
-
-                                <!-- Right Arrow -->
                                 <button
                                     id="relatedNext"
                                     class="absolute right-2 top-24 -translate-y-1/2 bg-gray-800/70 hover:opacity-90 text-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center z-10">
                                     &#10095;
                                 </button>
-
                                 <div
                                     id="relatedGrid"
                                     class="post-grid grid grid-flow-col gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory touch-pan-x cursor-grab select-none px-4 scrollbar-hide">
@@ -246,14 +243,11 @@ $baseURL =  "https://fancybet.info/";
                                                 <?php endif; ?>
                                                 <div class="py-2">
                                                     <div>
-                                                        <h3 class="dark:text-white text-gray-900 font-semibold text-md mb-2"><?= htmlspecialchars($rPost['name']) ?></h3>
+                                                        <h3 class="dark:text-white text-gray-900 font-semibold text-md mb-2"> <?= htmlspecialchars(mb_strimwidth($rPost['name'], 0, 50, '...')) ?></h3>
                                                         <p class="dark:text-gray-300 text-gray-900 mb-1 break-words whitespace-normal text-sm">
                                                             <?php
-                                                            // Remove HTML tags
                                                             $plainText = strip_tags($rPost['description'] ?? '');
-                                                            // Decode HTML entities
                                                             $plainText = html_entity_decode($plainText, ENT_QUOTES | ENT_HTML5);
-                                                            // Truncate multibyte string to 80 characters
                                                             if (mb_strlen($plainText, 'UTF-8') > 50) {
                                                                 $plainText = mb_substr($plainText, 0, 75, 'UTF-8') . '...';
                                                             }
