@@ -95,7 +95,7 @@ $baseURL =  "https://fancybet.info/";
     <!-- Preload Critical CSS -->
     <link rel="preload" href="/css/detail.css" as="style" onload="this.rel='stylesheet'">
     <link rel="preload" href="/css/style.css" as="style" onload="this.rel='stylesheet'">
-    <?= include "./services/ahrefts.php" ?>
+    <?php include "./services/ahrefts.php" ?>
 
     <!-- Schema.org Article  -->
     <?php outputFullSchema($breadcrumbs, $post, $baseURL, $ImageURL); ?>

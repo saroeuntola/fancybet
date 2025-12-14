@@ -122,7 +122,7 @@ $pageName = "Cricket Betting Guides";
     <link rel="stylesheet" href="/src/output.css">
     <link rel="stylesheet" href="/css/pagination.css">
     <link rel="stylesheet" href="/css/breadcrumb.css">
-    <?= include "./services/ahrefts.php" ?>
+    <?php include "./services/ahrefts.php" ?>
 </head>
 
 <body class="dark:bg-black bg-[#f5f5f5] dark:text-white text-gray-800">

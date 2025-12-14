@@ -7,7 +7,7 @@ $auth = new Auth();
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_all'])) {
     $stmt = $auth->db->prepare("TRUNCATE TABLE login_logs"); // deletes all rows
     $stmt->execute();
-    header("Location: " . $_SERVER['PHP_SELF']); // reload page
+    header("Location: " . $_SERVER['PHP_SELF']); // reload page 
     exit;
 }
 

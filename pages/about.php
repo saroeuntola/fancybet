@@ -96,7 +96,7 @@ $pageName = "About Us";
     <script src="/js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="/css/breadcrumb.css">
 
-    <?= include "./services/ahrefts.php" ?>
+    <?php include "./services/ahrefts.php" ?>
 </head>
 
 <body class="dark:bg-black bg-[#f5f5f5] text-white">

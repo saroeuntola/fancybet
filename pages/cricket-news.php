@@ -94,7 +94,7 @@ $breadcrumbs = generateBreadcrumb($lang, $menu);
     <link rel="stylesheet" href="/css/pagination.css">
     <link rel="stylesheet" href="/css/breadcrumb.css">
     <script src="./js/jquery-3.7.1.min.js"></script>
-    <?= include "./services/ahrefts.php" ?>
+    <?php include "./services/ahrefts.php" ?>
     <!-- JSON-LD: NewsArticle + BreadcrumbList -->
     <?php outputFullSchemaPage($breadcrumbs, ['name' => $title, 'description' => html_entity_decode(strip_tags($description))], 'https://fancybet.info'); ?>
 </head>
