@@ -11,22 +11,24 @@ $posts = $postLib->getPostByCategory(3, $lang);
 $limitedPosts = array_slice($posts, 0, 8);
 $relatedPosts = $postLib->getRelatedpost($post['id'] ?? 0, $post['category_id'] ?? 0, 6);
 
-// SEO data
-$seo = [
-    'en' => [
-        'title' => 'FancyBet  - Cricket News & Betting Guide Bangladesh',
-        'description' => 'FancyBet Cricket News, FancyBet Bangladesh - Your premium guide for cricket news, live cricket betting, and FancyBetting tips. Stay updated with match predictions, IPL, BPL, PSL, and ICC tournaments.',
-        'keywords' => 'FancyBet, cricket news Bangladesh, cricket betting tips, FancyBetting guide, live cricket betting, IPL, BPL, PSL, ICC, sports betting Bangladesh, FancyBet Guide',
-        'canonical' => 'https://fancybet.info/?lang=en'
-    ],
+    // SEO data
+    $seo = [
+        'en' => [
+            'title' => 'FancyBet - Cricket News & Betting Guide Bangladesh',
+            'description' => 'FancyBet Cricket News, Betting Guide Bangladesh, Your premium guide for cricket news, live cricket betting, and FancyBetting tips.',
+            'keywords' => 'FancyBet, cricket news Bangladesh, cricket betting tips, FancyBetting guide',
+            'canonical' => 'https://fancybet.info/?lang=en'
+        ],
     'bn' => [
-        'title' => 'FancyBet - ক্রিকেট নিউজ ও বেটিং গাইড বাংলাদেশ',
-        'description' => 'FancyBet বাংলাদেশ - ক্রিকেট নিউজ, লাইভ ক্রিকেট বেটিং এবং Fancy Betting টিপসের প্রিমিয়াম গাইড। IPL, BPL, PSL, ICC টুর্নামেন্ট আপডেট পান।',
-        'keywords' => 'FancyBet, ক্রিকেট নিউজ বাংলাদেশ, ক্রিকেট বেটিং টিপস, Fancy Betting গাইড, লাইভ ক্রিকেট বেটিং, IPL, BPL, PSL, ICC, স্পোর্টস বেটিং বাংলাদেশ, FancyBet গাইড',
-        'canonical' => 'https://fancybet.info'
+        'title' => 'FancyBet বাংলাদেশ – ক্রিকেট সংবাদ ও বেটিং গাইড',
+        'description' => 'FancyBet বাংলাদেশে ক্রিকেট সংবাদ, লাইভ বেটিং গাইড ও প্রেডিকশন। IPL, BPL, PSL ও ICC টুর্নামেন্টের আপডেট পান।',
+        'keywords' => 'FancyBet বাংলাদেশ, ক্রিকেট সংবাদ, ক্রিকেট বেটিং গাইড, লাইভ বেটিং বাংলাদেশ, IPL BPL PSL, ক্রিকেট প্রেডিকশন',
+        'canonical' => 'https://fancybet.info/?lang=bn'
     ]
+
 ];
-$currentSeo = $seo[$lang];
+
+    $currentSeo = $seo[$lang];
 
 $pageName = "Home";
 ?>
@@ -49,7 +51,7 @@ $pageName = "Home";
 
     <!-- Language Alternates -->
     <link rel="alternate" hreflang="en" href="https://fancybet.info/?lang=en">
-    <link rel="alternate" hreflang="bn" href="https://fancybet.info/?lang=bn">
+    <link rel="alternate" hreflang="bn-BD" href="https://fancybet.info/?lang=bn">
     <link rel="alternate" hreflang="x-default" href="https://fancybet.info/?lang=bn">
 
     <!-- Open Graph / Twitter Card -->
