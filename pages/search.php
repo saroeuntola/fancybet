@@ -1,7 +1,8 @@
 <?php
 require_once '../admin/page/library/db.php';
 require_once '../admin/page/library/post_lib.php';
-require_once './services/bn-date.php'; // for Bangla date formatting
+require_once './services/bn-date.php';
+require_once '../baseURL.php';
 
 $postObj = new Post();
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
@@ -55,7 +56,7 @@ $posts = $query ? $postObj->searchpost($query, $lang) : [];
                             <div class="dark:bg-[#252525] bg-white shadow rounded-lg overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300">
                                 <!-- Image -->
                                 <?php if ($postImage): ?>
-                                    <img src="/admin/page/post/<?= $postImage ?>" alt="<?= $postName ?>"
+                                    <img src="<?= $ImageURL ?><?= $postImage ?>" alt="<?= $postName ?>"
                                         class="w-full lg:h-[200px] h-[230px] object-cover">
                                 <?php else: ?>
                                     <div class="w-full lg:h-[200px] h-[230px] bg-gray-600 flex items-center justify-center dark:text-gray-300 text-sm">
@@ -67,7 +68,7 @@ $posts = $query ? $postObj->searchpost($query, $lang) : [];
                                 <div class="p-3 flex-1 flex flex-col justify-between">
                                     <!-- Title & Description -->
                                     <div>
-                                        <h2 class="lg:text-lg text-md font-semibold mb-2 text-white break-words">
+                                        <h2 class="lg:text-lg text-md font-semibold mb-2 text-white break-words hover:text-red-600 transition-all duration-300">
                                             <?= $postName ?>
                                         </h2>
                                         <p class="dark:text-gray-300 mb-3 text-sm break-words lg:text-md">

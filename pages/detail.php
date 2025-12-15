@@ -33,6 +33,8 @@ $postDescription =  ($post['meta_desc'] ?? '');
 $postKeywords = ($post['meta_keyword'] ?? '');
 $postImage = $post['image'] ?? '/image/favicon-96x96.png';
 $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lang=" . $lang;
+$hrefLangEN = " https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lang=en";
+$hrefLangBN = " https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lang=bn";
 
 
 
@@ -73,7 +75,8 @@ $baseURL =  "https://fancybet.info/";
 
     <!-- Canonical -->
     <link rel="canonical" href="<?= htmlspecialchars($postUrl) ?>">
-
+    <link rel="alternate" hreflang="en-BD" href="<?= htmlspecialchars($hrefLangEN) ?>">
+    <link rel="alternate" hreflang="bn-BD" href="<?= htmlspecialchars($hrefLangBN) ?>">
     <!-- Open Graph / Social -->
     <meta property="og:title" content="<?= htmlspecialchars($postTitle) ?>">
     <meta property="og:description" content="<?= htmlspecialchars($postDescription) ?>">
@@ -242,7 +245,7 @@ $baseURL =  "https://fancybet.info/";
                                                 <?php endif; ?>
                                                 <div class="py-2">
                                                     <div>
-                                                        <h3 class="dark:text-white text-gray-900 font-semibold text-md mb-2"> <?= htmlspecialchars(mb_strimwidth($rPost['name'], 0, 50, '...')) ?></h3>
+                                                        <h3 class="dark:text-white text-gray-900 font-semibold text-md mb-2 hover:text-red-600 transition-all duration-300"> <?= htmlspecialchars(mb_strimwidth($rPost['name'], 0, 50, '...')) ?></h3>
                                                         <p class="dark:text-gray-300 text-gray-900 mb-1 break-words whitespace-normal text-sm">
                                                             <?php
                                                             $plainText = strip_tags($rPost['description'] ?? '');
@@ -315,7 +318,7 @@ $baseURL =  "https://fancybet.info/";
                                         <img src="<?= $ImageURL ?><?= $r['image'] ?>" alt="" class="w-30">
                                         <div>
                                             <a href="/pages/detail?slug=<?= urlencode($r['slug']) ?>&lang=<?= $lang ?>"
-                                                class="block w-full font-medium hover:text-red-500 text-sm">
+                                                class="block w-full font-medium hover:text-red-600 text-sm transition-all duration-300">
                                                 <?= $title ?>
                                             </a>
                                             <div class="flex items-center gap-2 mt-2">
@@ -333,13 +336,13 @@ $baseURL =  "https://fancybet.info/";
                         <?= $lang === 'en' ? "Category" : "বিভাগ"  ?>
                     </h1>
                     <ul class="flex flex-col gap-2">
-                        <a href="/pages/cricket-news?lang=<?= $lang ?>" class="hover:text-red-500">
+                        <a href="/pages/cricket-news?lang=<?= $lang ?>" class="hover:text-red-600 trasition-all duration-300">
                             <?= $lang === 'en' ? 'Cricket News' : 'ক্রিকেট সংবাদ' ?>
                         </a>
-                        <a href="/pages/cricket-betting-guides?lang= <?= $lang ?>" class="hover:text-red-500">
+                        <a href="/pages/cricket-betting-guides?lang= <?= $lang ?>" class="hover:text-red-600 trasition-all duration-300">
                             <?= $lang === 'en' ? 'Cricket Betting Guides' : 'ক্রিকেট বেটিং গাইড' ?>
                         </a>
-                        <a href="/pages/match-previews?lang= <?= $lang ?>" class="hover:text-red-500">
+                        <a href="/pages/match-previews?lang= <?= $lang ?>" class="hover:text-red-600 trasition-all duration-300">
                             <?= $lang === 'en' ? 'Match Previews' : 'ম্যাচ প্রিভিউ' ?>
                         </a>
 

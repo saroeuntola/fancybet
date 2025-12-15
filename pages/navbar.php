@@ -20,20 +20,21 @@ function buildLangUrl($langTarget, $currentPage, $currentId)
 }
 
 // Menu items
-$menu = [
+$menuMb = [
     '/' => $lang === 'en' ? 'Home' : 'হোম',
-    '/blog' => [
-        'title' => $lang === 'en' ? 'Crickets' : 'ক্রিকেট',
-        'submenu' => [
-            '/pages/cricket-news' => $lang === 'en' ? 'Cricket News' : 'ক্রিকেট নিউজ',
-            '/pages/cricket-betting-guides' => $lang === 'en' ? 'Betting Guides' : 'বেটিং গাইড',
-            '/pages/match-previews' => $lang === 'en' ? 'Match Previews' : 'ম্যাচ প্রিভিউ',
-
-        ]
-    ],
+    '/pages/cricket-news' => $lang === 'en' ? 'Cricket News' : 'ক্রিকেট নিউজ',
+    '/pages/cricket-betting-guides' => $lang === 'en' ? 'Betting Guides' : 'বেটিং গাইড',
+    '/pages/match-previews' => $lang === 'en' ? 'Match Previews' : 'ম্যাচ প্রিভিউ',
     '/pages/about' => $lang === 'en' ? 'About' : 'আমাদের সম্পর্কে',
     '/pages/contact' => $lang === 'en' ? 'Contact' : 'যোগাযোগ',
     '/pages/community' => $lang === 'en' ? 'Community' : 'সম্প্রদায়',
+];
+
+$menu = [
+    '/' => $lang === 'en' ? 'Home' : 'হোম',
+    '/pages/cricket-news' => $lang === 'en' ? 'Cricket News' : 'ক্রিকেট নিউজ',
+    '/pages/cricket-betting-guides' => $lang === 'en' ? 'Betting Guides' : 'বেটিং গাইড',
+    '/pages/match-previews' => $lang === 'en' ? 'Match Previews' : 'ম্যাচ প্রিভিউ',
 
 ];
 
@@ -71,6 +72,13 @@ function getMenuIcon($title)
     return $map[$title] ?? 'fa-link';
 }
 
+$currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$currentPath = basename($currentPath);
+function isActive($file)
+{
+    $currentPath = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+    return $currentPath === basename($file);
+}
 ?>
 <style>
     .navlink {
@@ -107,30 +115,49 @@ function getMenuIcon($title)
         <!-- Center: Desktop Menu -->
         <ul class="hidden lg:flex space-x-8 text-sm">
             <?php foreach ($menu as $file => $item): ?>
+
                 <?php if (is_array($item)): ?>
                     <li class="relative dropdown">
-                        <span class="cursor-pointer transition dropdown-toggle link-hover">
+                        <span class="cursor-pointer dropdown-toggle link-hover flex items-center gap-2">
+                            <i class="fa-solid <?= getMenuIcon($item['title']) ?>"></i>
                             <?= htmlspecialchars($item['title']) ?>
                         </span>
-                        <ul class="submenu absolute left-0 mt-4 navlink bg-gray-800 rounded-md shadow-lg hidden z-50">
+
+                        <ul class="submenu absolute left-0 mt-4 bg-gray-800 rounded-md shadow-lg hidden z-50">
                             <?php foreach ($item['submenu'] as $subFile => $subLabel): ?>
+                                <?php $active = isActive($subFile); ?>
                                 <li>
-                                    <a href="<?= $subFile ?>?lang=<?= $lang ?>" class="block px-4 py-2 text-gray-200 hover:bg-red-700">
+                                    <a href="<?= $subFile ?>?lang=<?= $lang ?>"
+                                        class="flex items-center gap-2 px-4 py-2
+       <?= $active
+                                    ? 'text-white bg-red-600/60 font-semibold'
+                                    : 'text-gray-200 hover:bg-red-700' ?>">
+                                        <i class="fa-solid <?= getMenuIcon($subLabel) ?>"></i>
                                         <?= htmlspecialchars($subLabel) ?>
                                     </a>
                                 </li>
+
                             <?php endforeach; ?>
                         </ul>
                     </li>
+
                 <?php else: ?>
+                    <?php $active = isActive($file); ?>
                     <li>
-                        <a href="<?= $file ?>?lang=<?= $lang ?>" class="link-hover <?= $currentPage === basename($file) ? 'font-bold text-white underline' : '' ?>">
+                        <a href="<?= $file ?>?lang=<?= $lang ?>"
+                            class="flex items-center gap-2 py-2 px-3 rounded-md
+               <?= $active
+                        ? 'text-gray-200 bg-gray-950 dark:bg-red-800 font-semibold'
+                        : 'text-gray-200 hover:bg-gray-950 dark:hover:bg-red-800 transition-all duration-300' ?>">
+                            <i class="fa-solid <?= getMenuIcon($item) ?>"></i>
                             <?= htmlspecialchars($item) ?>
                         </a>
                     </li>
                 <?php endif; ?>
+
             <?php endforeach; ?>
         </ul>
+
 
         <div class="relative">
             <!-- Desktop Search Box -->
@@ -214,46 +241,29 @@ function getMenuIcon($title)
         </button>
     </div>
     <ul class="flex flex-col py-4 space-y-2 text-gray-200">
-        <?php foreach ($menu as $file => $item): ?>
+        <?php foreach ($menuMb as $file => $item): ?>
+
             <?php if (is_array($item)): ?>
                 <li class="mobile-dropdown">
-                    <!-- Parent menu -->
-                    <div class="flex items-center justify-between px-4 py-2 cursor-pointer hover:bg-slate-700 mobile-dropdown-toggle link-hover">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-solid <?= getMenuIcon($item['title']) ?> text-sm"></i>
-                            <span class="font-semibold"><?= htmlspecialchars($item['title']) ?></span>
-                        </div>
-                        <i class="fa-solid fa-chevron-down text-xs"></i>
-                    </div>
-
-                    <!-- Submenu -->
-                    <ul class="hidden pl-6 mt-1 space-y-1 mobile-submenu">
-                        <?php foreach ($item['submenu'] as $subFile => $subLabel): ?>
-                            <li>
-                                <a href="<?= $subFile ?>?lang=<?= $lang ?>"
-                                    class="flex items-center gap-2 px-4 py-2 hover:bg-slate-700">
-                                    <i class="fa-solid <?= getMenuIcon($subLabel) ?> text-xs"></i>
-                                    <?= htmlspecialchars($subLabel) ?>
-                                </a>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
                 </li>
+
             <?php else: ?>
+                <?php $active = isActive($file); ?>
                 <li>
                     <a href="<?= $file ?>?lang=<?= $lang ?>"
-                        class="flex items-center gap-2 px-4 py-2 hover:bg-slate-700 link-hover">
-                        <i class="fa-solid <?= getMenuIcon($item) ?> text-sm"></i>
+                        class="flex items-center gap-2 py-2 px-3
+               <?= $active
+                    ? 'text-gray-200 bg-gray-950 dark:bg-red-800 font-semibold'
+                    : 'text-gray-200 hover:bg-gray-950 dark:hover:bg-red-800 transition-all duration-300' ?>">
+                        <i class="fa-solid <?= getMenuIcon($item) ?>"></i>
                         <?= htmlspecialchars($item) ?>
                     </a>
                 </li>
             <?php endif; ?>
+
         <?php endforeach; ?>
     </ul>
-
 </div>
-
-
 <?php
 $js = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/js/navbar.js');
 $encoded = base64_encode($js);

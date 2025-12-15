@@ -50,9 +50,9 @@ $pageName = "Home";
     <link rel="canonical" href="<?= htmlspecialchars($currentSeo['canonical']) ?>">
 
     <!-- Language Alternates -->
-    <link rel="alternate" hreflang="en" href="https://fancybet.info/?lang=en">
+    <link rel="alternate" hreflang="en-BD" href="https://fancybet.info/?lang=en">
     <link rel="alternate" hreflang="bn-BD" href="https://fancybet.info/?lang=bn">
-    <link rel="alternate" hreflang="x-default" href="https://fancybet.info/?lang=bn">
+
 
     <!-- Open Graph / Twitter Card -->
     <meta property="og:title" content="<?= htmlspecialchars($currentSeo['title']) ?>">
@@ -132,16 +132,12 @@ $pageName = "Home";
             include "./pages/cricket-news-section.php"
             ?>
         </section>
-
-
         <section class="pt-10"></section>
-
         <section class="">
             <?php
             include "./pages/match-preview-section.php"
             ?>
         </section>
-     
         <section class="">
             <?php
             include "./pages/cricket-betting-guides-section.php"

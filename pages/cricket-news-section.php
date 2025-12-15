@@ -29,7 +29,7 @@
 
                             <!-- Image -->
                             <?php if (!empty($post['image'])): ?>
-                                <img src="<?= $ImageURL?><?= htmlspecialchars($post['image']) ?>"
+                                <img src="<?= $ImageURL ?><?= htmlspecialchars($post['image']) ?>"
                                     alt="<?= htmlspecialchars($post['name']) ?>"
                                     class="w-full object-cover">
                             <?php else: ?>
@@ -67,14 +67,11 @@
                 <i class="fa-solid fa-chevron-right"></i>
             </button>
         </div>
-
-
-
         <!-- FEATURE CARDS -->
         <div class="flex flex-col lg:gap-2 gap-4">
             <?php foreach (array_slice($limitedPosts, 3, 4) as $post): ?>
                 <a href="/pages/detail?slug=<?= urlencode($post['slug']) ?>&lang=<?= $lang ?>">
-                    <div class="overflow-hidden flex h-[120px]transition-transform duration-300 hover:scale-[1.02]">
+                    <div class="overflow-hidden flex h-[120px]">
                         <?php if (!empty($post['image'])): ?>
                             <img src="<?= $ImageURL ?><?= htmlspecialchars($post['image']) ?>"
                                 alt="<?= htmlspecialchars($post['name']) ?>"
@@ -85,7 +82,7 @@
                             </div>
                         <?php endif; ?>
 
-                        <div class="flex flex-col px-2 item-right">
+                        <div class="flex flex-col px-2 item-right transition-all duration-300 hover:text-red-600">
                             <h3 class="text-md font-semibold line-clamp-2">
                                 <?= htmlspecialchars($post['name']) ?>
                             </h3>

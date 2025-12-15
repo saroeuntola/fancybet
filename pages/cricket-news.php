@@ -57,6 +57,8 @@ $keywords = $lang === 'en'
 
 $url = "https://fancybet.info/pages/cricket-news?lang={$lang}";
 $image = "https://fancybet.info/image/favicon-96x96.png";
+$hrefLangEN = " https://fancybet.info/pages/cricket-news?lang=en";
+$hrefLangBN = " https://fancybet.info/pages/cricket-news?lang=bn";
 
 
 
@@ -65,17 +67,15 @@ $breadcrumbs = generateBreadcrumb($lang, $menu);
 ?>
 <!DOCTYPE html>
 <html lang="<?= $lang === 'en' ? "en-BD" : "bn-BD" ?>" class="">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title><?= htmlspecialchars($title) ?></title>
     <meta name="description" content="<?= htmlspecialchars($description) ?>">
     <meta name="keywords" content="<?= htmlspecialchars($keywords) ?>">
     <link rel="canonical" href="<?= htmlspecialchars($url) ?>">
-
-    <!-- Open Graph / Twitter -->
+    <link rel="alternate" hreflang="en-BD" href="<?= htmlspecialchars($hrefLangEN) ?>">
+    <link rel="alternate" hreflang="bn-BD" href="<?= htmlspecialchars($hrefLangBN) ?>">
     <meta property="og:title" content="<?= htmlspecialchars($title) ?>">
     <meta property="og:description" content="<?= htmlspecialchars($description) ?>">
     <meta property="og:type" content="website">
@@ -85,23 +85,14 @@ $breadcrumbs = generateBreadcrumb($lang, $menu);
     <meta name="twitter:title" content="<?= htmlspecialchars($title) ?>">
     <meta name="twitter:description" content="<?= htmlspecialchars($description) ?>">
     <meta name="twitter:image" content="<?= htmlspecialchars($image) ?>">
-
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/image/favicon-96x96.png" sizes="96x96" />
-
-    <!-- CSS & JS -->
     <link rel="stylesheet" href="/src/output.css">
     <link rel="stylesheet" href="/css/pagination.css">
     <link rel="stylesheet" href="/css/breadcrumb.css">
     <script src="./js/jquery-3.7.1.min.js"></script>
     <?php include "./services/ahrefts.php" ?>
-    <!-- JSON-LD: NewsArticle + BreadcrumbList -->
     <?php outputFullSchemaPage($breadcrumbs, ['name' => $title, 'description' => html_entity_decode(strip_tags($description))], 'https://fancybet.info'); ?>
 </head>
-
-
-
-
 <body class="dark:bg-black bg-[#f5f5f5] dark:text-white text-gray-800">
     <?php include "navbar.php"; ?>
 
@@ -182,7 +173,7 @@ $breadcrumbs = generateBreadcrumb($lang, $menu);
                             <!-- Content -->
                             <div class="py-2 flex-1 flex flex-col">
                                 <div>
-                                    <h2 class="lg:text-lg text-md font-semibold mb-2 dark:text-white text-gray-800 break-words">
+                                    <h2 class="lg:text-lg text-md font-semibold mb-2 dark:text-white text-gray-800 break-words hover:text-red-600 transition-all duration-300">
                                         <?= $postName ?>
                                     </h2>
                                     <p class="dark:text-gray-300 text-gray-800 mb-3 text-sm break-words lg:text-md">

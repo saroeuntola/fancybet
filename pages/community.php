@@ -36,9 +36,7 @@ $text = $content[$lang];
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index, follow">
-
     <title><?= $lang === 'en' ? 'Community - FancyBet' : 'কমিউনিটি - ফ্যান্সিবেট'; ?></title>
-
     <meta name="description" content="<?= $lang === 'en'
                                             ? 'Join the FancyBet community to connect with other players, share betting strategies, and stay updated with the latest news and tips.'
                                             : 'ফ্যান্সিবেট কমিউনিটিতে যোগ দিন, অন্যান্য খেলোয়াড়দের সাথে যুক্ত হোন, বাজির কৌশল শেয়ার করুন এবং সর্বশেষ খবর ও টিপস সম্পর্কে জানুন।'; ?>">
@@ -47,13 +45,9 @@ $text = $content[$lang];
                                         ? 'FancyBet community, sports betting, casino games, betting tips, online gaming, responsible gambling'
                                         : 'ফ্যান্সিবেট কমিউনিটি, স্পোর্টস বেটিং, ক্যাসিনো গেম, বেটিং টিপস, অনলাইন গেমিং, দায়িত্বশীল গেমিং'; ?>">
 
-    <!-- Canonical & Hreflang -->
     <link rel="canonical" href="https://fancybet.info/pages/community" />
     <link rel="alternate" href="https://fancybet.info/pages/community?lang=en" hreflang="en" />
     <link rel="alternate" href="https://fancybet.info/pages/community?lang=bn" hreflang="bn-BD" />
-    <link rel="alternate" href="https://fancybet.info/pages/community" hreflang="x-default" />
-
-    <!-- Open Graph -->
     <meta property="og:title" content="<?= $lang === 'en' ? 'FancyBet Community - Connect, Learn & Share' : 'ফ্যান্সিবেট কমিউনিটি - সংযোগ, শিক্ষা ও শেয়ার করুন'; ?>" />
     <meta property="og:description" content="<?= $lang === 'en'
                                                     ? 'Join our growing community of players! Discuss betting strategies, share experiences, and learn responsible gaming.'
@@ -61,8 +55,6 @@ $text = $content[$lang];
     <meta property="og:url" content="https://fancybet.info/pages/community" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://fancybet.info/image/og-banner.png" />
-
-    <!-- Styles -->
     <link href="/src/output.css" rel="stylesheet">
     <link rel="stylesheet" href="./dist/css/all.min.css" />
     <script src="./js/jquery-3.6.0.min.js"></script>

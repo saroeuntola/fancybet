@@ -16,8 +16,8 @@
             <ul class="space-y-2">
                 <li><a href="/pages/about" class="hover:text-red-500 transition"><?= $lang === 'en' ? 'About Us' : 'আমাদের সম্পর্কে' ?></a></li>
                 <li><a href="/pages/contact" class="hover:text-red-500 transition"><?= $lang === 'en' ? 'Contact' : 'যোগাযোগ' ?></a></li>
-                <li><a href="/pages/privacy-policy" class="hover:text-red-500 transition"><?= $lang === 'en' ? 'Privacy Policy' : 'প্রাইভেসি পলিসি' ?></a></li>
-                <li><a href="/pages/terms" class="hover:text-red-500 transition"><?= $lang === 'en' ? 'Terms & Conditions' : 'শর্তাবলী' ?></a></li>
+                <li><a href="/pages/community" class="hover:text-red-500 transition"><?= $lang === 'en' ? 'Community' : 'সম্প্রদায়' ?></a></li>
+                
             </ul>
         </div>
 

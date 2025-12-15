@@ -45,7 +45,7 @@ $pageUrl = $pageSlug ? $homeUrl . "pages/" . $pageSlug : $homeUrl;
         <!-- Static Page -->
         <?php if ($pageSlug): ?>
             <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                <span itemprop="name"><?= htmlspecialchars($pageName) ?></span>
+                <p itemprop="name"><?= htmlspecialchars($pageName) ?></p>
                 <meta itemprop="position" content="2" />
             </li>
         <?php endif; ?>

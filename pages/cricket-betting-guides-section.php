@@ -6,18 +6,15 @@ $categoryPosts = $posts->getPostByCategory(2, $lang);
 ?>
 <div class="scroll-section relative dark:text-white text-gray-800 bg-white dark:bg-[#252525]
             shadow-[0_0_5px_0_rgba(0,0,0,0.2)] p-4">
-
     <div class="flex justify-between items-center mb-4">
         <h1 class="lg:text-2xl text-lg font-bold flex items-center gap-2">
             <p class="bg-red-700 p-1 rounded-lg">
                 <i class="fa-solid fa-lines-leaning text-white"></i>
             </p>
-
             <?= $lang === 'en' ? 'Betting Guides' : 'ক্রিকেট বেটিং গাইড' ?>
         </h1>
         <a href="/pages/cricket-betting-guides?lang=<?= $lang ?>"
             class="inline-flex items-center text-white gap-1 py-1 px-3 rounded-lg hover:bg-red-600 bg-red-700 transition text-sm lg:text-base">
-
             <?= $lang === 'en' ? 'View All' : 'সব দেখুন' ?>
             <i class="fa-solid fa-arrow-right"></i>
         </a>
@@ -26,12 +23,9 @@ $categoryPosts = $posts->getPostByCategory(2, $lang);
     <div class="relative w-full">
         <!-- Left Arrow -->
         <button
-
             class="scroll-left hidden lg:flex absolute left-2 top-[100px] -translate-y-1/2 bg-gray-800/70 hover:opacity-90 text-white w-10 h-10 rounded-full shadow-lg items-center justify-center z-10">
             &#10094;
         </button>
-
-        <!-- Scrollable container -->
         <div class="scroll-grid flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory touch-pan-x cursor-grab select-none scrollbar-hide px-4 md:px-10 w-full">
             <?php foreach ($categoryPosts as $post): ?>
                 <?php
@@ -56,15 +50,13 @@ $categoryPosts = $posts->getPostByCategory(2, $lang);
                                 <?= $lang === 'en' ? 'No Image' : 'ছবি নেই' ?>
                             </div>
                         <?php endif; ?>
-                        <!-- Content -->
-                        <div class="py-2 mt-2 flex-1 flex flex-col">
-                            <h2 class="text-md font-semibold mb-2 dark:text-white text-gray-800 line-clamp-2 break-words">
+                        <div class="py-2 mt-2 flex-1 flex flex-col hover:text-red-800">
+                            <h2 class="text-md font-semibold mb-2 dark:text-white text-gray-800 line-clamp-2 break-words hover:text-red-600 transition-all duration-300">
                                 <?= $postName ?>
                             </h2>
                             <p class="dark:text-gray-300 text-gray-800 text-sm break-words">
                                 <?= $postDesc ?>
                             </p>
-                            <!-- Date -->
                             <div class="flex items-center gap-1 dark:text-gray-400 text-gray-800 text-xs mt-2 truncate">
                                 <i class="fa-solid fa-earth-americas"></i>
                                 <span>
@@ -80,7 +72,6 @@ $categoryPosts = $posts->getPostByCategory(2, $lang);
         </div>
         <!-- Right Arrow -->
         <button
-
             class="absolute scroll-right right-2 top-[100px] -translate-y-1/2 bg-gray-800/70 hover:opacity-90 text-white w-10 h-10 rounded-full shadow-lg hidden lg:flex items-center justify-center z-10">
             &#10095;
         </button>

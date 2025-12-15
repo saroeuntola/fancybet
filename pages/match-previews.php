@@ -55,6 +55,8 @@ $keywords = $lang === 'en'
 
 $url = "https://fancybet.info/pages/cricket-news?lang={$lang}";
 $image = "https://fancybet.info/image/favicon-96x96.png";
+$hrefLangEN = " https://fancybet.info/pages/cricket-news?lang=en";
+$hrefLangBN = " https://fancybet.info/pages/cricket-news?lang=bn";
 
 $pageName = "Match Previews";
 ?>
@@ -65,36 +67,33 @@ $pageName = "Match Previews";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Dynamic SEO -->
     <title><?= htmlspecialchars($title) ?></title>
     <meta name="description" content="<?= htmlspecialchars($description) ?>">
     <meta name="keywords" content="<?= htmlspecialchars($keywords) ?>">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <link rel="canonical" href="<?= htmlspecialchars($url) ?>">
-
-    <!-- Open Graph / Social -->
+    <link rel="alternate" hreflang="en-BD" href="<?= htmlspecialchars($hrefLangEN) ?>">
+    <link rel="alternate" hreflang="bn-BD" href="<?= htmlspecialchars($hrefLangBN) ?>">
     <meta property="og:title" content="<?= htmlspecialchars($title) ?>">
     <meta property="og:description" content="<?= htmlspecialchars($description) ?>">
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?= htmlspecialchars($url) ?>">
     <meta property="og:image" content="<?= htmlspecialchars($image) ?>">
-    <!-- Twitter Card -->
-
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?= htmlspecialchars($title) ?>">
     <meta name="twitter:description" content="<?= htmlspecialchars($description) ?>">
     <meta name="twitter:image" content="<?= htmlspecialchars($image) ?>">
-
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/image/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/image/favicon.svg" />
     <link rel="shortcut icon" href="/image/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/image/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="FancyBet" />
     <link rel="manifest" href="/image/site.webmanifest" />
-
-    <!-- Schema.org JSON-LD -->
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="/src/output.css">
+    <link rel="stylesheet" href="/css/pagination.css">
+    <link rel="stylesheet" href="/css/breadcrumb.css">
+    <?php include "./services/ahrefts.php" ?>
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -113,17 +112,10 @@ $pageName = "Match Previews";
             "mainEntityOfPage": "<?= addslashes($url) ?>"
         }
     </script>
-
-    <script src="./js/jquery-3.7.1.min.js"></script>
-    <link rel="stylesheet" href="/src/output.css">
-    <link rel="stylesheet" href="/css/pagination.css">
-    <link rel="stylesheet" href="/css/breadcrumb.css">
-    <?php include "./services/ahrefts.php" ?>
 </head>
 
 <body class="dark:bg-black bg-[#f5f5f5] dark:text-white text-gray-800">
     <?php include "navbar.php"; ?>
-
     <main class="px-4 max-w-7xl m-auto">
 
         <div class="mt-[80px]">
@@ -136,7 +128,6 @@ $pageName = "Match Previews";
                 <h1 class="text-xl font-bold">
                     <?= $lang === 'en' ? 'All Match Previews' : 'সমস্ত ক্রিকেট সংবাদ' ?>
                 </h1>
-
                 <!-- Sort Dropdown -->
                 <form method="get" id="sortForm" class="relative inline-block">
                     <input type="hidden" name="lang" value="<?= $lang ?>">
@@ -165,8 +156,6 @@ $pageName = "Match Previews";
                 </form>
 
             </div>
-
-
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
                 <?php foreach ($posts as $post): ?>
                     <?php
@@ -200,12 +189,12 @@ $pageName = "Match Previews";
                             </div>
 
                             <!-- Content -->
-                            <div class="py-2 flex-1 flex flex-col">
-                                <div>
-                                    <h2 class="lg:text-lg text-md font-semibold mb-2 dark:text-white text-gray-800 break-words">
+                            <div class="py-2 flex-1 flex flex-col ">
+                                <div class="">
+                                    <h2 class="hover:text-red-600 transition-all duration-300 lg:text-lg text-md font-semibold mb-2 dark:text-white text-gray-800 break-words">
                                         <?= $postName ?>
                                     </h2>
-                                    <p class="dark:text-gray-300 text-gray-800 mb-3 text-sm break-words lg:text-md">
+                                    <p class="dark:text-gray-300 text-gray-800 mb-3 text-sm break-words lg:text-md ">
                                         <?= $postDesc ?>
                                     </p>
                                 </div>

@@ -3,7 +3,7 @@ require_once './admin/page/library/post_lib.php';
 $posts = new Post();
 $categoryPosts = $posts->getPostByCategory(6, $lang);
 ?>
-<div class="scroll-section mb-15 relative dark:text-white text-gray-800 bg-white dark:bg-[#252525]
+<div class="scroll-section mb-10 relative dark:text-white text-gray-800 bg-white dark:bg-[#252525]
             shadow-[0_0_5px_0_rgba(0,0,0,0.2)] p-4">
 
     <div class="flex justify-between items-center mb-4">
@@ -57,7 +57,7 @@ $categoryPosts = $posts->getPostByCategory(6, $lang);
                         <?php endif; ?>
                         <!-- Content -->
                         <div class="py-2 mt-2 flex-1 flex flex-col">
-                            <h2 class="text-md font-semibold mb-2 dark:text-white text-gray-800 line-clamp-2 break-words">
+                            <h2 class="text-md font-semibold mb-2 dark:text-white text-gray-800 line-clamp-2 break-words hover:text-red-600 transition-all duration-300">
                                 <?= $postName ?>
                             </h2>
                             <p class="dark:text-gray-300 text-gray-800 text-sm break-words">
@@ -79,12 +79,8 @@ $categoryPosts = $posts->getPostByCategory(6, $lang);
         </div>
         <!-- Right Arrow -->
         <button
-
             class="absolute scroll-right right-2 top-[100px] -translate-y-1/2 bg-gray-800/70 hover:opacity-90 text-white w-10 h-10 rounded-full shadow-lg hidden lg:flex items-center justify-center z-10">
             &#10095;
         </button>
-
-
-        
     </div>
 </div>

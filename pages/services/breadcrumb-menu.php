@@ -37,7 +37,7 @@ $categoryUrl = $categorySlug
         <?php if ($categorySlug): ?>
             <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
                 <a itemprop="item" href="<?= $categoryUrl ?>">
-                    <span itemprop="name"><?= htmlspecialchars($categoryName) ?></span>
+                    <p itemprop="name"><?= htmlspecialchars($categoryName) ?></p>
                 </a>
                 <meta itemprop="position" content="2" />
             </li>
