@@ -33,7 +33,7 @@ $relatedPosts = $postLib->getRelatedpost($post['id'] ?? 0, $post['category_id'] 
 $pageName = "Home";
 ?>
 <!DOCTYPE html>
-<html lang="<?= $lang === 'en' ? "en-BD" : "bn-BD" ?>" class="dark:bg-gray-900 bg-amber-50">
+<html lang="<?= $lang === 'en' ? "en-BD" : "bn-BD" ?>" class="">
 
 <head>
     <meta charset="UTF-8">
