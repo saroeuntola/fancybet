@@ -27,46 +27,31 @@ $relatedPosts = $postLib->getRelatedpost($post['id'] ?? 0, $post['category_id'] 
     ]
 
 ];
-
-    $currentSeo = $seo[$lang];
-
+$currentSeo = $seo[$lang];
 $pageName = "Home";
 ?>
 <!DOCTYPE html>
 <html lang="<?= $lang === 'en' ? "en-BD" : "bn-BD" ?>" class="">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- SEO Meta Tags -->
     <title><?= htmlspecialchars($currentSeo['title']) ?></title>
     <meta name="description" content="<?= htmlspecialchars($currentSeo['description']) ?>">
     <meta name="keywords" content="<?= htmlspecialchars($currentSeo['keywords']) ?>">
     <meta name="author" content="FancyBet">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-
-    <!-- Canonical -->
     <link rel="canonical" href="<?= htmlspecialchars($currentSeo['canonical']) ?>">
-
-    <!-- Language Alternates -->
     <link rel="alternate" hreflang="en-BD" href="https://fancybet.info/?lang=en">
     <link rel="alternate" hreflang="bn-BD" href="https://fancybet.info/?lang=bn">
-
-
-    <!-- Open Graph / Twitter Card -->
     <meta property="og:title" content="<?= htmlspecialchars($currentSeo['title']) ?>">
     <meta property="og:description" content="<?= htmlspecialchars($currentSeo['description']) ?>">
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?= htmlspecialchars($currentSeo['canonical']) ?>">
     <meta property="og:image" content="https://fancybet.info/image/favicon-96x96.png">
-
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?= htmlspecialchars($currentSeo['title']) ?>">
     <meta name="twitter:description" content="<?= htmlspecialchars($currentSeo['description']) ?>">
     <meta name="twitter:image" content="https://fancybet.info/image/favicon-96x96.png">
-
-    <!-- Favicon / Apple Touch Icons -->
     <link rel="icon" type="image/png" href="/image/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/svg+xml" href="/image/favicon.svg">
     <link rel="shortcut icon" href="/image/favicon.ico">
@@ -74,17 +59,12 @@ $pageName = "Home";
     <link rel="apple-touch-icon" sizes="180x180" href="/image/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-title" content="FancyBet">
     <link rel="manifest" href="/image/site.webmanifest">
-
     <link rel="stylesheet" href="/src/output.css">
     <link rel="stylesheet" href="./css/breadcrumb.css" />
     <link rel="preload" href="./css/style.css" as="style" onload="this.rel='stylesheet'">
-
     <link rel="preload" href="https://fancybet.info/image/favicon-96x96.png" as="image">
     <link rel="preload" href="https://fancybet.info/image/apple-touch-icon.png" as="image">
-
-    <!-- Deferred JS -->
     <script src="./js/jquery-3.7.1.min.js" defer></script>
-    <!-- JSON-LD Schema -->
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -106,17 +86,13 @@ $pageName = "Home";
     </script>
 <?php include "./pages/services/ahrefts.php";?>
 </head>
-
 <style>
     .scrollbar-hide::-webkit-scrollbar {
         display: none;
     }
-
     .scrollbar-hide {
         -ms-overflow-style: none;
-        /* IE and Edge */
         scrollbar-width: none;
-        /* Firefox */
     }
 </style>
 
