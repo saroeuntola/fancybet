@@ -137,7 +137,7 @@ $baseURL =  "https://fancybet.info/";
                         </p>
                     <?php endif; ?>
                     <?php if (!empty($post['image'])): ?>
-                        <img src="<?= $ImageURL ?><?= htmlspecialchars($post['image']) ?>" class="w-full h-auto mb-4 rounded">
+                        <img src="<?= $ImageURL ?><?= htmlspecialchars($post['image']) ?>" class="w-full h-auto mb-4 rounded" alt="<?= htmlspecialchars($post['name'] ?? 'image') ?>">
                     <?php endif; ?>
 
                     <div class="break-words desc-editor" style="white-space: pre-line;">
