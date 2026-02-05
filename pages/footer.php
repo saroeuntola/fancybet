@@ -2,7 +2,7 @@
     <div class="px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
         <!-- branding -->
         <div>
-            <img src="/image/FancyBet-footer.png" alt="fancybet logo" class="w-32 mb-4">
+            <img src="/image/fancybat.png" alt="fancybat footer" class="w-32 mb-4">
             <p>
                 <?= $lang === 'en'
                     ? 'Fancybet is your go-to platform for the latest cricket news, betting guides, and match previews. Stay informed and make smarter bets with us.'

@@ -5,54 +5,40 @@ require_once './services/bn-date.php';
 require_once '../baseURL.php';
 require_once './breadcrumb.php';
 require_once '../pages/services/menu.php';
+require_once './services/fetchAPI.php';
 
-$postObj = new Post();
 $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
-
-$categoryId = 3;
+$categoryId = 1;
 $limit = 9;
 $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
 $offset = ($page - 1) * $limit;
 $pageName = "Cricket News";
-// Sorting
-$sort = $_GET['sort'] ?? 'all';
-$orderBy = '';
-$orderDir = '';
 
-switch ($sort) {
-    case 'latest':
-        $orderBy = 'created_at';
-        $orderDir = 'DESC';
-        break;
-    case 'oldest':
-        $orderBy = 'created_at';
-        $orderDir = 'ASC';
-        break;
-    case 'a-z':
-        $orderBy = 'name';
-        $orderDir = 'ASC';
-        break;
-    case 'z-a':
-        $orderBy = 'name';
-        $orderDir = 'DESC';
-        break;
-}
+$queryParams = http_build_query([
+    'category_id' => $categoryId,
+    'lang' => $lang,
+    'limit' => $limit,
+    'offset' => $offset,
+]);
 
-// Get posts
-$totalPosts = count($postObj->getPostByCategory($categoryId, $lang));
+$apiUrl = $BaseApiURL .  $queryParams;
+
+$postsData = fetchFromApi($apiUrl);
+$apiResponse = $postsData ?? [];
+$posts = $apiResponse['data'] ?? [];
+$totalPosts = $apiResponse['total'] ?? 0;
 $totalPages = ceil($totalPosts / $limit);
-$posts = $postObj->getPostByCategory($categoryId, $lang, $limit, $offset, $orderBy, $orderDir);
 
 $title = $lang === 'en'
-    ? "Cricket News - Latest Cricket Updates & Betting Guides"
+    ? "FancyBat - Latest Cricket News"
     : "ক্রিকেট নিউজ - সর্বশেষ ক্রিকেট আপডেট ও বেটিং গাইড";
 
 $description = $lang === 'en'
-    ? "Stay updated with the latest cricket news, match previews, and betting guides. Follow IPL, BPL, ICC, PSL, and SA20 updates with FancyBet."
+    ? "Stay updated with the latest cricket news and match previews. Follow IPL, BPL, ICC, PSL, and SA20 updates with FancyBat."
     : "সর্বশেষ ক্রিকেট নিউজ, ম্যাচ প্রিভিউ এবং বেটিং গাইডের সাথে আপডেট থাকুন। IPL, BPL, ICC, PSL এবং SA20 আপডেট অনুসরণ করুন FancyBet এর মাধ্যমে।";
 
 $keywords = $lang === 'en'
-    ? "Cricket News, Cricket Updates, IPL, BPL, ICC, PSL, SA20, Cricket Betting, FancyBet, Online Casino Bangladesh, Betting Guide"
+    ? "Cricket News, Cricket Updates, IPL, BPL, ICC, PSL, SA20, Cricket Betting, FancyBet, Online Casino Bangladesh, fancybat"
     : "ক্রিকেট নিউজ, ক্রিকেট আপডেট, IPL, BPL, ICC, PSL, SA20, ক্রিকেট বেটিং, ফ্যান্সি বেট, অনলাইন ক্যাসিনো বাংলাদেশ, বেটিং গাইড";
 
 $url = "https://fancybet.info/pages/cricket-news?lang={$lang}";
@@ -67,6 +53,7 @@ $breadcrumbs = generateBreadcrumb($lang, $menu);
 ?>
 <!DOCTYPE html>
 <html lang="<?= $lang === 'en' ? "en-BD" : "bn-BD" ?>" class="">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -93,8 +80,11 @@ $breadcrumbs = generateBreadcrumb($lang, $menu);
     <?php include "./services/ahrefts.php" ?>
     <?php outputFullSchemaPage($breadcrumbs, ['name' => $title, 'description' => html_entity_decode(strip_tags($description))], 'https://fancybet.info'); ?>
 </head>
+
 <body class="dark:bg-black bg-[#f5f5f5] dark:text-white text-gray-800">
-    <?php include "navbar.php"; ?>
+    <?php
+    include './navbar.php';
+    ?>
 
     <main class="px-4 max-w-7xl m-auto mt-[80px]">
         <?php
@@ -108,32 +98,6 @@ $breadcrumbs = generateBreadcrumb($lang, $menu);
                     <?= $lang === 'en' ? 'All Cricket News' : 'সমস্ত ক্রিকেট সংবাদ' ?>
                 </h1>
 
-                <!-- Sort Dropdown -->
-                <form method="get" id="sortForm" class="relative inline-block">
-                    <input type="hidden" name="lang" value="<?= $lang ?>">
-
-                    <select name="sort" onchange="this.form.submit()"
-                        class="appearance-none bg-gray-700 text-white px-3 py-1 rounded pr-8 border-0 focus:outline-none hover:bg-red-800 transition-all w-auto min-w-[4rem]">
-                        <option value="all" <?= $sort === 'all' ? 'selected' : '' ?>>
-                            <?= $lang === 'en' ? 'All' : 'সব' ?>
-                        </option>
-                        <option value="latest" <?= $sort === 'latest' ? 'selected' : '' ?>>
-                            <?= $lang === 'en' ? 'Latest' : 'সর্বশেষ' ?>
-                        </option>
-                        <option value="oldest" <?= $sort === 'oldest' ? 'selected' : '' ?>>
-                            <?= $lang === 'en' ? 'Oldest' : 'প্রাচীনতম' ?>
-                        </option>
-                        <option value="a-z" <?= $sort === 'a-z' ? 'selected' : '' ?>>
-                            <?= $lang === 'en' ? 'A-Z' : 'ক-খ' ?>
-                        </option>
-                        <option value="z-a" <?= $sort === 'z-a' ? 'selected' : '' ?>>
-                            <?= $lang === 'en' ? 'Z-A' : 'খ-ক' ?>
-                        </option>
-                    </select>
-
-                    <!-- Font Awesome arrow -->
-                    <i class="fa-solid fa-chevron-down absolute right-2 top-1/2 transform -translate-y-1/2 text-white pointer-events-none"></i>
-                </form>
 
             </div>
 
@@ -141,7 +105,7 @@ $breadcrumbs = generateBreadcrumb($lang, $menu);
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
                 <?php foreach ($posts as $post): ?>
                     <?php
-                    $postName = htmlspecialchars($post['name'] ?? '');
+                    $postName = html_entity_decode($post['name'] ?? '');
                     if (mb_strlen($postName, 'UTF-8') > 80) {
                         $postName = mb_substr($postName, 0, 80, 'UTF-8') . '...';
                     }
@@ -152,7 +116,7 @@ $breadcrumbs = generateBreadcrumb($lang, $menu);
                     if (mb_strlen($postDesc, 'UTF-8') > 80) {
                         $postDesc = mb_substr($postDesc, 0, 75, 'UTF-8') . '...';
                     }
-                    $postDesc = htmlspecialchars($postDesc);
+                    $postDesc = html_entity_decode($postDesc);
                     $createdAt = $post['created_at'] ?? '';
                     ?>
                     <a href="/pages/detail?slug=<?= $postSlug ?>&lang=<?= $lang ?>">
@@ -198,11 +162,18 @@ $breadcrumbs = generateBreadcrumb($lang, $menu);
 
             <!-- Pagination -->
             <?php if ($totalPages > 1): ?>
+                <?php
+                // Preserve existing query parameters except 'page'
+                $queryParamsBase = $_GET;
+                unset($queryParamsBase['page']);
+                $baseQueryString = http_build_query($queryParamsBase);
+
+                ?>
                 <div class="pagination-container">
                     <nav class="pagination-nav">
                         <!-- First Page -->
                         <?php if ($page > 1): ?>
-                            <a href="?page=1" class="pagination-btn" title="First page">
+                            <a href="?<?= $baseQueryString ?>&page=1" class="pagination-btn" title="First page">
                                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
                                 </svg>
@@ -217,7 +188,7 @@ $breadcrumbs = generateBreadcrumb($lang, $menu);
 
                         <!-- Previous -->
                         <?php if ($page > 1): ?>
-                            <a href="?page=<?= $page - 1 ?>" class="pagination-btn" title="Previous page">
+                            <a href="?<?= $baseQueryString ?>&page=<?= $page - 1 ?>" class="pagination-btn" title="Previous page">
                                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                                 </svg>
@@ -237,26 +208,25 @@ $breadcrumbs = generateBreadcrumb($lang, $menu);
                             $start = max(1, $page - $range);
                             $end = min($totalPages, $page + $range);
 
-                            // Show ellipsis if not starting at page 1
+                            // Ellipsis if not starting at 1
                             if ($start > 1): ?>
                                 <span class="pagination-ellipsis">...</span>
-                            <?php endif;
+                            <?php endif; ?>
 
-                            for ($i = $start; $i <= $end; $i++): ?>
-                                <a href="?page=<?= $i ?>" class="pagination-number <?= $i === $page ? 'active' : '' ?>">
+                            <?php for ($i = $start; $i <= $end; $i++): ?>
+                                <a href="?<?= $baseQueryString ?>&page=<?= $i ?>" class="pagination-number <?= $i === $page ? 'active' : '' ?>">
                                     <?= $i ?>
                                 </a>
-                            <?php endfor;
+                            <?php endfor; ?>
 
-                            // Show ellipsis if not ending at last page
-                            if ($end < $totalPages): ?>
+                            <?php if ($end < $totalPages): ?>
                                 <span class="pagination-ellipsis">...</span>
                             <?php endif; ?>
                         </div>
 
                         <!-- Next -->
                         <?php if ($page < $totalPages): ?>
-                            <a href="?page=<?= $page + 1 ?>" class="pagination-btn" title="Next page">
+                            <a href="?<?= $baseQueryString ?>&page=<?= $page + 1 ?>" class="pagination-btn" title="Next page">
                                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                 </svg>
@@ -271,7 +241,7 @@ $breadcrumbs = generateBreadcrumb($lang, $menu);
 
                         <!-- Last Page -->
                         <?php if ($page < $totalPages): ?>
-                            <a href="?page=<?= $totalPages ?>" class="pagination-btn" title="Last page">
+                            <a href="?<?= $baseQueryString ?>&page=<?= $totalPages ?>" class="pagination-btn" title="Last page">
                                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
                                 </svg>
@@ -286,6 +256,7 @@ $breadcrumbs = generateBreadcrumb($lang, $menu);
                     </nav>
                 </div>
             <?php endif; ?>
+
         </div>
     </main>
 

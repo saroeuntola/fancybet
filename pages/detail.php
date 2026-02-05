@@ -9,25 +9,63 @@ include '../admin/page/library/db.php';
 include './services/bn-date.php';
 include '../baseURL.php';
 include './breadcrumb.php';
-
+include_once $_SERVER['DOCUMENT_ROOT'] . '/pages/services/fetchAPI.php';
 require_once '../pages/services/menu.php';
-$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
-$slug = $_GET['slug'] ?? '';
+$baseAPI = "http://dummy-blog:8080/api/cricket-news/";
 $postLib = new Post();
-$post = $postLib->getPostBySlug($slug, $lang);
-$currentSlug = $_GET['slug'] ?? '';
-$commentLib = new Comment();
-$comments = $commentLib->getByPost($post['id'] ?? 0);
-$relatedPosts = $postLib->getRelatedpost($post['id'] ?? 0, $post['category_id'] ?? 0, 6, $lang);
-$recentPosts = $postLib->getRecentPost(8, $lang);
+$commentLib = new Comment();   
+
+ $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
+    $slug = trim($_GET['slug'] ?? '');
+    $apiUrl = $baseAPI .  "get-by-slug?slug=" . urlencode($slug) . "&lang=" . $lang;
+    $response = fetchFromApi($apiUrl);
+    $post = $response['data'];
+//recent
+$query = http_build_query([
+        'limit' => 8,
+        'lang' => $lang
+    ]);
+    $apiUrl = $baseAPI . "recent?" . $query;
+    $response = fetchFromApi($apiUrl);
+    if (!$response || empty($response['success']) || empty($response['data'])) {
+        http_response_code(404);
+        die('Post not found');
+    }
+$recentPosts = $response['data'];
+
+//related posts
+    $queryParams = [
+        'post_id'     => $post['id'],
+        'category_id' => $post['category_id'],
+        'limit'       => 6,
+        'lang'        => $lang
+    ];
+
+    $queryString = http_build_query($queryParams);
+    $apiUrl = $baseAPI . "related?" . $queryString;
+
+    $response = fetchFromApi($apiUrl);
+    if (!$response || empty($response['success']) || empty($response['data'])) {
+        http_response_code(404);
+        die('Post not found');
+    }
+$relatedPosts = $response['data'];
+
+    //commet
+    $queryParams = [
+        'post_id'     => $post['id'],
+    ];
+    $queryString = http_build_query($queryParams);
+    $apiUrl = $baseAPI . "get_comments?" . $queryString;
+    $response = fetchFromApi($apiUrl);
+$comments = $response['data'];
+
 
 $desktopLimit = 4;
 $desktopPage = isset($_GET['related_page']) ? max(1, intval($_GET['related_page'])) : 1;
 $totalDesktopPages = ceil(count($relatedPosts) / $desktopLimit);
 $desktopStart = ($desktopPage - 1) * $desktopLimit;
 $desktopPosts = array_slice($relatedPosts, $desktopStart, $desktopLimit);
-
-
 $postTitle =  ($post['name'] ?? '');
 $postDescription =  ($post['meta_desc'] ?? '');
 $postKeywords = ($post['meta_keyword'] ?? '');
@@ -35,8 +73,6 @@ $postImage = $post['image'] ?? '/image/favicon-96x96.png';
 $postUrl = "https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lang=" . $lang;
 $hrefLangEN = " https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lang=en";
 $hrefLangBN = " https://fancybet.info/pages/detail?slug=" . urlencode($slug) . "&lang=bn";
-
-
 
 $descriptionWithFullUrl = preg_replace_callback(
     '/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i',
@@ -51,15 +87,11 @@ $descriptionWithFullUrl = preg_replace_callback(
     $post['description'] ?? ''
 );
 
-
-
 $breadcrumbs = generateBreadcrumb($lang, $menu);
 
 $baseURL =  "https://fancybet.info/";
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="<?= $lang === 'en' ? "en-BD" : "bn-BD" ?>" class="">
 
@@ -128,7 +160,7 @@ $baseURL =  "https://fancybet.info/";
             <section class="lg:col-span-2 space-y-6 dark:text-white text-gray-800 ">
                 <!-- Post Card -->
                 <div class="mb-6 bg-white dark:bg-[#252525] p-4 shadow-[0_0_5px_0_rgba(0,0,0,0.2)]">
-                    <h1 class="lg:text-3xl text-lg font-bold mb-2"><?= htmlspecialchars($post['name'] ?? '') ?></h1>
+                    <h1 class="lg:text-3xl text-lg font-bold mb-2"><?= html_entity_decode($post['name'] ?? 'No Title') ?></h1>
 
                     <?php if (!empty($post['created_at'])): ?>
                         <p class="dark:text-gray-100 text-gray-800 text-sm mb-4">
@@ -245,7 +277,7 @@ $baseURL =  "https://fancybet.info/";
                                                 <?php endif; ?>
                                                 <div class="py-2">
                                                     <div>
-                                                        <h3 class="dark:text-white text-gray-900 font-semibold text-md mb-2 hover:text-red-600 transition-all duration-300"> <?= htmlspecialchars(mb_strimwidth($rPost['name'], 0, 50, '...')) ?></h3>
+                                                        <h3 class="dark:text-white text-gray-900 font-semibold text-md mb-2 hover:text-red-600 transition-all duration-300"> <?= html_entity_decode(mb_strimwidth($rPost['name'], 0, 50, '...')) ?></h3>
                                                         <p class="dark:text-gray-300 text-gray-900 mb-1 break-words whitespace-normal text-sm">
                                                             <?php
                                                             $plainText = strip_tags($rPost['description'] ?? '');
@@ -309,7 +341,7 @@ $baseURL =  "https://fancybet.info/";
                             <li class="flex items-start gap-3">
                                 <div class="flex-1">
                                     <?php
-                                    $title = htmlspecialchars($r['name']);
+                                    $title = html_entity_decode($r['name']?? "");
                                     if (mb_strlen($title, 'UTF-8') > 80) {
                                         $title = mb_substr($title, 0, 57, 'UTF-8') . '...';
                                     }

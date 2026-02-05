@@ -1,3 +1,25 @@
+<?php
+include_once $_SERVER['DOCUMENT_ROOT'] . '/pages/services/fetchAPI.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/pages/services/bn-date.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/baseURL.php';
+
+$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
+
+$queryParams = http_build_query([
+    'category_id' => 1,
+    'lang' => $lang,
+    'limit'       => 9,
+    'offset'      => "",
+]);
+
+$apiUrl = $BaseApiURL . $queryParams;
+
+$postsData = fetchFromApi($apiUrl);
+$apiResponse = $postsData ?? [];
+$posts = $apiResponse['data'] ?? [];
+$limitedPosts = is_array($posts) ? $posts : [];
+?>
+
 <div class="dark:text-white text-gray-800 bg-white dark:bg-[#252525] shadow-[0_0_5px_0_rgba(0,0,0,0.2)] p-4">
     <div class="flex justify-between items-center mb-4">
         <h1 class="lg:text-2xl text-lg font-bold flex items-center gap-2">
@@ -30,7 +52,7 @@
                             <!-- Image -->
                             <?php if (!empty($post['image'])): ?>
                                 <img src="<?= $ImageURL ?><?= htmlspecialchars($post['image']) ?>"
-                                    alt="<?= htmlspecialchars($post['name']) ?>"
+                                    alt="<?= html_entity_decode($post['name']?? '') ?>"
                                     class="w-full object-cover">
                             <?php else: ?>
                                 <div class="w-full slide-image bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-300 text-sm">
@@ -41,7 +63,7 @@
                             <!-- Overlay text -->
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-3 lg:p-6">
                                 <h2 class="text-sm lg:text-2xl font-bold text-white mb-1 line-clamp-2">
-                                    <?= htmlspecialchars($post['name']) ?>
+                                    <?= html_entity_decode($post['name']?? '') ?>
                                 </h2>
                                 <div class="flex items-center gap-1 text-gray-300 text-xs lg:text-sm">
                                     <i class="fa-solid fa-earth-americas"></i>
@@ -74,7 +96,7 @@
                     <div class="overflow-hidden flex h-[120px]">
                         <?php if (!empty($post['image'])): ?>
                             <img src="<?= $ImageURL ?><?= htmlspecialchars($post['image']) ?>"
-                                alt="<?= htmlspecialchars($post['name']) ?>"
+                                alt="<?= html_entity_decode($post['name']?? '') ?>"
                                 class="w-[160px] object-cover">
                         <?php else: ?>
                             <div class="w-[160px] flex items-center justify-center text-gray-300 text-sm">
@@ -84,11 +106,11 @@
 
                         <div class="flex flex-col px-2 item-right transition-all duration-300 hover:text-red-600">
                             <h3 class="text-md font-semibold line-clamp-2">
-                                <?= htmlspecialchars($post['name']) ?>
+                                <?= html_entity_decode($post['name']?? '') ?>
                             </h3>
 
                             <p class="dark:text-gray-300 text-gray-800 text-sm mt-1 line-clamp-2 mb-1">
-                                <?= htmlspecialchars(mb_strimwidth(strip_tags(html_entity_decode($post['description'] ?? '')), 0, 110, '...')) ?>
+                                <?= html_entity_decode(mb_strimwidth(strip_tags(html_entity_decode($post['description'] ?? '')), 0, 110, '...')) ?>
                             </p>
 
                             <div class="flex items-center gap-1 dark:text-gray-300 text-gray-800 text-xs">

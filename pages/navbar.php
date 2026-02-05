@@ -108,7 +108,7 @@ function isActive($file)
             </button>
 
             <a href="/?lang=<?= $lang ?>" class="text-lg font-semibold hover:text-gray-300">
-                <img src="/image/FancyBet.png" alt="fancybet logo" class="w-28 hover:opacity-70 transition-all">
+                <img src="/image/fancybat.png" alt="fancybat" class="w-28 hover:opacity-70 transition-all">
             </a>
         </div>
 

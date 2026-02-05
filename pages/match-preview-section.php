@@ -1,7 +1,21 @@
+
 <?php
-require_once './admin/page/library/post_lib.php';
-$posts = new Post();
-$categoryPosts = $posts->getPostByCategory(6, $lang);
+include_once $_SERVER['DOCUMENT_ROOT'] . '/pages/services/fetchAPI.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/pages/services/bn-date.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/baseURL.php';
+$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
+
+$queryParams = http_build_query([
+    'category_id' => 1,
+    'lang' => $lang,
+    'limit'       => 8,
+    'offset'      => "",
+]);
+$apiUrl = $BaseApiURL . $queryParams;
+$postsData = fetchFromApi($apiUrl);
+$apiResponse = $postsData ?? [];
+$categoryPosts =  $apiResponse['data'] ?? [];
+
 ?>
 <div class="scroll-section mb-10 relative dark:text-white text-gray-800 bg-white dark:bg-[#252525]
             shadow-[0_0_5px_0_rgba(0,0,0,0.2)] p-4">
@@ -34,7 +48,7 @@ $categoryPosts = $posts->getPostByCategory(6, $lang);
         <div class="scroll-grid flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory touch-pan-x cursor-grab select-none scrollbar-hide px-4 md:px-10 w-full">
             <?php foreach ($categoryPosts as $post): ?>
                 <?php
-                $postName = htmlspecialchars($post['name'] ?? '');
+                $postName = html_entity_decode($post['name'] ?? '');
                 $postSlug = urlencode($post['slug'] ?? '');
                 $postImage = !empty($post['image']) ? htmlspecialchars($post['image']) : null;
                 $postDesc = strip_tags($post['description'] ?? '');
