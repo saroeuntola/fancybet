@@ -83,23 +83,37 @@ document.addEventListener("DOMContentLoaded", () => {
     return null;
   };
 
-  const submitComment = (form) => {
-    const formData = new FormData(form);
-    fetch("/pages/ajax_add_comment", { method: "POST", body: formData })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.status) {
-          initialComments = res.comments;
-          renderAllComments();
-          form.reset();
-          form.querySelector('input[name="parent_id"]').value = "";
-          updateCommentCount();
-        } else {
-          alert(res.message || "Error");
-        }
-      })
-      .catch((err) => alert("AJAX error: " + err));
-  };
+const submitComment = (form) => {
+  const formData = new FormData(form);
+
+  fetch("http://dummy-blog:8080/api/cricket-news/add_comment", {
+    method: "POST",
+    headers: {
+      "X-API-KEY":
+        "ziqh172nHHxEEDkWmbqMykllPb4q56M7JFr9QGok70oDBoJUNjvtQC3If8gx0lQw",
+    },
+    body: formData,
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      console.log("COMMENT API RESPONSE:", res); 
+      if (res.success === true) {
+        initialComments = res.comments || [];
+        renderAllComments();
+        form.reset();
+
+        const parentInput = form.querySelector('input[name="parent_id"]');
+        if (parentInput) parentInput.value = "";
+        updateCommentCount();
+      } else {
+        alert(res.message || "Comment failed");
+      }
+    })
+    .catch((err) => {
+      console.error("AJAX ERROR:", err);
+      alert("AJAX error");
+    });
+};
 
   document.getElementById("commentForm").addEventListener("submit", (e) => {
     e.preventDefault();

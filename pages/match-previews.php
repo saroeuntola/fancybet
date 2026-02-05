@@ -1,45 +1,29 @@
 <?php
-require_once '../admin/page/library/db.php';
-require_once '../admin/page/library/post_lib.php';
-require_once './services/bn-date.php';
-require_once '../baseURL.php';
-$postObj = new Post();
-$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
+    require_once '../admin/page/library/db.php';
+    require_once '../admin/page/library/post_lib.php';
+    require_once './services/bn-date.php';
+    require_once '../baseURL.php';
+    require_once './breadcrumb.php';
+    require_once '../pages/services/menu.php';
+    require_once './services/fetchAPI.php';
+    $lang = isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'bn']) ? $_GET['lang'] : 'bn';
+    $categoryId = 2;
+    $limit = 9;
+    $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
+    $offset = ($page - 1) * $limit;
+    $pageName = "Cricket News";
 
-$categoryId = 6;
-$limit = 9;
-$page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
-$offset = ($page - 1) * $limit;
-
-// Sorting
-$sort = $_GET['sort'] ?? 'all';
-$orderBy = '';
-$orderDir = '';
-
-switch ($sort) {
-    case 'latest':
-        $orderBy = 'created_at';
-        $orderDir = 'DESC';
-        break;
-    case 'oldest':
-        $orderBy = 'created_at';
-        $orderDir = 'ASC';
-        break;
-    case 'a-z':
-        $orderBy = 'name';
-        $orderDir = 'ASC';
-        break;
-    case 'z-a':
-        $orderBy = 'name';
-        $orderDir = 'DESC';
-        break;
-    default:
-        $sort = 'all';
-}
-
-$totalPosts = count($postObj->getPostByCategory($categoryId, $lang));
-$totalPages = ceil($totalPosts / $limit);
-$posts = $postObj->getPostByCategory($categoryId, $lang, $limit, $offset, $orderBy, $orderDir);
+    $queryParams = http_build_query([
+        'category_id' => $categoryId,
+        'limit'       => $limit,
+        'offset'      => $offset,
+    ]);
+    $apiUrl = $BaseApiURL .  $queryParams;
+    $postsData = fetchFromApi($apiUrl);
+    $apiResponse = $postsData ?? [];
+    $posts = $apiResponse['data'] ?? [];
+    $totalPosts = $apiResponse['total'] ?? 0;
+    $totalPages = ceil($totalPosts / $limit);
 
 $title = $lang === 'en'
     ? "Cricket News - Latest Cricket Updates & Betting Guides"
@@ -128,32 +112,7 @@ $pageName = "Match Previews";
                 <h1 class="text-xl font-bold">
                     <?= $lang === 'en' ? 'All Match Previews' : 'সমস্ত ক্রিকেট সংবাদ' ?>
                 </h1>
-                <!-- Sort Dropdown -->
-                <form method="get" id="sortForm" class="relative inline-block">
-                    <input type="hidden" name="lang" value="<?= $lang ?>">
-
-                    <select name="sort" onchange="this.form.submit()"
-                        class="appearance-none bg-gray-700 text-white px-3 py-1 rounded pr-8 border-0 focus:outline-none hover:bg-red-800 transition-all w-auto min-w-[4rem]">
-                        <option value="all" <?= $sort === 'all' ? 'selected' : '' ?>>
-                            <?= $lang === 'en' ? 'All' : 'সব' ?>
-                        </option>
-                        <option value="latest" <?= $sort === 'latest' ? 'selected' : '' ?>>
-                            <?= $lang === 'en' ? 'Latest' : 'সর্বশেষ' ?>
-                        </option>
-                        <option value="oldest" <?= $sort === 'oldest' ? 'selected' : '' ?>>
-                            <?= $lang === 'en' ? 'Oldest' : 'প্রাচীনতম' ?>
-                        </option>
-                        <option value="a-z" <?= $sort === 'a-z' ? 'selected' : '' ?>>
-                            <?= $lang === 'en' ? 'A-Z' : 'ক-খ' ?>
-                        </option>
-                        <option value="z-a" <?= $sort === 'z-a' ? 'selected' : '' ?>>
-                            <?= $lang === 'en' ? 'Z-A' : 'খ-ক' ?>
-                        </option>
-                    </select>
-
-                    <!-- Font Awesome arrow -->
-                    <i class="fa-solid fa-chevron-down absolute right-2 top-1/2 transform -translate-y-1/2 text-white pointer-events-none"></i>
-                </form>
+         
 
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
