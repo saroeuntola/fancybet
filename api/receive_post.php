@@ -1,8 +1,9 @@
 <?php
 include "../admin/page/library/db.php";  
-include "../admin/page/library/post_lib.php";     
+include "../admin/page/library/post_lib.php";  
+include "config.php";   
 
-$SECRET_KEY = 'ec08cf9ee658a95781564961c41f5b98';
+$SECRET_KEY = getenv('SECRET_KEY');
 
 $postLib = new Post(); 
 

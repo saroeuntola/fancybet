@@ -1,9 +1,7 @@
 <?php
 require_once $_SERVER["DOCUMENT_ROOT"] . '/admin/page/library/post_lib.php';
 
-/**
- * Get the real post title from slug.
- */
+ 
 function getPostTitleFromSlug($slug, $lang = null)
 {
     $postLib = new Post();
