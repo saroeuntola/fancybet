@@ -29,7 +29,7 @@ class Post {
                 p.$description_field AS description, 
                 p.$meta_desc_field AS meta_desc, 
                 p.$meta_keyword_field AS meta_keyword, 
-                p.game_link, 
+               p.link, 
                 p.category_id, 
                 p.created_at, 
                 p.$meta_text_field AS meta_text, 
@@ -80,7 +80,7 @@ class Post {
         // SQL query
         $query = "SELECT p.id, p.slug, p.$name_field AS name, p.image, 
                      p.$description_field AS description, p.$meta_desc_field AS meta_desc,
-                     p.game_link, p.category_id, p.created_at, 
+                    p.link, p.category_id, p.created_at, 
                      p.$meta_text_field AS meta_text, 
                      c.name AS category_name 
               FROM post p
@@ -111,7 +111,7 @@ class Post {
 
         $query = "SELECT p.id, p.slug, p.$name_field AS name, p.image, 
                      p.$description_field AS description, p.$meta_desc_field AS meta_desc,
-                     p.game_link, p.category_id, p.created_at, 
+                    p.link, p.category_id, p.created_at, 
                      p.$meta_text_field AS meta_text, 
                      c.name AS category_name,
                      p.public_by
@@ -145,7 +145,7 @@ class Post {
         $meta_keyword_field = $lang === 'en' ? 'meta_keyword' : 'meta_keyword_bn';
         $query = "SELECT p.id, p.slug, p.$name_field AS name, p.image, 
                      p.$description_field AS description, p.$description_field AS description, p.$meta_desc_field AS meta_desc,
-                     p.game_link, p.category_id, p.created_at, 
+                    p.link, p.category_id, p.created_at, 
                      p.$meta_text_field AS meta_text, 
                      c.name AS category_name,
                      p.public_by
@@ -180,7 +180,7 @@ class Post {
             p.meta_keyword,
             p.meta_desc_bn, 
             p.meta_keyword_bn,
-            p.game_link, 
+           p.link, 
             p.category_id, 
             p.created_at, 
             p.$meta_text_field AS meta_text, 
@@ -212,7 +212,7 @@ class Post {
         $meta_keyword_field = $lang === 'en' ? 'meta_keyword' : 'meta_keyword_bn';
         $query = "SELECT p.id, p.$name_field AS name, p.image, p.$description_field AS description, p.$meta_desc_field AS meta_desc, 
             p.$meta_keyword_field AS meta_keyword,
-                     p.game_link, p.category_id, p.created_at, p.$meta_text_field AS meta_text, 
+                    p.link, p.category_id, p.created_at, p.$meta_text_field AS meta_text, 
                      c.name AS category_name 
               FROM post p
               JOIN categories c ON p.category_id = c.id 
@@ -242,7 +242,7 @@ class Post {
 
         $query = "SELECT p.id, p.slug, p.$name_field AS name, p.image, 
                      p.$description_field AS description, 
-                     p.game_link, p.category_id, p.created_at, 
+                    p.link, p.category_id, p.created_at, 
                      p.$meta_text_field AS meta_text, 
                      c.name AS category_name
               FROM post p
@@ -277,7 +277,7 @@ class Post {
         $meta_text_field = $lang === 'en' ? 'meta_text' : 'meta_text_bn';
 
         $query = "SELECT p.id, p.$name_field AS name, p.image, p.$description_field AS description, 
-                     p.game_link, p.category_id, p.created_at, p.$meta_text_field AS meta_text, 
+                    p.link, p.category_id, p.created_at, p.$meta_text_field AS meta_text, 
                      p.slug, 
                      c.name AS category_name 
               FROM post p
@@ -310,7 +310,7 @@ class Post {
                 p.$name_field AS name, 
                 p.image, 
                 p.$description_field AS description, 
-                p.game_link, 
+               p.link, 
                 p.category_id, 
                 p.created_at, 
                 p.$meta_text_field AS meta_text, 
@@ -349,7 +349,7 @@ class Post {
             'slug' => $slug,
             'image' => $image,
             'description' => $description,
-            'game_link' => $link,
+            'link' => $link,
             'category_id' => $category_id,
             'meta_text' => $meta_text,
             'name_bn' => $name_bn,
@@ -365,7 +365,7 @@ class Post {
         return dbInsert('post', $data);
     }
 
-    public function updatePost($id, $name, $image, $description, $game_link, $category_id, $meta_text, $name_bn, $description_bn, $meta_text_bn, $meta_desc, $meta_keyword, $meta_desc_bn, $meta_keyword_bn, $public_by, $slug = null)
+    public function updatePost($id, $name, $image, $description, $link, $category_id, $meta_text, $name_bn, $description_bn, $meta_text_bn, $meta_desc, $meta_keyword, $meta_desc_bn, $meta_keyword_bn, $public_by, $slug = null)
     {
         if (!$this->getPostById($id)) {
             return false;
@@ -379,7 +379,7 @@ class Post {
             'slug' => $slug,
             'image' => $image,
             'description' => $description,
-            'game_link' => $game_link,
+            'link' => $link,
             'category_id' => $category_id,
             'meta_text' => $meta_text,
             'name_bn' => $name_bn,
